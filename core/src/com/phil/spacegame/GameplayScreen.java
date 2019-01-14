@@ -50,17 +50,16 @@ public class GameplayScreen implements Screen {
 		ingameUI = new InputMultiplexer();
 		ingameUI.addProcessor(guiStage.getStage()); //for handling dialogs which use a stage (Actors)
 		ingameUI.addProcessor(gameInput); //for handling input without stage
-		//activate GUI
-		guiStage.show();
+		//activate GUI for input
 		Gdx.input.setInputProcessor(ingameUI);
 		//show "Press to start"
-		guiStage.showStart(true);
+		guiStage.showMenuGUI(true);
 	}
 
 	public void startGame() {
 		//start gameplay
-		guiStage.showPause(false);
-		guiStage.showStart(false);
+		guiStage.showMenuGUI(false);
+		guiStage.showGameGUI(true);
 		this.gamePlay.start();
 	}
 
@@ -70,6 +69,7 @@ public class GameplayScreen implements Screen {
 		//update gamePlay
 		if (gamePlay != null) {
 			gamePlay.update(delta);
+			guiStage.updateScore(gamePlay.score);
 		}
 
 		//render gamePlay
@@ -99,8 +99,6 @@ public class GameplayScreen implements Screen {
 		//resume game
 		if (gamePlay != null)
 			gamePlay.resume();
-		//show ingame UI
-		guiStage.show();
 	}
 
 	@Override

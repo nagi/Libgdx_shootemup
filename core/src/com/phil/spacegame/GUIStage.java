@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Align;
 
 public class GUIStage {
 
+    public Group grpMenuUI;
     public Group grpIngameUI;
 
     private Stage stage;
@@ -17,8 +18,10 @@ public class GUIStage {
 
     private Label lblPause;
     private Label lblStart;
+    private Label lblScore;
     private String txtPause = "Pause";
     private String txtStart = "Press to start";
+    private String txtScore = "0";
 
     private BitmapFont fntCenter = Spacegame.resources.font1;
 
@@ -30,48 +33,68 @@ public class GUIStage {
         return stage;
     }
 
-    public void show() {
-        active = true;
-        grpIngameUI.setVisible(true);
-    }
-
-    public void hide() {
-        active = false;
-        grpIngameUI.setVisible(false);
-    }
-
     public void init() {
-        grpIngameUI = new Group();
+        initMenuGUI();
+        initIngameGUI();
+    }
 
-        //init gui elements
+    private void initMenuGUI() {
+        grpMenuUI = new Group();
+
+        //init menu gui elements
         lblStart = new Label(txtStart,
                 new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
         lblStart.setPosition(
                 Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
         lblStart.setVisible(false);
-        grpIngameUI.addActor(lblStart);
+        grpMenuUI.addActor(lblStart);
 
+        //Add GUI to stage
+        stage.addActor(grpMenuUI);
+    }
+
+    private void initIngameGUI() {
+        grpIngameUI = new Group();
+
+        //init ingame gui elements
+        //label for "Pause"
         lblPause = new Label(txtPause,
                 new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
         lblPause.setPosition(
                 Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
         lblPause.setVisible(false);
         grpIngameUI.addActor(lblPause);
+        //label for score
+        lblScore = new Label(txtScore,
+                new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
+        lblScore.setPosition(
+                Spacegame.screenWidth - 30, Spacegame.screenHeight -40, Align.right);
+        lblScore.setVisible(false);
+        grpIngameUI.addActor(lblScore);
 
+        //Add GUI to stage
         stage.addActor(grpIngameUI);
     }
 
     public void draw(float delta){
-        if (active) {
-            if (stage != null) {
-                stage.act(delta);
-                stage.draw();
-            }
+        if (stage != null) {
+            stage.act(delta);
+            stage.draw();
         }
     }
 
-    public void showStart(boolean show) {
+    public void updateScore(int score) {
+        txtScore = Integer.toString(score);
+        lblScore.setText(txtScore);
+    }
+
+    public void showMenuGUI(boolean show) {
         lblStart.setVisible(show);
+    }
+
+    public void showGameGUI(boolean show) {
+        lblPause.setVisible(false);
+        lblScore.setVisible(show);
     }
 
     public void showPause(boolean show) {

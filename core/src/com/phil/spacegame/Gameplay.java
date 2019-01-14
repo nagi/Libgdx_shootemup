@@ -14,6 +14,9 @@ public class Gameplay {
     public static Random random;
     //pool containing objects
     public static SpawnPool spawnPool;
+    //score, public for easier access
+    public int score;
+
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
@@ -24,17 +27,18 @@ public class Gameplay {
     ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
     ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
     ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
+    //flags for game state
+    private boolean started;
+    private boolean paused;
     //spawn parameters
     private int spawnLevel = 0;
     private int spawnLevelMax = 2;
     private float spawnInterval = 4.0f; //seconds
     private float levelDuration = 30.0f; //seconds
-
+    //timer
     private float spawnTimer;
     private float levelTimer;
 
-    private boolean started;
-    private boolean paused;
 
     public Gameplay() {
         //initialization
@@ -168,6 +172,7 @@ public class Gameplay {
                             //collision between player missile and enemy
                             m.kill(spawnPool);
                             enemy.hit(m.power);
+                            score++;
                         }
                     }
                 }
