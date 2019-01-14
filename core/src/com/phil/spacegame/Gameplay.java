@@ -33,6 +33,9 @@ public class Gameplay {
     private float spawnTimer;
     private float levelTimer;
 
+    private boolean started;
+    private boolean paused;
+
     public Gameplay() {
         //initialization
         random = new Random(System.currentTimeMillis());
@@ -58,7 +61,7 @@ public class Gameplay {
     private void initPlayer() {
         player = new Player();
         player.setSize(180, 90);
-        player.setPosition(70, 300);
+        player.setPosition(70, 500);
         //set shooting parameters
         player.setGunPower(100.0f);
         player.setShootingInterval(0.3f);
@@ -81,35 +84,49 @@ public class Gameplay {
     }
 
     public void start() {
-        //TODO set start flag
+        started = true;
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
     public void resume(){
-        //TODO unset pause flag
+        paused = false;
     }
 
     public void pause() {
-        //TODO set pause flag
+        paused = true;
+    }
+
+    public boolean isPaused() {
+        return paused;
     }
 
     public void update(float delta){
-        parallaxBackground.move(delta * bgSpeed, 0.0f);
-        player.update(delta);
-        //calculate spawn level
-        calcLevel(delta);
-        //spawn new enemies
-        spawnEnemies(delta);
-        //update spawn objects
-        updateSpawns(delta);
-        //do collisions
-        calcCollisions();
+        if (!paused) {
+            parallaxBackground.move(delta * bgSpeed, 0.0f);
+            if (started) {
+                player.update(delta);
+                //calculate spawn level
+                calcLevel(delta);
+                //spawn new enemies
+                spawnEnemies(delta);
+                //update spawn objects
+                updateSpawns(delta);
+                //do collisions
+                calcCollisions();
+            }
+        }
     }
 
     public void draw(SpriteBatch sb) {
         parallaxBackground.draw(sb);
-        player.draw(sb);
-        //draw spawn objects
-        drawSpawns(sb);
+        if (started) {
+            player.draw(sb);
+            //draw spawn objects
+            drawSpawns(sb);
+        }
     }
 
     private void calcLevel(float delta) {
@@ -201,13 +218,21 @@ public class Gameplay {
         }
     }
 
-    public void touchDown(float screenX, float screenY) {
+    public void playerMoveUp() {
         //move player upwards
         player.setAccelerateUp(true);
     }
 
-    public void touchUp(float screenX, float screenY) {
+    public void playerMoveDown() {
         //stop the upward movement
         player.setAccelerateUp(false);
+    }
+
+    public void touchDown(float screenX, float screenY) {
+        playerMoveUp();
+    }
+
+    public void touchUp(float screenX, float screenY) {
+        playerMoveDown();
     }
 }

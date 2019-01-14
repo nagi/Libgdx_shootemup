@@ -20,15 +20,38 @@ public class GameInput implements InputProcessor {
 	// ------------  Input Processor Methods  ------------
 	@Override
 	public boolean keyDown(int keycode) {
-		return false;
+		if (gamePlay.isStarted()) {
+			if (keycode == Keys.SPACE) {
+				gamePlay.playerMoveUp();
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if (keycode == Keys.ESCAPE) {
-			Gdx.app.exit();
+		if (gamePlay.isStarted()) {
+			if (keycode == Keys.SPACE) {
+				gamePlay.playerMoveDown();
+			}
+			else if (keycode == Keys.ESCAPE) {
+				if (gamePlay.isPaused()){
+					gamePlayScreen.resume();
+				}
+				else {
+					gamePlayScreen.pause();
+				}
+			}
 		}
-		return false;
+		else { //not started
+			if (keycode == Keys.SPACE) {
+				gamePlayScreen.startGame();
+			}
+			else if (keycode == Keys.ESCAPE) {
+				Gdx.app.exit();
+			}
+		}
+		return true;
 	}
 
 	@Override

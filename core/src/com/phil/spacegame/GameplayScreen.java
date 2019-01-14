@@ -53,13 +53,15 @@ public class GameplayScreen implements Screen {
 		//activate GUI
 		guiStage.show();
 		Gdx.input.setInputProcessor(ingameUI);
-		//start gameplay
-		this.gamePlay.start();
+		//show "Press to start"
+		guiStage.showStart(true);
 	}
 
-	private void resumeGameplay() {
-		Gdx.input.setInputProcessor(ingameUI);
-		gamePlay.resume();
+	public void startGame() {
+		//start gameplay
+		guiStage.showPause(false);
+		guiStage.showStart(false);
+		this.gamePlay.start();
 	}
 
 	@Override
@@ -108,10 +110,17 @@ public class GameplayScreen implements Screen {
 	}
 
 	@Override
-	public void pause() {}
+	public void pause() {
+		guiStage.showPause(true);
+		gamePlay.pause();
+	}
 
 	@Override
-	public void resume() {}
+	public void resume() {
+		guiStage.showPause(false);
+		Gdx.input.setInputProcessor(ingameUI);
+		gamePlay.resume();
+	}
 
 	@Override
 	public void dispose() {
