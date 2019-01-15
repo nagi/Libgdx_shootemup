@@ -70,6 +70,7 @@ public class GameplayScreen implements Screen {
 		if (gamePlay != null) {
 			gamePlay.update(delta);
 			guiStage.updateScore(gamePlay.score);
+			guiStage.updateHealth(gamePlay.player.getHealth());
 		}
 
 		//render gamePlay

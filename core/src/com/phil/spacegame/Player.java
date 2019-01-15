@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Player extends ShootingObject {
 
+    private float lifeMax = 1000.0f;
     private float life = 1000.0f;
     private boolean dead;
     //collision margins
@@ -27,6 +28,11 @@ public class Player extends ShootingObject {
 
     public boolean isDead() {
         return dead;
+    }
+
+    //return health in percent
+    public float getHealth() {
+        return life / lifeMax;
     }
 
     public void hit(float power) {

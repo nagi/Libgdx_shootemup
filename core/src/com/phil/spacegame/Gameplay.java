@@ -16,18 +16,18 @@ public class Gameplay {
     public static SpawnPool spawnPool;
     //score, public for easier access
     public int score;
+    //player object
+    public Player player;
 
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
     private float bgSpeed = -200.0f;
-    //player object
-    private Player player;
     //Lists for different types of spawn objects (for spawnpool and collisions)
-    ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
-    ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
-    ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
-    ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
     //flags for game state
     private boolean started;
     private boolean paused;

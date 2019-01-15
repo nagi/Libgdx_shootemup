@@ -1,28 +1,32 @@
 package com.phil.spacegame;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
 public class GUIStage {
-
+    //groups for better management of GUI objects
     public Group grpMenuUI;
     public Group grpIngameUI;
-
+    //the stage for all GUI objects
     private Stage stage;
-    private boolean active;
-
-    private Label lblPause;
+    //menu gui objects
     private Label lblStart;
-    private Label lblScore;
-    private String txtPause = "Pause";
     private String txtStart = "Press to start";
+    //ingame gui objects
+    private String txtPause = "Pause";
     private String txtScore = "0";
-
+    private Label lblPause;
+    private Label lblScore;
+    private Image imgLifeBarBorder;
+    private Image imgLifeBarInner;
+    private float lifeBarInnerWidthMax = 378;
+    //reference to the font instance
     private BitmapFont fntCenter = Spacegame.resources.font1;
 
     public GUIStage(Stage stage) {
@@ -56,7 +60,6 @@ public class GUIStage {
     private void initIngameGUI() {
         grpIngameUI = new Group();
 
-        //init ingame gui elements
         //label for "Pause"
         lblPause = new Label(txtPause,
                 new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
@@ -68,9 +71,25 @@ public class GUIStage {
         lblScore = new Label(txtScore,
                 new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
         lblScore.setPosition(
-                Spacegame.screenWidth - 30, Spacegame.screenHeight -40, Align.right);
+                Spacegame.screenWidth - 40, Spacegame.screenHeight -35, Align.right);
         lblScore.setVisible(false);
         grpIngameUI.addActor(lblScore);
+        //life bar border
+        TextureRegion txBorder = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
+        imgLifeBarBorder = new Image(txBorder);
+        imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 30, Align.center);
+        imgLifeBarBorder.setVisible(false);
+        //life bar inner
+        TextureRegion txInner = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 13);
+        imgLifeBarInner = new Image(txInner);
+        imgLifeBarInner.setPosition(
+                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 36);
+        imgLifeBarInner.setVisible(false);
+        // add "inner" before "border" to render it behind
+        grpIngameUI.addActor(imgLifeBarInner);
+        grpIngameUI.addActor(imgLifeBarBorder);
 
         //Add GUI to stage
         stage.addActor(grpIngameUI);
@@ -83,9 +102,16 @@ public class GUIStage {
         }
     }
 
+    //update score label
     public void updateScore(int score) {
         txtScore = Integer.toString(score);
         lblScore.setText(txtScore);
+    }
+
+    //update health bar.
+    //health between 0.0-1.0
+    public void updateHealth(float health) {
+        imgLifeBarInner.setWidth(lifeBarInnerWidthMax * health);
     }
 
     public void showMenuGUI(boolean show) {
@@ -95,6 +121,8 @@ public class GUIStage {
     public void showGameGUI(boolean show) {
         lblPause.setVisible(false);
         lblScore.setVisible(show);
+        imgLifeBarInner.setVisible(show);
+        imgLifeBarBorder.setVisible(show);
     }
 
     public void showPause(boolean show) {
