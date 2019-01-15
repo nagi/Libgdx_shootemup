@@ -19,10 +19,10 @@ public class Enemy extends ShootingObject implements SpawnObject {
 
         //spawn type
         if (type == 0) {
-
-            addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 4, 4, 0.05f, "ANIM", true);
-            setAnimation("ANIM");
+            if (!containsAnimation("ANIM1"))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                    4, 8, 4, 4, 0.05f, "ANIM1", true);
+            setAnimation("ANIM1");
             setSize(180, 90);
             setGunPower(10.0f);
             setShootingInterval(0.6f);
@@ -31,9 +31,10 @@ public class Enemy extends ShootingObject implements SpawnObject {
             speed = -200.0f;
         }
         else if (type == 1) {
-            addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 8, 4, 0.05f, "ANIM", true);
-            setAnimation("ANIM");
+            if (!containsAnimation("ANIM2"))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                    4, 8, 8, 4, 0.05f, "ANIM2", true);
+            setAnimation("ANIM2");
             setSize(180, 90);
             setGunPower(10.0f);
             setShootingInterval(0.5f);
@@ -43,9 +44,10 @@ public class Enemy extends ShootingObject implements SpawnObject {
             speed = -200.0f;
         }
         else if (type == 2) {
-            addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 12, 4, 0.05f, "ANIM", true);
-            setAnimation("ANIM");
+            if (!containsAnimation("ANIM3"))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                    4, 8, 12, 4, 0.05f, "ANIM3", true);
+            setAnimation("ANIM3");
             setSize(180, 90);
             setGunPower(10.0f);
             setShootingInterval(0.7f);
@@ -61,6 +63,8 @@ public class Enemy extends ShootingObject implements SpawnObject {
     }
 
     public void hit(float power) {
+        Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+        expl.init(getX(), getY());
         kill(Gameplay.spawnPool);
         //TODO reduce power instead of killing directly
     }

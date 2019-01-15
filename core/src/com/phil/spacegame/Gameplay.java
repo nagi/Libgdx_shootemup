@@ -27,6 +27,7 @@ public class Gameplay {
     ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
     ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
     ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
+    ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
     //flags for game state
     private boolean started;
     private boolean paused;
@@ -85,6 +86,7 @@ public class Gameplay {
         spawnPool.addPool(SpawnType.MissileEnemy, missilesEnemies);
         spawnPool.addPool(SpawnType.MissilePlayer, missilesPlayer);
         spawnPool.addPool(SpawnType.Enemy, enemies);
+        spawnPool.addPool(SpawnType.Explosion, explosions);
     }
 
     public void start() {
@@ -173,6 +175,7 @@ public class Gameplay {
                             m.kill(spawnPool);
                             enemy.hit(m.power);
                             score++;
+
                         }
                     }
                 }
@@ -204,6 +207,10 @@ public class Gameplay {
             if (mp.isSpawned())
                 mp.update(delta);
         }
+        for (SpawnObject ex: explosions) {
+            if (ex.isSpawned())
+                ex.update(delta);
+        }
     }
 
     public void drawSpawns(SpriteBatch sb) {
@@ -220,6 +227,10 @@ public class Gameplay {
         for (SpawnObject mp: missilesPlayer) {
             if (mp.isSpawned())
                 mp.draw(sb);
+        }
+        for (SpawnObject ex: explosions) {
+            if (ex.isSpawned())
+                ex.draw(sb);
         }
     }
 

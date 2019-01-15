@@ -14,6 +14,7 @@ public class Resources extends AssetManager {
     public String bgLayerMid = "background/mountains.png";
     public String bgLayerBack = "background/background.png";
     public String tilesetSpaceships = "spaceship_tileset.png";
+    public String tilesetExplosion = "explosion1.png";
     public String missile1 = "missile1.png";
     public String missile2 = "missile2.png";
 
@@ -34,6 +35,7 @@ public class Resources extends AssetManager {
         load(tilesetSpaceships, Texture.class);
         load(missile1, Texture.class);
         load(missile2, Texture.class);
+        load(tilesetExplosion, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }

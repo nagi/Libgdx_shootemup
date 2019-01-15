@@ -33,7 +33,11 @@ public class AnimatedSprite extends Sprite{
 		animations = new HashMap<String, Animation>();
 		setSize(100,100);
 	}
-	
+
+	public boolean containsAnimation(String name) {
+		return animations.containsKey(name);
+	}
+
 	public void addAnimation(Animation anim, String name) {
 		
 		animations.put(name, anim);
@@ -75,13 +79,20 @@ public class AnimatedSprite extends Sprite{
 			activeAnimation = animations.get(name);
 			activeAnimationName = name;
 			currentFrame = activeAnimation.getFrame(0);
-			
+			setRegion(currentFrame);
+
 		} else {
 			activeAnimationName = name;
 			activeAnimFinished = true;
 			activeAnimation = null;
 			pause = true;
 		}
+	}
+
+	public void restartActiveAnimation(String name) {
+		activeAnimation.restart();
+		currentFrame = activeAnimation.getFrame(0);
+		setRegion(currentFrame);
 	}
 	
 	/**
