@@ -23,7 +23,6 @@ public class Enemy extends ShootingObject implements SpawnObject {
             if (!containsAnimation("ANIM1"))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
                     4, 8, 0, 4, 0.05f, "ANIM1", true);
-            setAnimation("ANIM1");
             setSize(180, 90);
             setGunPower(10.0f);
             setShootingInterval(1.3f);
@@ -64,7 +63,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
         else if (type == 3) {
             if (!containsAnimation("ANIM4"))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 12, 4, 0.05f, "ANIM3", true);
+                    4, 8, 12, 4, 0.05f, "ANIM4", true);
             setAnimation("ANIM4");
             setSize(180, 90);
             setGunPower(10.0f);
