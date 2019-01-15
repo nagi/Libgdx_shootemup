@@ -43,7 +43,7 @@ public class GameplayScreen implements Screen {
 
 	private void initGame() {
 		//load new gameplay instance
-		gamePlay  = new Gameplay();
+		gamePlay  = new Gameplay(this);
 		//handler for non-stage inputs (keyboard, mouse, controller)
 		gameInput = new GameInput(this, gamePlay);
 		//multiplexer for handling both input classes (guiStage and gameInput) as one input processor
@@ -56,11 +56,19 @@ public class GameplayScreen implements Screen {
 		guiStage.showMenuGUI(true);
 	}
 
-	public void startGame() {
+	public void startGame(boolean restart) {
 		//start gameplay
 		guiStage.showMenuGUI(false);
 		guiStage.showGameGUI(true);
-		this.gamePlay.start();
+		if (restart)
+			gamePlay.restart();
+		else
+			gamePlay.start();
+	}
+
+	public void setGameOver() {
+		gamePlay.gameover();
+		guiStage.showGameOver();
 	}
 
 	@Override

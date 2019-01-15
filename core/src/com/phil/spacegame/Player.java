@@ -30,6 +30,10 @@ public class Player extends ShootingObject {
         return dead;
     }
 
+    public void setMaxHealth(float health) {
+        this.lifeMax = health;
+    }
+
     //return health in percent
     public float getHealth() {
         return life / lifeMax;
@@ -59,6 +63,7 @@ public class Player extends ShootingObject {
         if (getY() < collisionMarginBottom) {
             moveStepY = 0;
             setY(collisionMarginBottom);
+            dead = true;
         }
         //calculate movement up and down
         if (accelerateUp) {

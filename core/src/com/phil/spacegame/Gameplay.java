@@ -19,6 +19,8 @@ public class Gameplay {
     //player object
     public Player player;
 
+    //reference to screen
+    private GameplayScreen gameplayScreen;
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
@@ -31,6 +33,7 @@ public class Gameplay {
     //flags for game state
     private boolean started;
     private boolean paused;
+    private boolean gameover;
     //spawn parameters
     private int spawnLevel = 0;
     private int spawnLevelMax = 2;
@@ -41,12 +44,18 @@ public class Gameplay {
     private float levelTimer;
 
 
-    public Gameplay() {
-        //initialization
+    public Gameplay(GameplayScreen gs) {
+        this.gameplayScreen = gs;
         random = new Random(System.currentTimeMillis());
+        init();
+    }
+
+    private void init() {
+        //initialization
         initBackground();
         initPlayer();
         initSpawnPool();
+        score = 0;
     }
 
     private void initBackground() {
@@ -72,13 +81,20 @@ public class Gameplay {
         player.setShootingInterval(0.3f);
         player.setGunType(1);
         //add some guns
-        player.addGun(0, 900.0f, 150, 50);
+        player.addGun(0, 900.0f, 150, 30);
+        player.setMaxHealth(1000);
 
-//        //for testing:
-//        player.addGun(10, 900.0f);
-//        player.addGun(20, 900.0f);
-//        player.addGun(-10, 900.0f);
-//        player.addGun(-20, 900.0f);
+//        //killer weapon for testing:
+//        player.addGun(3, 900.0f,150, 30);
+//        player.addGun(6, 900.0f,150, 30);
+//        player.addGun(9, 900.0f, 150, 30);
+//        player.addGun(12, 900.0f, 150, 30);
+//        player.addGun(15, 900.0f, 150, 30);
+//        player.addGun(-3, 900.0f,150, 30);
+//        player.addGun(-6, 900.0f,150, 30);
+//        player.addGun(-9, 900.0f,150, 30);
+//        player.addGun(-12, 900.0f,150, 30);
+//        player.addGun(-15, 900.0f,150, 30);
     }
 
     private void initSpawnPool() {
@@ -89,16 +105,33 @@ public class Gameplay {
         spawnPool.addPool(SpawnType.Explosion, explosions);
     }
 
+    public void restart() {
+        //clear spawns
+        missilesEnemies.clear();
+        missilesPlayer.clear();
+        enemies.clear();
+        explosions.clear();
+        //re-initialize
+        init();
+        start();
+    }
+
     public void start() {
         started = true;
+        gameover = false;
     }
 
     public boolean isStarted() {
         return started;
     }
 
-    public void resume(){
-        paused = false;
+    public void gameover() {
+        started = false;
+        gameover = true;
+    }
+
+    public boolean isGameover() {
+        return gameover;
     }
 
     public void pause() {
@@ -109,11 +142,17 @@ public class Gameplay {
         return paused;
     }
 
+    public void resume(){
+        paused = false;
+    }
+
     public void update(float delta){
         if (!paused) {
             parallaxBackground.move(delta * bgSpeed, 0.0f);
             if (started) {
                 player.update(delta);
+                if (player.isDead())
+                    gameplayScreen.setGameOver();
                 //calculate spawn level
                 calcLevel(delta);
                 //spawn new enemies

@@ -21,8 +21,10 @@ public class GUIStage {
     //ingame gui objects
     private String txtPause = "Pause";
     private String txtScore = "0";
+    private String txtGameOver = "Gameover!";
     private Label lblPause;
     private Label lblScore;
+    private Label lblGameOver;
     private Image imgLifeBarBorder;
     private Image imgLifeBarInner;
     private float lifeBarInnerWidthMax = 378;
@@ -74,6 +76,13 @@ public class GUIStage {
                 Spacegame.screenWidth - 40, Spacegame.screenHeight -35, Align.right);
         lblScore.setVisible(false);
         grpIngameUI.addActor(lblScore);
+        //label for "Gameover!"
+        lblGameOver = new Label(txtGameOver,
+                new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
+        lblGameOver.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
+        lblGameOver.setVisible(false);
+        grpIngameUI.addActor(lblGameOver);
         //life bar border
         TextureRegion txBorder = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
@@ -120,6 +129,7 @@ public class GUIStage {
 
     public void showGameGUI(boolean show) {
         lblPause.setVisible(false);
+        lblGameOver.setVisible(false);
         lblScore.setVisible(show);
         imgLifeBarInner.setVisible(show);
         imgLifeBarBorder.setVisible(show);
@@ -127,5 +137,9 @@ public class GUIStage {
 
     public void showPause(boolean show) {
         lblPause.setVisible(show);
+    }
+
+    public void showGameOver() {
+        lblGameOver.setVisible(true);
     }
 }

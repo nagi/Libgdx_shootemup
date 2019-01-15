@@ -45,7 +45,7 @@ public class GameInput implements InputProcessor {
 		}
 		else { //not started
 			if (keycode == Keys.SPACE) {
-				gamePlayScreen.startGame();
+				gamePlayScreen.startGame(gamePlay.isGameover());
 			}
 			else if (keycode == Keys.ESCAPE) {
 				Gdx.app.exit();

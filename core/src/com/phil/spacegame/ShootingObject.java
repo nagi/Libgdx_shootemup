@@ -20,8 +20,8 @@ public class ShootingObject extends AnimatedSprite {
     private float timer;
     private int gunType;
     //Guns
-    private Gun guns[] = new Gun[5];
-    private int maxGuns = 5;
+    private Gun guns[] = new Gun[10];
+    private int maxGuns = 10;
     private int gunsCount = 0;
 
     public ShootingObject() {
@@ -39,6 +39,8 @@ public class ShootingObject extends AnimatedSprite {
         for(Gun g: guns)
             g.active = false;
         gunsCount = 0;
+        //reset timer
+        timer = 0.0f;
     }
 
     public void setGunPower(float power) {

@@ -25,9 +25,9 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM1");
             setSize(180, 90);
             setGunPower(10.0f);
-            setShootingInterval(0.6f);
+            setShootingInterval(1.0f);
             setGunType(0);
-            addGun(180, 700.0f, 0, 50);
+            addGun(180, 600, 0, 50);
             speed = -200.0f;
         }
         else if (type == 1) {
@@ -37,10 +37,10 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM2");
             setSize(180, 90);
             setGunPower(10.0f);
-            setShootingInterval(0.5f);
+            setShootingInterval(1.0f);
             setGunType(0);
-            addGun(180, 600.0f, 0, 30);
-            addGun(180, 600.0f, 0, 70);
+            addGun(180, 500.0f, 0, 30);
+            addGun(180, 500.0f, 0, 70);
             speed = -200.0f;
         }
         else if (type == 2) {
@@ -50,11 +50,11 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM3");
             setSize(180, 90);
             setGunPower(10.0f);
-            setShootingInterval(0.7f);
+            setShootingInterval(1.5f);
             setGunType(0);
-            addGun(180, 500.0f, 0, 50);
-            addGun(185, 500.0f, 0, 50);
-            addGun(175, 500.0f, 0, 50);
+            addGun(180, 450, 0, 50);
+            addGun(190, 450, 0, 50);
+            addGun(170, 450, 0, 50);
             speed = -180.0f;
         }
 
