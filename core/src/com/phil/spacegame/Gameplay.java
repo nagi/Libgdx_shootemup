@@ -36,8 +36,8 @@ public class Gameplay {
     private boolean gameover;
     //spawn parameters
     private int spawnLevel = 0;
-    private int spawnLevelMax = 2;
-    private float spawnInterval = 4.0f; //seconds
+    private int spawnLevelMax = 3;
+    private float spawnInterval = 3.0f; //seconds
     private float levelDuration = 30.0f; //seconds
     //timer
     private float spawnTimer;
@@ -215,9 +215,8 @@ public class Gameplay {
                         if (enemy.getBoundingRectangle().overlaps(m.getBoundingRectangle())) {
                             //collision between player missile and enemy
                             m.kill(spawnPool);
+                            score += enemy.getScore();
                             enemy.hit(m.power);
-                            score++;
-
                         }
                     }
                 }

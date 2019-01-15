@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 
 public class GUIStage {
@@ -61,34 +62,33 @@ public class GUIStage {
 
     private void initIngameGUI() {
         grpIngameUI = new Group();
+        grpIngameUI.setSize(Spacegame.screenWidth, Spacegame.screenHeight);
+//        stage.setDebugAll(true);
 
-        //label for "Pause"
-        lblPause = new Label(txtPause,
-                new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
-        lblPause.setPosition(
-                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
-        lblPause.setVisible(false);
-        grpIngameUI.addActor(lblPause);
+        //Table for managing scene objects
+        //currently only used for aligning text of lblScore to right
+        Table table = new Table();
+        table.setFillParent(true);
+        table.top();
+        grpIngameUI.addActor(table);
+
+        Label.LabelStyle labelStyle = new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE);
+
         //label for score
-        lblScore = new Label(txtScore,
-                new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
-        lblScore.setPosition(
-                Spacegame.screenWidth - 40, Spacegame.screenHeight -35, Align.right);
+        //to achieve right alignment of the text, a table is needed
+        lblScore = new Label(txtScore,labelStyle);
         lblScore.setVisible(false);
-        grpIngameUI.addActor(lblScore);
-        //label for "Gameover!"
-        lblGameOver = new Label(txtGameOver,
-                new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
-        lblGameOver.setPosition(
-                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
-        lblGameOver.setVisible(false);
-        grpIngameUI.addActor(lblGameOver);
+        lblScore.setAlignment(Align.topRight);
+        int lblScoreWidth = 150;
+        table.add(lblScore).size(lblScoreWidth, 50).padLeft(Spacegame.screenWidth - lblScoreWidth - 40);
+
         //life bar border
         TextureRegion txBorder = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
         imgLifeBarBorder = new Image(txBorder);
         imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 30, Align.center);
         imgLifeBarBorder.setVisible(false);
+
         //life bar inner
         TextureRegion txInner = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 13);
@@ -96,9 +96,24 @@ public class GUIStage {
         imgLifeBarInner.setPosition(
                 Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 36);
         imgLifeBarInner.setVisible(false);
+
         // add "inner" before "border" to render it behind
         grpIngameUI.addActor(imgLifeBarInner);
         grpIngameUI.addActor(imgLifeBarBorder);
+
+        //label for "Pause"
+        lblPause = new Label(txtPause, labelStyle);
+        lblPause.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
+        lblPause.setVisible(false);
+        grpIngameUI.addActor(lblPause);
+
+        //label for "Gameover!"
+        lblGameOver = new Label(txtGameOver, labelStyle);
+        lblGameOver.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
+        lblGameOver.setVisible(false);
+        grpIngameUI.addActor(lblGameOver);
 
         //Add GUI to stage
         stage.addActor(grpIngameUI);

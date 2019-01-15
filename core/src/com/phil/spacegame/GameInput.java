@@ -70,7 +70,7 @@ public class GameInput implements InputProcessor {
 		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
 
 		//touch actions...
-		System.out.println("Touched game ui.  Ratio: " + Spacegame.ratioX + " sx: " + sX + " , sy: " + sY); //debug
+//		System.out.println("Touched game ui.  Ratio: " + Spacegame.ratioX + " sx: " + sX + " , sy: " + sY); //debug
 
 		if (gamePlay.isStarted())
 			gamePlay.touchDown(sX, sY);
