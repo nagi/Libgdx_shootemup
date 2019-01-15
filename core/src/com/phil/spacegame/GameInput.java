@@ -32,11 +32,16 @@ public class GameInput implements InputProcessor {
 	public boolean keyUp(int keycode) {
 		if (gamePlay.isStarted()) {
 			if (keycode == Keys.SPACE) {
-				gamePlay.playerMoveDown();
+				if (gamePlay.isPaused()){
+					gamePlayScreen.resumeGame();
+				}
+				else {
+					gamePlay.playerMoveDown();
+				}
 			}
 			else if (keycode == Keys.ESCAPE) {
 				if (gamePlay.isPaused()){
-					gamePlayScreen.resume();
+					gamePlayScreen.resumeGame();
 				}
 				else {
 					gamePlayScreen.pause();
@@ -66,7 +71,12 @@ public class GameInput implements InputProcessor {
 
 		//touch actions...
 		System.out.println("Touched game ui.  Ratio: " + Spacegame.ratioX + " sx: " + sX + " , sy: " + sY); //debug
-		gamePlay.touchDown(sX, sY);
+
+		if (gamePlay.isStarted())
+			gamePlay.touchDown(sX, sY);
+		else
+			gamePlayScreen.startGame(gamePlay.isGameover());
+
 		return true;
 	}
 

@@ -71,6 +71,12 @@ public class GameplayScreen implements Screen {
 		guiStage.showGameOver();
 	}
 
+	public void resumeGame() {
+		guiStage.showPause(false);
+		Gdx.input.setInputProcessor(ingameUI);
+		gamePlay.resume();
+	}
+
 	@Override
 	//Rendering und Update
 	public void render(float delta) {
@@ -118,15 +124,16 @@ public class GameplayScreen implements Screen {
 
 	@Override
 	public void pause() {
-		guiStage.showPause(true);
-		gamePlay.pause();
+		//game window looses focus
+		if (gamePlay.isStarted()) {
+			guiStage.showPause(true);
+			gamePlay.pause();
+		}
 	}
 
 	@Override
 	public void resume() {
-		guiStage.showPause(false);
-		Gdx.input.setInputProcessor(ingameUI);
-		gamePlay.resume();
+		//when game window becomes focused again
 	}
 
 	@Override

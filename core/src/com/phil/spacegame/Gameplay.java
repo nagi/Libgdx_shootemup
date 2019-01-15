@@ -24,7 +24,7 @@ public class Gameplay {
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
-    private float bgSpeed = -200.0f;
+    private float bgSpeed = -300.0f;
     //Lists for different types of spawn objects (for spawnpool and collisions)
     private ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
@@ -56,6 +56,9 @@ public class Gameplay {
         initPlayer();
         initSpawnPool();
         score = 0;
+        spawnLevel = 0;
+        spawnTimer = 0;
+        levelTimer = 0;
     }
 
     private void initBackground() {
