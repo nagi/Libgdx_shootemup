@@ -87,6 +87,7 @@ public class Gameplay {
         player = new Player();
         player.setSize(180, 90);
         player.setPosition(70, 500);
+        player.setCollisionArea(20, 20, 140, 50);
         //set shooting parameters
         player.setGunPower(100.0f);
         player.setShootingInterval(0.3f);
@@ -238,7 +239,7 @@ public class Gameplay {
                     for (SpawnObject mp : missilesPlayer) {
                         if (mp.isSpawned()) {
                             Missile m = (Missile) mp;
-                            if (enemy.getBoundingRectangle().overlaps(m.getBoundingRectangle())) {
+                            if (enemy.getCollisionRectangle().overlaps(m.getBoundingRectangle())) {
                                 //collision between player missile and enemy
                                 m.kill(spawnPool);
                                 score += enemy.getScore();
@@ -248,7 +249,7 @@ public class Gameplay {
                     }
                     //collide player with enemy
                     if (!player.isDead()) {
-                        if (player.getBoundingRectangle().overlaps(enemy.getBoundingRectangle())) {
+                        if (player.getCollisionRectangle().overlaps(enemy.getCollisionRectangle())) {
                             enemy.kill(spawnPool);
                             player.hit(100000);
                         }
@@ -260,7 +261,7 @@ public class Gameplay {
         if (!player.isDead()) {
             for (SpawnObject me : missilesEnemies) {
                 Missile m = (Missile) me;
-                if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getBoundingRectangle())) {
+                if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getCollisionRectangle())) {
                     //enemy missile hit player
                     m.kill(spawnPool);
                     player.hit(m.power);

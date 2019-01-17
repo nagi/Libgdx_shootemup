@@ -2,6 +2,7 @@ package com.phil.spacegame;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Enemy extends ShootingObject implements SpawnObject {
 
@@ -25,6 +26,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
                     4, 8, 0, 4, 0.05f, "ANIM1", true);
             setAnimation("ANIM1");
             setSize(180, 90);
+            setCollisionArea(20, 20, 120, 60);
             setGunPower(10.0f);
             setShootingInterval(1.3f);
             setGunType(0);
@@ -38,6 +40,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
                         4, 8, 4, 4, 0.05f, "ANIM2", true);
             setAnimation("ANIM2");
             setSize(180, 90);
+            setCollisionArea(20, 20, 120, 60);
             setGunPower(10.0f);
             setShootingInterval(1.2f);
             setGunType(0);
@@ -52,6 +55,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
                     4, 8, 8, 4, 0.05f, "ANIM3", true);
             setAnimation("ANIM3");
             setSize(180, 90);
+            setCollisionArea(20, 20, 120, 60);
             setGunPower(10.0f);
             setShootingInterval(1.4f);
             setGunType(0);
@@ -67,6 +71,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
                     4, 8, 12, 4, 0.05f, "ANIM4", true);
             setAnimation("ANIM4");
             setSize(180, 90);
+            setCollisionArea(20, 20, 120, 60);
             setGunPower(10.0f);
             setShootingInterval(1.5f);
             setGunType(0);

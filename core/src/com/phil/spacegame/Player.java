@@ -2,6 +2,7 @@ package com.phil.spacegame;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends ShootingObject {
 
@@ -10,7 +11,7 @@ public class Player extends ShootingObject {
     private boolean dead;
     //collision margins
     private int collisionMarginTop = 130;
-    private int collisionMarginBottom = 10;
+    private int collisionMarginBottom = 0;
     //acceleration speeds
     private float accelerationUp = 2000;
     private float accelerationDown = 1600;
