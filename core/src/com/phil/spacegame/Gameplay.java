@@ -31,7 +31,7 @@ public class Gameplay {
     private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
-    //flags for game state
+    //flags for game states
     private boolean started;
     private boolean paused;
     private boolean gameover;
@@ -41,7 +41,7 @@ public class Gameplay {
     private int spawnLevel = 0;
     private int spawnLevelMax = 7;
     private float spawnIntervalMax = 1.5f; //seconds
-    private float spawnInterval = 1.5f; //seconds
+    private float spawnInterval = 1.7f; //seconds
     private float levelDuration = 20.0f; //seconds
     private float gameoverTimerMax = 1.5f; //seconds
     //timer
@@ -225,7 +225,7 @@ public class Gameplay {
             else if (spawnLevel < 8) {
                 spawnEnemy(spawnLevel - 4,
                         Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-                spawnEnemy(spawnLevel - 4,
+                spawnEnemy(spawnLevel - 3,
                         Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
             }
             spawnTimer = 0.0f;

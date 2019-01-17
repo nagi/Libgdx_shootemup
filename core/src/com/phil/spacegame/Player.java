@@ -1,6 +1,7 @@
 package com.phil.spacegame;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -15,15 +16,19 @@ public class Player extends ShootingObject {
     //acceleration speeds
     private float accelerationUp = 2000;
     private float accelerationDown = 1600;
-
     private float moveStepY;
     private boolean accelerateUp;
+    //ground shadow
+    private Sprite shadow;
+    private float shadowPosY;
 
     public Player() {
         addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
                 4, 8, 20, 1, 1.0f, "ANIM", false);
         setAnimation("ANIM");
-
+        //init shadow
+        shadow = new Sprite(Spacegame.resources.get(Spacegame.resources.shadow, Texture.class));
+        shadow.setBounds(80, collisionMarginBottom + 20, 179, 25);
         //initialize and define pool with missiles
         init(SpawnType.MissilePlayer);
     }
@@ -62,6 +67,8 @@ public class Player extends ShootingObject {
             super.update(delta);
             //move player up and down
             move(delta);
+            //shadow
+            shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );
         }
     }
 
@@ -86,8 +93,10 @@ public class Player extends ShootingObject {
     }
 
     public void draw(SpriteBatch sb) {
-        if (!dead)
+        if (!dead) {
             super.draw(sb);
+            shadow.draw(sb);
+        }
     }
 
     public void setAccelerateUp(boolean acc) {

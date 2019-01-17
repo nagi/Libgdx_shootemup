@@ -19,6 +19,7 @@ public class Resources extends AssetManager {
     public String missile2 = "missile2.png";
     public String lifebarInner = "lifebar_inner.png";
     public String lifebarBorder = "lifebar_border.png";
+    public String shadow = "shadow.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -40,6 +41,7 @@ public class Resources extends AssetManager {
         load(tilesetExplosion, Texture.class);
         load(lifebarBorder, Texture.class);
         load(lifebarInner, Texture.class);
+        load(shadow, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }
