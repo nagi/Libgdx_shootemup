@@ -36,6 +36,7 @@ public class Gameplay {
     private boolean paused;
     private boolean gameover;
     private boolean gameoverSequence;
+    private boolean justDied;
     //spawn parameters
     private int spawnLevel = 0;
     private int spawnLevelMax = 7;
@@ -68,6 +69,7 @@ public class Gameplay {
         spawnTimer = 0;
         levelTimer = 0;
         spawnInterval = spawnIntervalMax;
+        justDied = true;
     }
 
     private void initBackground() {
@@ -162,7 +164,7 @@ public class Gameplay {
 
     public void update(float delta){
         if (!paused) {
-            parallaxBackground.move(delta * bgSpeed, 0.0f);
+            parallaxBackground.move(delta, bgSpeed, 0.0f);
             if (started) {
                 player.update(delta);
                 if (player.isDead()) {
@@ -191,6 +193,12 @@ public class Gameplay {
     }
 
     private void processGameover(float delta) {
+
+        if (justDied) {
+            parallaxBackground.shake();
+            justDied = false;
+        }
+
         gameoverSequence = true;
         gameoverTimer -= delta;
         if (gameoverTimer <= 0.0f)
