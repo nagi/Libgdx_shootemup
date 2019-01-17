@@ -23,9 +23,14 @@ public class GUIStage {
     private String txtPause = "Pause";
     private String txtScore = "0";
     private String txtGameOver = "Gameover!";
+    private String txtHighscore = "Highscore: ";
+    private String txtHighscorePoints = "0";
+    private int offsetGameover = 100;
+    private int offsetHighscore = 100;
     private Label lblPause;
     private Label lblScore;
     private Label lblGameOver;
+    private Label lblHighscore;
     private Image imgLifeBarBorder;
     private Image imgLifeBarInner;
     private float lifeBarInnerWidthMax = 378;
@@ -111,9 +116,15 @@ public class GUIStage {
         //label for "Gameover!"
         lblGameOver = new Label(txtGameOver, labelStyle);
         lblGameOver.setPosition(
-                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 + offsetGameover, Align.center);
         lblGameOver.setVisible(false);
         grpIngameUI.addActor(lblGameOver);
+
+        lblHighscore = new Label(txtHighscore, labelStyle);
+        lblHighscore.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 - offsetHighscore, Align.center);
+        lblHighscore.setVisible(false);
+        grpIngameUI.addActor(lblHighscore);
 
         //Add GUI to stage
         stage.addActor(grpIngameUI);
@@ -145,6 +156,7 @@ public class GUIStage {
     public void showGameGUI(boolean show) {
         lblPause.setVisible(false);
         lblGameOver.setVisible(false);
+        lblHighscore.setVisible(false);
         lblScore.setVisible(show);
         imgLifeBarInner.setVisible(show);
         imgLifeBarBorder.setVisible(show);
@@ -154,7 +166,10 @@ public class GUIStage {
         lblPause.setVisible(show);
     }
 
-    public void showGameOver() {
+    public void showGameOver(int highscore) {
         lblGameOver.setVisible(true);
+        lblHighscore.setText(txtHighscore + Integer.toString(highscore));
+        lblHighscore.setAlignment(Align.center);
+        lblHighscore.setVisible(true);
     }
 }

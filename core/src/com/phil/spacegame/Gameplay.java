@@ -16,6 +16,7 @@ public class Gameplay {
     public static SpawnPool spawnPool;
     //score, public for easier access
     public int score;
+    public int highscore;
     //player object
     public Player player;
 
@@ -138,6 +139,7 @@ public class Gameplay {
     }
 
     public void gameover() {
+        highscore = score > highscore ? score : highscore;
         started = false;
         gameover = true;
     }
@@ -211,12 +213,12 @@ public class Gameplay {
         if (spawnTimer >= spawnInterval) {
             if (spawnLevel < 4)
                 spawnEnemy(spawnLevel,
-                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
             else if (spawnLevel < 8) {
                 spawnEnemy(spawnLevel - 4,
-                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
                 spawnEnemy(spawnLevel - 4,
-                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
             }
             spawnTimer = 0.0f;
         }

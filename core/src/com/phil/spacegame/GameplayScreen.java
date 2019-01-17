@@ -67,8 +67,9 @@ public class GameplayScreen implements Screen {
 	}
 
 	public void setGameOver() {
+
 		gamePlay.gameover();
-		guiStage.showGameOver();
+		guiStage.showGameOver(gamePlay.highscore);
 	}
 
 	public void resumeGame() {
