@@ -23,6 +23,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             if (!containsAnimation("ANIM1"))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
                     4, 8, 0, 4, 0.05f, "ANIM1", true);
+            setAnimation("ANIM1");
             setSize(180, 90);
             setGunPower(10.0f);
             setShootingInterval(1.3f);
@@ -125,6 +126,10 @@ public class Enemy extends ShootingObject implements SpawnObject {
     }
 
     public void kill(SpawnPool pool) {
+        //spawn explosion
+        Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+        expl.init(getX(), getY());
+        //despawn
         pool.returnToPool(this);
         setPosition(Spacegame.screenWidth, 0);
     }

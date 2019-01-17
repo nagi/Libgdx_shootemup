@@ -34,14 +34,18 @@ public class Gameplay {
     private boolean started;
     private boolean paused;
     private boolean gameover;
+    private boolean gameoverSequence;
     //spawn parameters
     private int spawnLevel = 0;
-    private int spawnLevelMax = 3;
-    private float spawnInterval = 3.0f; //seconds
-    private float levelDuration = 30.0f; //seconds
+    private int spawnLevelMax = 7;
+    private float spawnIntervalMax = 1.5f; //seconds
+    private float spawnInterval = 1.5f; //seconds
+    private float levelDuration = 20.0f; //seconds
+    private float gameoverTimerMax = 1.5f; //seconds
     //timer
     private float spawnTimer;
     private float levelTimer;
+    private float gameoverTimer;
 
 
     public Gameplay(GameplayScreen gs) {
@@ -55,10 +59,14 @@ public class Gameplay {
         initBackground();
         initPlayer();
         initSpawnPool();
+        //reset flags and parameters
+        gameoverSequence = false;
+        gameoverTimer = gameoverTimerMax;
         score = 0;
         spawnLevel = 0;
         spawnTimer = 0;
         levelTimer = 0;
+        spawnInterval = spawnIntervalMax;
     }
 
     private void initBackground() {
@@ -154,12 +162,14 @@ public class Gameplay {
             parallaxBackground.move(delta * bgSpeed, 0.0f);
             if (started) {
                 player.update(delta);
-                if (player.isDead())
-                    gameplayScreen.setGameOver();
+                if (player.isDead()) {
+                    processGameover(delta);
+                }
                 //calculate spawn level
                 calcLevel(delta);
                 //spawn new enemies
-                spawnEnemies(delta);
+                if (!gameoverSequence)
+                    spawnEnemies(delta);
                 //update spawn objects
                 updateSpawns(delta);
                 //do collisions
@@ -177,6 +187,13 @@ public class Gameplay {
         }
     }
 
+    private void processGameover(float delta) {
+        gameoverSequence = true;
+        gameoverTimer -= delta;
+        if (gameoverTimer <= 0.0f)
+            gameplayScreen.setGameOver();
+    }
+
     private void calcLevel(float delta) {
         //count level time and increase level
         levelTimer += delta;
@@ -191,44 +208,63 @@ public class Gameplay {
     private void spawnEnemies(float delta) {
         spawnTimer += delta;
         if (spawnTimer >= spawnInterval) {
-            spawnEnemy(spawnLevel);
-            spawnEnemy(spawnLevel);
+            if (spawnLevel < 4)
+                spawnEnemy(spawnLevel,
+                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+            else if (spawnLevel < 8) {
+                spawnEnemy(spawnLevel - 4,
+                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+                spawnEnemy(spawnLevel - 4,
+                        Spacegame.screenWidth + 100, 20 + Gameplay.random.nextInt(600));
+            }
             spawnTimer = 0.0f;
         }
     }
 
-    private void spawnEnemy(int type) {
+    private void spawnEnemy(int type, float posX, float posY) {
         //get enemy from pool
         Enemy e = (Enemy) spawnPool.getFromPool(SpawnType.Enemy);
         //initialize with given enemy type and random y-position
-        e.init(type, Spacegame.screenWidth, 20 + Gameplay.random.nextInt(600));
+        e.init(type, posX, posY);
     }
 
     private void calcCollisions() {
-        //collide player missiles with enemies
+        //collide player and player-missiles with enemies
         for (SpawnObject e : enemies) {
             if (e.isSpawned()) {
                 Enemy enemy = (Enemy) e;
-                for (SpawnObject mp : missilesPlayer) {
-                    if (mp.isSpawned()) {
-                        Missile m = (Missile) mp;
-                        if (enemy.getBoundingRectangle().overlaps(m.getBoundingRectangle())) {
-                            //collision between player missile and enemy
-                            m.kill(spawnPool);
-                            score += enemy.getScore();
-                            enemy.hit(m.power);
+                if (enemy.getX() < Spacegame.screenWidth) {
+                    //collide player missiles with enemy
+                    for (SpawnObject mp : missilesPlayer) {
+                        if (mp.isSpawned()) {
+                            Missile m = (Missile) mp;
+                            if (enemy.getBoundingRectangle().overlaps(m.getBoundingRectangle())) {
+                                //collision between player missile and enemy
+                                m.kill(spawnPool);
+                                score += enemy.getScore();
+                                enemy.hit(m.power);
+                            }
+                        }
+                    }
+                    //collide player with enemy
+                    if (!player.isDead()) {
+                        if (player.getBoundingRectangle().overlaps(enemy.getBoundingRectangle())) {
+                            enemy.kill(spawnPool);
+                            player.hit(100000);
                         }
                     }
                 }
             }
         }
         //collide enemy missiles with player
-        for (SpawnObject me : missilesEnemies) {
-            Missile m = (Missile) me;
-            if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getBoundingRectangle())) {
-                //enemy missile hit player
-                m.kill(spawnPool);
-                player.hit(m.power);
+        if (!player.isDead()) {
+            for (SpawnObject me : missilesEnemies) {
+                Missile m = (Missile) me;
+                if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getBoundingRectangle())) {
+                    //enemy missile hit player
+                    m.kill(spawnPool);
+                    player.hit(m.power);
+                }
             }
         }
     }
@@ -277,7 +313,8 @@ public class Gameplay {
 
     public void playerMoveUp() {
         //move player upwards
-        player.setAccelerateUp(true);
+        if (!player.isDead())
+            player.setAccelerateUp(true);
     }
 
     public void playerMoveDown() {

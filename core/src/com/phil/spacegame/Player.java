@@ -1,6 +1,7 @@
 package com.phil.spacegame;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Player extends ShootingObject {
 
@@ -44,14 +45,23 @@ public class Player extends ShootingObject {
         if (life < 0.0f) {
             life = 0.0f;
             dead = true;
+            //spawn explosions
+            Explosion expl = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+            expl.init(getX(), getY());
+            Explosion expl2 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+            expl2.init(getX() + 60, getY());
+            Explosion expl3 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+            expl3.init(getX() + 20, getY() + 30);
         }
     }
 
     public void update(float delta) {
-        //handle updates of super class ShootingObject
-        super.update(delta);
-        //move player up and down
-        move(delta);
+        if (!dead) {
+            //handle updates of super class ShootingObject
+            super.update(delta);
+            //move player up and down
+            move(delta);
+        }
     }
 
     private void move(float delta) {
@@ -59,11 +69,10 @@ public class Player extends ShootingObject {
         if (getY() > Spacegame.screenHeight - collisionMarginTop) {
             moveStepY = 0;
             setY(Spacegame.screenHeight - collisionMarginTop);
-        } else
-        if (getY() < collisionMarginBottom) {
+        } else if (getY() < collisionMarginBottom) {
             moveStepY = 0;
             setY(collisionMarginBottom);
-            dead = true;
+            hit(999999);
         }
         //calculate movement up and down
         if (accelerateUp) {
@@ -73,6 +82,11 @@ public class Player extends ShootingObject {
         }
         //apply movement
         setY(getY() + moveStepY * delta);
+    }
+
+    public void draw(SpriteBatch sb) {
+        if (!dead)
+            super.draw(sb);
     }
 
     public void setAccelerateUp(boolean acc) {
