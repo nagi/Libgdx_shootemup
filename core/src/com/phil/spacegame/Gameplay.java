@@ -38,12 +38,15 @@ public class Gameplay {
     private boolean gameover;
     private boolean gameoverSequence;
     private boolean justDied;
+    private boolean spawnObstacles;
     //spawn parameters
     private int spawnLevel = 0;
     private int spawnLevelMax = 7;
-    private float spawnIntervalMax = 1.5f; //seconds
-    private float spawnInterval = 1.7f; //seconds
-    private float levelDuration = 20.0f; //seconds
+    private float spawnInterval; //seconds
+    private float spawnIntervalObstacles;
+    private float levelDurationEnemies; //seconds
+    private float levelDurationObstacles; //seconds
+    private float levelDuration; //seconds
     private float gameoverTimerMax = 1.5f; //seconds
     //timer
     private float spawnTimer;
@@ -69,8 +72,13 @@ public class Gameplay {
         spawnLevel = 0;
         spawnTimer = 0;
         levelTimer = 0;
-        spawnInterval = spawnIntervalMax;
+        spawnInterval = 1.5f;
+        spawnIntervalObstacles = 1.7f;
+        levelDurationEnemies = 22.0f;
+        levelDurationObstacles = 10.0f;
         justDied = true;
+        spawnObstacles = false;
+        levelDuration = levelDurationEnemies;
     }
 
     private void initBackground() {
@@ -177,7 +185,7 @@ public class Gameplay {
                 calcLevel(delta);
                 //spawn new enemies
                 if (!gameoverSequence)
-                    spawnEnemies(delta);
+                    spawnObjects(delta);
                 //update spawn objects
                 updateSpawns(delta);
                 //do collisions
@@ -212,28 +220,61 @@ public class Gameplay {
         //count level time and increase level
         levelTimer += delta;
         if (levelTimer >= levelDuration) {
-            spawnLevel++;
-            if (spawnLevel >= spawnLevelMax)
-                spawnLevel = spawnLevelMax;
+            if (!spawnObstacles) {
+                spawnLevel++;
+                if (spawnLevel > spawnLevelMax) {
+                    spawnLevel = 0;
+                    spawnInterval -=0.3f;
+                    if (spawnInterval <= 0.9f) {
+                        spawnInterval = 0.9f;
+                        System.out.println("--------- Reached minimum spawn interval !!! ---------");
+                    }
+                }
+                //after every 2 levels spawn an obstacle level
+                if (spawnLevel % 2 == 0) {
+                    spawnObstacles = true;
+                    levelDuration = levelDurationObstacles;
+                    System.out.println("SPAWNING OBSTACLES");
+                    levelDurationObstacles += 3.0f;
+                }
+                System.out.println("LEVEL: " + spawnLevel);
+
+            }
+            else {
+                //finish obstacle level after one "levelDuration"
+                levelDuration = levelDurationEnemies;
+                spawnObstacles = false;
+            }
             levelTimer = 0.0f;
         }
     }
 
-    private void spawnEnemies(float delta) {
+    private void spawnObjects(float delta) {
         spawnTimer += delta;
-        if (spawnTimer >= spawnInterval) {
-            if (spawnLevel < 4)
-                spawnEnemy(spawnLevel,
-                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-            else if (spawnLevel < 8) {
-                spawnEnemy(spawnLevel - 4,
-                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-                spawnEnemy(spawnLevel - 3,
-                        Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        if (!spawnObstacles) {
+            if (spawnTimer >= spawnInterval) {
+                spawnEnemies();
+                spawnTimer = 0.0f;
             }
-            //spawnObstacle(0, Spacegame.screenWidth + 70, 20 + Gameplay.random.nextInt(550));
+        } else {
+            if (spawnTimer >= spawnIntervalObstacles) {
+                spawnObstacles(0);
+                spawnTimer = 0.0f;
+            }
+        }
+    }
 
-            spawnTimer = 0.0f;
+    private void spawnEnemies() {
+        if (spawnLevel <= 3)
+            //spawn one enemy with random y-position
+            spawnEnemy(spawnLevel,
+                    Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        else if (spawnLevel <= 7) {
+            //spawn two enemies of two different levels at random y-position
+            spawnEnemy(spawnLevel - 4,
+                    Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+            spawnEnemy(spawnLevel - 3,
+                    Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         }
     }
 
@@ -242,6 +283,15 @@ public class Gameplay {
         Enemy e = (Enemy) spawnPool.getFromPool(SpawnType.Enemy);
         //initialize with given enemy type and random y-position
         e.init(type, posX, posY);
+    }
+
+    private void spawnObstacles(int type) {
+        //Spawn obstacle sequence
+        int pos = random.nextInt(2);
+        if (pos == 0)
+            spawnObstacle(type, Spacegame.screenWidth + 300, 380);
+        else
+            spawnObstacle(type, Spacegame.screenWidth + 300, 120);
     }
 
     private void spawnObstacle(int type, float posX, float posY) {
@@ -278,14 +328,22 @@ public class Gameplay {
                 }
             }
         }
-        //collide enemy missiles with player
         if (!player.isDead()) {
+            //collide enemy missiles with player
             for (SpawnObject me : missilesEnemies) {
                 Missile m = (Missile) me;
                 if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getCollisionRectangle())) {
                     //enemy missile hit player
                     m.kill(spawnPool);
                     player.hit(m.power);
+                }
+            }
+            //collide obstacles with player
+            for (SpawnObject o : obstacles) {
+                Obstacle ob = (Obstacle) o;
+                if (ob.isSpawned() && ob.getCollisionRectangle().overlaps(player.getCollisionRectangle())) {
+                    //obstacle hit player
+                    player.hit(100000);
                 }
             }
         }

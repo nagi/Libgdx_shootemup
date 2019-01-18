@@ -41,8 +41,7 @@ public class SpawnPool {
         }
 
         //No free spawn found, so create a new instance of that spawntype
-        System.out.println("Pool of " + type.name() + " contains no unspawned object. Creating new Instance...");
-
+        //System.out.println("Pool of " + type.name() + " contains no unspawned object. Creating new Instance...");
         SpawnObject spawn = createSpawnObject(type);
 
         if (spawn == null) {
@@ -57,7 +56,7 @@ public class SpawnPool {
         pools.get(type).add(spawn);
 
         //Debug
-        printPoolSize();
+        //printPoolSize();
 
         return spawn;
     }
