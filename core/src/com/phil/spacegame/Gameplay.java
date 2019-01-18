@@ -31,6 +31,7 @@ public class Gameplay {
     private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> obstacles = new ArrayList<SpawnObject>();
     //flags for game states
     private boolean started;
     private boolean paused;
@@ -118,6 +119,7 @@ public class Gameplay {
         spawnPool.addPool(SpawnType.MissilePlayer, missilesPlayer);
         spawnPool.addPool(SpawnType.Enemy, enemies);
         spawnPool.addPool(SpawnType.Explosion, explosions);
+        spawnPool.addPool(SpawnType.Obstacle, obstacles);
     }
 
     public void restart() {
@@ -126,6 +128,7 @@ public class Gameplay {
         missilesPlayer.clear();
         enemies.clear();
         explosions.clear();
+        obstacles.clear();
         //re-initialize
         init();
         start();
@@ -228,6 +231,8 @@ public class Gameplay {
                 spawnEnemy(spawnLevel - 3,
                         Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
             }
+            //spawnObstacle(0, Spacegame.screenWidth + 70, 20 + Gameplay.random.nextInt(550));
+
             spawnTimer = 0.0f;
         }
     }
@@ -237,6 +242,12 @@ public class Gameplay {
         Enemy e = (Enemy) spawnPool.getFromPool(SpawnType.Enemy);
         //initialize with given enemy type and random y-position
         e.init(type, posX, posY);
+    }
+
+    private void spawnObstacle(int type, float posX, float posY) {
+        //get obstacle from pool
+        Obstacle o = (Obstacle) spawnPool.getFromPool(SpawnType.Obstacle);
+        o.init(type, posX, posY);
     }
 
     private void calcCollisions() {
@@ -299,6 +310,10 @@ public class Gameplay {
             if (ex.isSpawned())
                 ex.update(delta);
         }
+        for (SpawnObject o: obstacles) {
+            if (o.isSpawned())
+                o.update(delta);
+        }
     }
 
     public void drawSpawns(SpriteBatch sb) {
@@ -319,6 +334,10 @@ public class Gameplay {
         for (SpawnObject ex: explosions) {
             if (ex.isSpawned())
                 ex.draw(sb);
+        }
+        for (SpawnObject o: obstacles) {
+            if (o.isSpawned())
+                o.draw(sb);
         }
     }
 

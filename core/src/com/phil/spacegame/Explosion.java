@@ -19,7 +19,7 @@ public class Explosion extends AnimatedSprite implements SpawnObject {
         setSize(150, 150);
         setPosition(x - 40,y - 20);
         //restart animation (because loop is set to false)
-        restartActiveAnimation("ANIM");
+        restartActiveAnimation();
     }
 
     @Override

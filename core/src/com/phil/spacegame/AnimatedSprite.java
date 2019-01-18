@@ -89,7 +89,7 @@ public class AnimatedSprite extends Sprite{
 		}
 	}
 
-	public void restartActiveAnimation(String name) {
+	public void restartActiveAnimation() {
 		activeAnimation.restart();
 		currentFrame = activeAnimation.getFrame(0);
 		setRegion(currentFrame);
