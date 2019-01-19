@@ -21,6 +21,7 @@ public class Resources extends AssetManager {
     public String lifebarBorder = "lifebar_border.png";
     public String shadow = "shadow.png";
     public String animCloud = "cloud.png";
+    public String animItemRepair = "item_repair.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -44,6 +45,7 @@ public class Resources extends AssetManager {
         load(lifebarInner, Texture.class);
         load(shadow, Texture.class);
         load(animCloud, Texture.class);
+        load(animItemRepair, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }

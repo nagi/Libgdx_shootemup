@@ -32,6 +32,7 @@ public class Gameplay {
     private ArrayList<SpawnObject> missilesPlayer = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> explosions = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> obstacles = new ArrayList<SpawnObject>();
+    private ArrayList<SpawnObject> items = new ArrayList<SpawnObject>();
     //flags for game states
     private boolean started;
     private boolean paused;
@@ -46,6 +47,7 @@ public class Gameplay {
     private float spawnIntervalDecreaseStep; //seconds
     private float spawnIntervalMinimum; //seconds
     private float spawnIntervalObstacles; //seconds
+    private float spawnIntervalItems; //seconds
     private float levelDurationEnemies; //seconds
     private float levelDurationObstacles; //seconds
     private float levelDurationObstaclesIncreaseStep; //seconds
@@ -53,6 +55,7 @@ public class Gameplay {
     private float gameoverTimerMax = 1.5f; //seconds
     //timer
     private float spawnTimer;
+    private float spawnTimerItems;
     private float levelTimer;
     private float gameoverTimer;
 
@@ -74,11 +77,13 @@ public class Gameplay {
         score = 0;
         spawnLevel = 0;
         spawnTimer = 0;
+        spawnTimerItems = 0;
         levelTimer = 0;
         spawnInterval = 1.5f;
         spawnIntervalDecreaseStep = 0.3f;
         spawnIntervalMinimum = 0.9f;
         spawnIntervalObstacles = 1.7f;
+        spawnIntervalItems = 30.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
@@ -134,6 +139,7 @@ public class Gameplay {
         spawnPool.addPool(SpawnType.Enemy, enemies);
         spawnPool.addPool(SpawnType.Explosion, explosions);
         spawnPool.addPool(SpawnType.Obstacle, obstacles);
+        spawnPool.addPool(SpawnType.Item, items);
     }
 
     public void restart() {
@@ -143,6 +149,7 @@ public class Gameplay {
         enemies.clear();
         explosions.clear();
         obstacles.clear();
+        items.clear();
         //re-initialize
         init();
         start();
@@ -257,16 +264,25 @@ public class Gameplay {
     private void spawnObjects(float delta) {
         spawnTimer += delta;
         if (!spawnObstacles) {
+            //spawn enemies
             if (spawnTimer >= spawnInterval) {
                 spawnEnemies();
                 spawnTimer = 0.0f;
             }
+            //spawn items
+            spawnTimerItems += delta;
+            if (spawnTimerItems >= spawnIntervalItems) {
+                spawnItems();
+                spawnTimerItems = 0.0f;
+            }
         } else {
+            //spawn obstacles
             if (spawnTimer >= spawnIntervalObstacles) {
                 spawnObstacles(0);
                 spawnTimer = 0.0f;
             }
         }
+
     }
 
     private void spawnEnemies() {
@@ -303,6 +319,18 @@ public class Gameplay {
         //get obstacle from pool
         Obstacle o = (Obstacle) spawnPool.getFromPool(SpawnType.Obstacle);
         o.init(type, posX, posY);
+    }
+
+    private void spawnItems() {
+        Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
+        i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+    }
+
+    private void collisionItem(Item item) {
+        if (item.getType() == 0) {
+            player.heal(0.25f);
+        }
+        item.kill(spawnPool);
     }
 
     private void calcCollisions() {
@@ -351,6 +379,14 @@ public class Gameplay {
                     player.hit(100000);
                 }
             }
+            //collide items with player
+            for (SpawnObject i : items) {
+                Item it = (Item) i;
+                if (it.isSpawned() && it.getCollisionRectangle().overlaps(player.getCollisionRectangle())) {
+                    //collect item
+                    collisionItem(it);
+                }
+            }
         }
     }
 
@@ -372,6 +408,10 @@ public class Gameplay {
         for (SpawnObject ex: explosions) {
             if (ex.isSpawned())
                 ex.update(delta);
+        }
+        for (SpawnObject i: items) {
+            if (i.isSpawned())
+                i.update(delta);
         }
         for (SpawnObject o: obstacles) {
             if (o.isSpawned())
@@ -397,6 +437,10 @@ public class Gameplay {
         for (SpawnObject ex: explosions) {
             if (ex.isSpawned())
                 ex.draw(sb);
+        }
+        for (SpawnObject i: items) {
+            if (i.isSpawned())
+                i.draw(sb);
         }
         for (SpawnObject o: obstacles) {
             if (o.isSpawned())

@@ -5,5 +5,6 @@ public enum SpawnType {
     Enemy,
     MissileEnemy,
     MissilePlayer,
-    Obstacle
+    Obstacle,
+    Item
 }

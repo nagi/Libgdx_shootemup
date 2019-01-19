@@ -3,7 +3,6 @@ package com.phil.spacegame;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends ShootingObject {
 
@@ -59,6 +58,12 @@ public class Player extends ShootingObject {
             Explosion expl3 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
             expl3.init(getX() + 20, getY() + 30);
         }
+    }
+
+    public void heal(float percent) {
+        life += lifeMax * percent;
+        if (life > lifeMax)
+            life = lifeMax;
     }
 
     public void update(float delta) {

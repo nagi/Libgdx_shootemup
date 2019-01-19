@@ -114,10 +114,6 @@ public class Enemy extends ShootingObject implements SpawnObject {
         }
     }
 
-    public void draw(SpriteBatch sb) {
-        super.draw(sb);
-    }
-
     public void setSpawned(boolean spawned) {
         this.spawned = spawned;
     }
