@@ -4,24 +4,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Obstacle extends AnimatedSprite implements SpawnObject {
+public class Obstacle extends GameObject implements SpawnObject {
 
-    private float speed;
     private boolean spawned;
 
+    private boolean restartAnimRandom;
     private float animTimer;
     private float animTime = 1.5f;
     private float animTimeRand;
-
-    private Rectangle rectCollision = new Rectangle(0, 0, 150, 60);
-    private float collOffsetX = 20;
-    private float collOffsetY = 10;
 
     public Obstacle(String arg) {
         super();
     }
 
     public void init(int type, float posX, float posY) {
+        restartAnimRandom = false;
+        animTimer = 0.0f;
+
         if (type > 0)
             type = 0;
 
@@ -32,30 +31,10 @@ public class Obstacle extends AnimatedSprite implements SpawnObject {
             setAnimation("ANIM1");
             setSize(256, 256);
             setCollisionArea(40, 40, 130, 130);
-            speed = -300.0f;
+            setSpeed(-300.0f, 0.0f);
+            restartAnimRandom = true;
         }
         setPosition(posX, posY);
-    }
-
-    private void move(float delta) {
-        //update position
-        setX(getX() + (speed * delta));
-
-        //remove from gameplay when out of screen
-        if (getX() < -getWidth()) {
-            kill(Gameplay.spawnPool);
-        }
-    }
-
-    public void setCollisionArea(int offsetX, int offsetY, int width, int height) {
-        rectCollision = new Rectangle(0, 0, width, height);
-        collOffsetX = offsetX;
-        collOffsetY = offsetY;
-    }
-
-    public Rectangle getCollisionRectangle() {
-        rectCollision.setPosition(getX() + collOffsetX, getY() + collOffsetY);
-        return rectCollision;
     }
 
     @Override
@@ -77,13 +56,20 @@ public class Obstacle extends AnimatedSprite implements SpawnObject {
 
     @Override
     public void update(float delta) {
-        super.animate(delta);
-        move(delta);
-        animTimer += delta;
-        if (animTimer >= animTimeRand) {
-            animTimer = 0.0f;
-            restartActiveAnimation();
-            animTimeRand = animTime + Gameplay.random.nextFloat();
+        //update position and animation
+        super.update(delta);
+        //remove from gameplay when out of screen
+        if (getX() < -getWidth()) {
+            kill(Gameplay.spawnPool);
+        }
+        //set random animation restart time of cloud
+        if (restartAnimRandom) {
+            animTimer += delta;
+            if (animTimer >= animTimeRand) {
+                animTimer = 0.0f;
+                restartActiveAnimation();
+                animTimeRand = animTime + Gameplay.random.nextFloat();
+            }
         }
     }
 

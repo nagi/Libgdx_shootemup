@@ -8,8 +8,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
 
     //for SpawnObject interface
     private boolean spawned;
-
-    private float speed;
+    //the score player gets after killing this enemy
     private int score;
 
     public Enemy(String arg) {}
@@ -34,7 +33,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setShootingInterval(1.3f);
             setGunType(0);
             addGun(180, 600, 0, 50);
-            speed = -200.0f;
+            setSpeed(-200.0f, 0.0f);
             setScore(100);
         }
         else if (type == 1) {
@@ -49,7 +48,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setGunType(0);
             addGun(187, 600, 0, 50);
             addGun(173, 600, 0, 50);
-            speed = -200.0f;
+            setSpeed(-200.0f, 0.0f);
             setScore(120);
         }
         else if (type == 2) {
@@ -65,7 +64,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             addGun(180, 500.0f, 0, 10);
             addGun(180, 500.0f, 0, 30);
             addGun(180, 500.0f, 0, 50);
-            speed = -200.0f;
+            setSpeed(-200.0f, 0.0f);
             setScore(150);
         }
         else if (type == 3) {
@@ -81,7 +80,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             addGun(180, 450, 0, 50);
             addGun(190, 450, 0, 50);
             addGun(170, 450, 0, 50);
-            speed = -180.0f;
+            setSpeed(-180.0f, 0.0f);
             setScore(200);
         }
 
@@ -104,21 +103,15 @@ public class Enemy extends ShootingObject implements SpawnObject {
         //TODO reduce power instead of killing directly
     }
 
-    private void move(float delta) {
-        //update position
-        setX(getX() + (speed * delta));
+    //Interface methods
 
+    public void update(float delta) {
+        //update shooting, animation and position
+        super.update(delta);
         //remove from gameplay when out of screen
         if (getX() < -getWidth()) {
             kill(Gameplay.spawnPool);
         }
-    }
-
-    //Interface methods
-
-    public void update(float delta) {
-        super.update(delta);
-        move(delta);
     }
 
     public void draw(SpriteBatch sb) {

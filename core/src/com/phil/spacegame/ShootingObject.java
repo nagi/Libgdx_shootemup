@@ -1,8 +1,6 @@
 package com.phil.spacegame;
 
-import com.badlogic.gdx.math.Rectangle;
-
-public class ShootingObject extends AnimatedSprite {
+public class ShootingObject extends GameObject {
 
     public class Gun {
         boolean active = false;
@@ -16,19 +14,15 @@ public class ShootingObject extends AnimatedSprite {
         }
     }
 
-    //Ggun attributes
+    //gun attributes
     private SpawnType missilesPool;
-    public float gunPower = 1.0f;
+    private float gunPower = 1.0f;
     private float shootingInterval = 0.5f;
     private float timer;
     private int gunType;
     private Gun guns[] = new Gun[10];
     private int maxGuns = 10;
     private int gunsCount = 0;
-    //Collision
-    private Rectangle rectCollision = new Rectangle(0, 0, 150, 60);
-    private float collOffsetX = 20;
-    private float collOffsetY = 10;
 
     public ShootingObject() {
         //creating guns
@@ -47,17 +41,6 @@ public class ShootingObject extends AnimatedSprite {
         gunsCount = 0;
         //reset timer
         timer = 0.0f;
-    }
-
-    public void setCollisionArea(int offsetX, int offsetY, int width, int height) {
-        rectCollision = new Rectangle(0, 0, width, height);
-        collOffsetX = offsetX;
-        collOffsetY = offsetY;
-    }
-
-    public Rectangle getCollisionRectangle() {
-        rectCollision.setPosition(getX() + collOffsetX, getY() + collOffsetY);
-        return rectCollision;
     }
 
     public void setGunPower(float power) {
@@ -85,7 +68,7 @@ public class ShootingObject extends AnimatedSprite {
     }
 
     public void update(float delta) {
-        super.animate(delta);
+        super.update(delta);
         timer += delta;
         if (timer >= shootingInterval) {
             shoot();

@@ -43,9 +43,12 @@ public class Gameplay {
     private int spawnLevel = 0;
     private int spawnLevelMax = 7;
     private float spawnInterval; //seconds
-    private float spawnIntervalObstacles;
+    private float spawnIntervalDecreaseStep; //seconds
+    private float spawnIntervalMinimum; //seconds
+    private float spawnIntervalObstacles; //seconds
     private float levelDurationEnemies; //seconds
     private float levelDurationObstacles; //seconds
+    private float levelDurationObstaclesIncreaseStep; //seconds
     private float levelDuration; //seconds
     private float gameoverTimerMax = 1.5f; //seconds
     //timer
@@ -73,9 +76,12 @@ public class Gameplay {
         spawnTimer = 0;
         levelTimer = 0;
         spawnInterval = 1.5f;
+        spawnIntervalDecreaseStep = 0.3f;
+        spawnIntervalMinimum = 0.9f;
         spawnIntervalObstacles = 1.7f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
+        levelDurationObstaclesIncreaseStep = 3.0f;
         justDied = true;
         spawnObstacles = false;
         levelDuration = levelDurationEnemies;
@@ -224,10 +230,9 @@ public class Gameplay {
                 spawnLevel++;
                 if (spawnLevel > spawnLevelMax) {
                     spawnLevel = 0;
-                    spawnInterval -=0.3f;
-                    if (spawnInterval <= 0.9f) {
-                        spawnInterval = 0.9f;
-                        System.out.println("--------- Reached minimum spawn interval !!! ---------");
+                    spawnInterval -= spawnIntervalDecreaseStep;
+                    if (spawnInterval <= spawnIntervalMinimum) {
+                        spawnInterval = spawnIntervalMinimum;
                     }
                 }
                 //after every 2 levels spawn an obstacle level
@@ -235,7 +240,7 @@ public class Gameplay {
                     spawnObstacles = true;
                     levelDuration = levelDurationObstacles;
                     System.out.println("SPAWNING OBSTACLES");
-                    levelDurationObstacles += 3.0f;
+                    levelDurationObstacles += levelDurationObstaclesIncreaseStep;
                 }
                 System.out.println("LEVEL: " + spawnLevel);
 
@@ -289,9 +294,9 @@ public class Gameplay {
         //Spawn obstacle sequence
         int pos = random.nextInt(2);
         if (pos == 0)
-            spawnObstacle(type, Spacegame.screenWidth + 300, 380);
+            spawnObstacle(type, Spacegame.screenWidth + 300, 450);
         else
-            spawnObstacle(type, Spacegame.screenWidth + 300, 120);
+            spawnObstacle(type, Spacegame.screenWidth + 300, 180);
     }
 
     private void spawnObstacle(int type, float posX, float posY) {
