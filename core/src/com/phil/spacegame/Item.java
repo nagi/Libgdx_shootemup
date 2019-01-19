@@ -12,6 +12,8 @@ public class Item extends GameObject implements SpawnObject {
     private int type;
     private Sprite bubble;
 
+    private float angle;
+
     public Item(String arg) {}
 
     public void init(int type, float posX, float posY) {
@@ -27,7 +29,7 @@ public class Item extends GameObject implements SpawnObject {
             setAnimation("ANIM1");
             setSize(45, 45);
             setCollisionArea(-12, -12, 70, 70);
-            setSpeed(-200.0f, 0.0f);
+            setSpeed(-250.0f, 0.0f);
         }
 
         if (bubble == null) {
@@ -36,7 +38,8 @@ public class Item extends GameObject implements SpawnObject {
         }
 
         setPosition(posX, posY);
-        bubble.setPosition(getX() + getWidth() - (bubble.getWidth() / 2), getY() + getHeight() - (bubble.getHeight() / 2));
+
+        bubble.setOriginCenter();
     }
 
     public int getType() {
@@ -51,8 +54,13 @@ public class Item extends GameObject implements SpawnObject {
     @Override
     public void update(float delta) {
         super.update(delta);
-        bubble.setPosition(getX() + ((getWidth() - bubble.getWidth()) / 2), getY() + ((getHeight() - bubble.getHeight()) / 2));
-          }
+        //calculate pulse of bubble
+        angle += 7 * delta;
+        float size = (float)Math.sin(angle);
+        bubble.setSize(65 + 5 * size, 65 + 5 * size);
+        bubble.setOriginCenter();
+        bubble.setOriginBasedPosition(getX() + getWidth()/2, getY() + getHeight() / 2);
+    }
 
     @Override
     public void setSpawned(boolean spawned) {
