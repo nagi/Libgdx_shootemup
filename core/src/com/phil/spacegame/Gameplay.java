@@ -314,21 +314,28 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.7f)
+        if (rand < 0.5f)
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand <= 1.0f && player.getGunLevel() < player.getGunLevelMax())
+        else if (rand <= 0.8f && player.getGunLevel() < player.getGunLevelMax())
             i.init(10 + player.getGunLevel() + 1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-
+        else {
+            i.init(1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        }
     }
 
     private void collisionItem(Item item) {
-        if (item.getType() == 0) {
+        if (item.getType() == 0) { //Repair tool
             player.heal(0.25f);
         }
-        else if (item.getType() >= 10 && item.getType() <= 17) {
+        else if (item.getType() >= 10 && item.getType() <= 17) { //gun upgrades
             player.setGunLevel(item.getType() - 10);
         }
+        else if (item.getType() == 1) { //random gun
+            int rand = random.nextInt(player.getGunLevel() + 3);
+            player.setGunLevel(rand);
+        }
         item.kill(spawnPool);
+        player.showSparkles();
     }
 
     private void calcCollisions() {

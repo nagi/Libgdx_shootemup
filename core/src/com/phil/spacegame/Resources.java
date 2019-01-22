@@ -27,6 +27,7 @@ public class Resources extends AssetManager {
     public String animItemRepair = "item_repair.png";
     public String itemBubble = "item_border.png";
     public String tilesetGunUpgrades = "item_gun_upgrade.png";
+    public String animItemCollect = "anim_item_collect.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -56,6 +57,7 @@ public class Resources extends AssetManager {
         load(animItemRepair, Texture.class);
         load(itemBubble, Texture.class);
         load(tilesetGunUpgrades, Texture.class);
+        load(animItemCollect, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }

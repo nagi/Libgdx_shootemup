@@ -23,6 +23,9 @@ public class Player extends ShootingObject {
     //gun
     private int gunLevel;
     private int gunLevelMax = 7;
+    //animation sparkles
+    private AnimatedSprite sparkles;
+    private boolean showSparkles;
 
     public Player() {
         addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
@@ -31,6 +34,13 @@ public class Player extends ShootingObject {
         //init shadow
         shadow = new Sprite(Spacegame.resources.get(Spacegame.resources.shadow, Texture.class));
         shadow.setBounds(80, collisionMarginBottom + 20, 179, 25);
+        //sparkles
+        sparkles = new AnimatedSprite();
+        sparkles.addAnimation(Spacegame.resources.get(Spacegame.resources.animItemCollect, Texture.class),
+                2, 4, 0, 6, 0.08f, "SPARKLES", false);
+        sparkles.setAnimation("SPARKLES");
+        sparkles.setSize(210, 105);
+        sparkles.setAlpha(0.8f);
         //initialize and define pool with missiles
         init(SpawnType.MissilePlayer);
     }
@@ -78,6 +88,11 @@ public class Player extends ShootingObject {
         }
     }
 
+    public void showSparkles(){
+        this.sparkles.restartActiveAnimation();
+        this.showSparkles = true;
+    }
+
     public void heal(float percent) {
         life += lifeMax * percent;
         if (life > lifeMax)
@@ -92,6 +107,14 @@ public class Player extends ShootingObject {
             move(delta);
             //shadow
             shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );
+            //sparkles
+            if (showSparkles) {
+                sparkles.setPosition(getX() - 20, getY());
+                sparkles.animate(delta);
+                if (sparkles.activeAnimFinished) {
+                    showSparkles = false;
+                }
+            }
         }
     }
 
@@ -119,6 +142,8 @@ public class Player extends ShootingObject {
         if (!dead) {
             super.draw(sb);
             shadow.draw(sb);
+            if (showSparkles)
+                sparkles.draw(sb);
         }
     }
 
