@@ -44,7 +44,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-121.31878,122.77919)" />
+       gradientTransform="matrix(0.9354174,-0.03463945,0.03865989,1.0439871,-95.35716,143.18728)" />
     <linearGradient
        id="linearGradient963"
        inkscape:collect="always">
@@ -67,7 +67,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-116.16884,126.32272)" />
+       gradientTransform="matrix(0.97646216,-0.03615938,0.04035623,1.0897957,-96.113604,142.54718)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -78,7 +78,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-99.040186,121.96967)" />
+       gradientTransform="matrix(0.92040073,-0.03408336,0.03803927,1.0272275,-71.776437,144.44579)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -89,7 +89,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.0422391,0.04714161,1.2730303,-105.22955,123.10358)" />
+       gradientTransform="matrix(0.92040073,-0.03408337,0.03803928,1.0272275,-76.770729,145.36076)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -100,7 +100,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.0422391,0.04714161,1.2730303,-101.11906,127.92279)" />
+       gradientTransform="matrix(0.92040073,-0.03408337,0.03803928,1.0272275,-73.453912,149.24946)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -111,7 +111,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223911,0.04714162,1.2730303,-121.06997,138.36316)" />
+       gradientTransform="matrix(0.87738526,-0.03249047,0.0362615,0.97921943,-87.299231,165.11264)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -122,7 +122,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-117.01601,143.30684)" />
+       gradientTransform="matrix(0.87738534,-0.03249049,0.03626151,0.97921943,-84.180911,168.91533)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -133,7 +133,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-135.63995,124.42399)" />
+       gradientTransform="matrix(0.89437265,-0.03311952,0.03696355,0.99817846,-104.48601,148.9137)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -144,7 +144,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.0422391,0.04714161,1.2730303,-87.306467,126.96779)" />
+       gradientTransform="matrix(0.88513565,-0.03277747,0.03658181,0.98786937,-54.427144,151.79375)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -155,7 +155,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.0422391,0.04714161,1.2730303,-88.098951,121.28302)" />
+       gradientTransform="matrix(0.88513565,-0.03277747,0.03658181,0.98786937,-55.04211,147.38238)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -166,7 +166,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-82.342375,121.73598)" />
+       gradientTransform="matrix(0.88513565,-0.03277746,0.03658179,0.98786937,-50.575017,147.73388)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -177,7 +177,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.0422391,0.04714161,1.2730303,-81.542025,127.45351)" />
+       gradientTransform="matrix(0.88513565,-0.03277747,0.03658181,0.98786937,-49.953946,152.17067)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -188,7 +188,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223911,0.04714162,1.2730303,-135.4957,141.15832)" />
+       gradientTransform="matrix(0.85332791,-0.03159961,0.03526722,0.95236984,-99.149428,169.72966)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -199,7 +199,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-105.34513,140.58125)" />
+       gradientTransform="matrix(0.88584009,-0.03280358,0.03661094,0.98865548,-72.499481,165.96781)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -210,7 +210,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-99.86321,137.69603)" />
+       gradientTransform="matrix(0.88584009,-0.03280358,0.03661094,0.98865548,-68.242136,163.7271)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -221,7 +221,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-100.00747,143.89926)" />
+       gradientTransform="matrix(0.88584009,-0.03280358,0.03661094,0.98865548,-68.35417,168.54463)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -232,7 +232,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-88.322318,138.5616)" />
+       gradientTransform="matrix(0.80024785,-0.02963401,0.03307349,0.89312894,-44.271029,173.22935)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -243,7 +243,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-82.648256,138.56159)" />
+       gradientTransform="matrix(0.80024785,-0.02963401,0.03307349,0.89312894,-40.290237,173.22934)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -254,7 +254,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-87.023969,144.04352)" />
+       gradientTransform="matrix(0.80024785,-0.02963401,0.03307349,0.89312894,-43.360137,177.07534)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -265,7 +265,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406413,-0.04223913,0.04714163,1.2730303,-81.686306,144.04352)" />
+       gradientTransform="matrix(0.80024785,-0.02963401,0.03307349,0.89312894,-39.615355,177.07534)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4668"
@@ -276,7 +276,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223911,0.04714162,1.2730303,-138.23666,155.2959)" />
+       gradientTransform="matrix(0.73296771,-0.02714254,0.03029286,0.81803998,-86.389777,212.68674)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -287,7 +287,7 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-131.88917,159.19094)" />
+       gradientTransform="matrix(0.73296771,-0.02714253,0.03029284,0.81803998,-81.698876,211.61938)" />
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient963"
@@ -298,18 +298,140 @@
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223909,0.04714159,1.2730303,-139.10222,161.49912)" />
+       gradientTransform="matrix(0.73296771,-0.02714253,0.03029284,0.81803998,-86.94598,216.67289)" />
     <radialGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient4668"
-       id="radialGradient933-0-7-7-9-2-5"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4"
        cx="122.65327"
        cy="93.171127"
        fx="122.65327"
        fy="93.171127"
        r="2.8348215"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.1406412,-0.04223911,0.04714162,1.2730303,-131.74491,153.56477)" />
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-322.67034,168.98971)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4837">
+      <stop
+         style="stop-color:#ff7a0a;stop-opacity:1"
+         offset="0"
+         id="stop4833" />
+      <stop
+         style="stop-color:#fdfc00;stop-opacity:1"
+         offset="1"
+         id="stop4835" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-7"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-153.14427,208.83843)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-3"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-151.30813,212.2047)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-72"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-319.25073,170.5228)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-75"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-160.62292,213.94137)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-4"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.6849203,-14.909972,165.58722)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-72-2"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.68492029,-306.68584,180.62512)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-72-8"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.68492029,-305.75816,183.94985)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-72-5"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.68492029,-17.245249,169.81458)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-72-5-3"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.02272562,0.05803072,0.68492028,-19.228867,172.50351)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4837"
+       id="radialGradient933-9-4-5"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4041158,-0.0227256,0.05803071,0.68492028,-329.93587,184.88203)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -360,65 +482,65 @@
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
+       r="2.3247814"
        cy="236.2081"
        cx="22.976833"
        id="path925-2"
-       style="fill:url(#radialGradient933-0);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0);fill-opacity:1;stroke:none;stroke-width:0.79137748;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="239.75162"
-       cx="28.126743"
+       r="2.4267893"
+       cy="239.64961"
+       cx="27.412687"
        id="path925-2-2"
-       style="fill:url(#radialGradient933-0-8);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-8);fill-opacity:1;stroke:none;stroke-width:0.82610196;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="235.39857"
-       cx="45.255402"
+       r="2.2874606"
+       cy="235.9733"
+       cx="44.657867"
        id="path925-2-3"
-       style="fill:url(#radialGradient933-0-7);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7);fill-opacity:1;stroke:none;stroke-width:0.77867317;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="236.53249"
-       cx="39.066063"
+       r="2.2874606"
+       cy="236.88828"
+       cx="39.663597"
        id="path925-2-2-5"
-       style="fill:url(#radialGradient933-0-8-2);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-8-2);fill-opacity:1;stroke:none;stroke-width:0.77867317;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="241.35168"
-       cx="43.176563"
+       r="2.2874606"
+       cy="240.77696"
+       cx="42.980423"
        id="path925-2-3-8"
-       style="fill:url(#radialGradient933-0-7-7);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7);fill-opacity:1;stroke:none;stroke-width:0.77867317;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="251.79204"
-       cx="23.225651"
+       r="2.1805546"
+       cy="252.36253"
+       cx="23.693472"
        id="path925-2-3-8-7"
-       style="fill:url(#radialGradient933-0-7-7-9);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9);fill-opacity:1;stroke:none;stroke-width:0.74228144;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="256.73575"
-       cx="27.279627"
+       r="2.1805546"
+       cy="256.16525"
+       cx="26.811806"
        id="path925-2-3-8-7-2"
-       style="fill:url(#radialGradient933-0-7-7-9-6);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6);fill-opacity:1;stroke:none;stroke-width:0.74228144;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        transform="translate(-33.369147,-18.578426)"
        id="g4512-8">
@@ -488,170 +610,172 @@
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
+       r="2.2227733"
        cy="237.85291"
        cx="8.6556683"
        id="path925-2-8"
-       style="fill:url(#radialGradient933-0-5);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-5);fill-opacity:1;stroke:none;stroke-width:0.75665301;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="235.16489"
-       cx="61.953217"
+       r="2.1998167"
+       cy="235.75452"
+       cx="61.398121"
        id="path925-2-3-5"
-       style="fill:url(#radialGradient933-0-7-9);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-9);fill-opacity:1;stroke:none;stroke-width:0.74883837;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="234.71191"
-       cx="56.196659"
+       r="2.1998167"
+       cy="235.40302"
+       cx="56.931042"
        id="path925-2-2-5-1"
-       style="fill:url(#radialGradient933-0-8-2-1);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-8-2-1);fill-opacity:1;stroke:none;stroke-width:0.74883837;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="240.39667"
-       cx="56.989155"
+       r="2.1998167"
+       cy="239.81438"
+       cx="57.546017"
        id="path925-2-3-8-0"
-       style="fill:url(#radialGradient933-0-7-7-6);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-6);fill-opacity:1;stroke:none;stroke-width:0.74883837;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="240.8824"
-       cx="62.753597"
+       r="2.1998167"
+       cy="240.1913"
+       cx="62.019215"
        id="path925-2-3-8-0-3"
-       style="fill:url(#radialGradient933-0-7-7-6-0);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-6-0);fill-opacity:1;stroke:none;stroke-width:0.74883837;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
+       r="2.1207652"
        cy="254.58722"
        cx="8.7999287"
        id="path925-2-3-8-7-0"
-       style="fill:url(#radialGradient933-0-7-7-9-2);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-2);fill-opacity:1;stroke:none;stroke-width:0.72192848;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="254.01016"
-       cx="38.950508"
+       r="2.2015672"
+       cy="254.0585"
+       cx="39.562794"
        id="path925-2-3-8-7-2-9"
-       style="fill:url(#radialGradient933-0-7-7-9-6-9);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-9);fill-opacity:1;stroke:none;stroke-width:0.74943423;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="251.12494"
-       cx="44.43243"
+       r="2.2015672"
+       cy="251.81779"
+       cx="43.820145"
        id="path925-2-3-8-7-2-8"
-       style="fill:url(#radialGradient933-0-7-7-9-6-1);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-1);fill-opacity:1;stroke:none;stroke-width:0.74943423;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="257.32816"
-       cx="44.28817"
+       r="2.2015672"
+       cy="256.63531"
+       cx="43.708107"
        id="path925-2-3-8-7-2-7"
-       style="fill:url(#radialGradient933-0-7-7-9-6-7);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-7);fill-opacity:1;stroke:none;stroke-width:0.74943423;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="251.99051"
-       cx="55.973324"
+       r="1.9888459"
+       cy="252.80847"
+       cx="56.963493"
        id="path925-2-3-8-7-2-89"
-       style="fill:url(#radialGradient933-0-7-7-9-6-4);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-4);fill-opacity:1;stroke:none;stroke-width:0.67702192;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="251.99051"
-       cx="61.647388"
+       r="1.9888459"
+       cy="252.80847"
+       cx="60.944286"
        id="path925-2-3-8-7-2-74"
-       style="fill:url(#radialGradient933-0-7-7-9-6-8);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-8);fill-opacity:1;stroke:none;stroke-width:0.67702192;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="257.47244"
-       cx="57.271675"
+       r="1.9888459"
+       cy="256.65448"
+       cx="57.874386"
        id="path925-2-3-8-7-2-1"
-       style="fill:url(#radialGradient933-0-7-7-9-6-14);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-14);fill-opacity:1;stroke:none;stroke-width:0.67702192;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="257.47244"
-       cx="62.609337"
+       r="1.9888459"
+       cy="256.65448"
+       cx="61.619167"
        id="path925-2-3-8-7-2-3"
-       style="fill:url(#radialGradient933-0-7-7-9-6-2);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-6-2);fill-opacity:1;stroke:none;stroke-width:0.67702192;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-5);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-3"
+       cx="-152.30969"
+       cy="245.90944"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007"
+       transform="rotate(-33.975918)" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="268.72479"
-       cx="6.0589676"
+       r="1.8216356"
+       cy="285.57532"
+       cx="6.33354"
        id="path925-2-3-8-7-0-7"
-       style="fill:url(#radialGradient933-0-7-7-9-2-9);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-7-7-9-2-9);fill-opacity:1;stroke:none;stroke-width:0.62010193;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="272.61984"
-       cx="12.406458"
+       r="1.8216356"
+       cy="284.50797"
+       cx="11.024439"
        id="path925-2-8-8"
-       style="fill:url(#radialGradient933-0-5-5);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-5-5);fill-opacity:1;stroke:none;stroke-width:0.62010193;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
        inkscape:export-ydpi="96"
        inkscape:export-xdpi="96"
        inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="274.92804"
-       cx="5.1934013"
+       r="1.8216356"
+       cy="289.56149"
+       cx="5.7773333"
        id="path925-2-8-5"
-       style="fill:url(#radialGradient933-0-5-53);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <circle
-       inkscape:export-ydpi="96"
-       inkscape:export-xdpi="96"
-       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile2.png"
-       r="2.8348215"
-       cy="266.99368"
-       cx="12.55072"
-       id="path925-2-3-8-7-0-6"
-       style="fill:url(#radialGradient933-0-7-7-9-2-5);fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:url(#radialGradient933-0-5-53);fill-opacity:1;stroke:none;stroke-width:0.62010193;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.96905136px;line-height:1.25;font-family:'Myanmar Text';-inkscape-font-specification:'Myanmar Text Bold';letter-spacing:0px;word-spacing:0px;fill:#420170;fill-opacity:1;stroke:#fefefe;stroke-width:0.57422626;stroke-opacity:1"
-       x="96.315735"
-       y="260.51785"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.75974464px;line-height:1.25;font-family:'Myanmar Text';-inkscape-font-specification:'Myanmar Text Bold';letter-spacing:0px;word-spacing:0px;fill:#420170;fill-opacity:1;stroke:#fefefe;stroke-width:0.36899361;stroke-opacity:1"
+       x="104.04368"
+       y="272.73712"
        id="text5019"
        transform="rotate(20.166025)"><tspan
          sodipodi:role="line"
          id="tspan5017"
-         x="96.315735"
-         y="260.51785"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Myanmar Text';-inkscape-font-specification:'Myanmar Text Bold';fill:#420170;fill-opacity:1;stroke:#fefefe;stroke-width:0.57422626;stroke-opacity:1">?</tspan></text>
+         x="104.04368"
+         y="272.73712"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Myanmar Text';-inkscape-font-specification:'Myanmar Text Bold';fill:#420170;fill-opacity:1;stroke:#fefefe;stroke-width:0.36899361;stroke-opacity:1">?</tspan></text>
     <g
        id="g6566"
-       transform="rotate(22.270802,23.608282,271.09512)">
+       transform="matrix(0.5971157,0.24453959,-0.24453959,0.5971157,76.116113,120.26102)">
       <path
          sodipodi:nodetypes="cccczcc"
          inkscape:connector-curvature="0"
@@ -681,5 +805,113 @@
          d="m 21.523693,267.11163 3.774297,0.51004 v 9.0179 c 0,0 -1.047663,-0.0333 -2.145561,-0.79791 -1.097898,-0.76455 -1.628736,-2.13044 -1.628736,-2.13044 z"
          style="opacity:1;fill:#9706fd;fill-opacity:1;stroke:none;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
     </g>
+    <ellipse
+       style="fill:url(#radialGradient933-9-4);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9"
+       cx="-145.04414"
+       cy="230.01712"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007"
+       transform="rotate(-33.975917)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-7);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-6"
+       cx="24.481928"
+       cy="269.86584"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-3);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-8"
+       cx="26.318071"
+       cy="273.23212"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-72);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-7"
+       cx="-141.62454"
+       cy="231.5502"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007"
+       transform="rotate(-40.249907)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-75);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-87"
+       cx="17.003275"
+       cy="274.96878"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007"
+       transform="rotate(-5.4511044)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-4);fill-opacity:1;stroke:none;stroke-width:0.78533483;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-71"
+       cx="162.71623"
+       cy="226.61464"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896319"
+       ry="1.5252007"
+       transform="rotate(26.993976)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-72-2);fill-opacity:1;stroke:none;stroke-width:0.78533477;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-7-7"
+       cx="-129.05966"
+       cy="241.65253"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896317"
+       ry="1.5252007"
+       transform="rotate(-40.249907)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-72-8);fill-opacity:1;stroke:none;stroke-width:0.78533477;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-7-8"
+       cx="-128.13197"
+       cy="244.97725"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896317"
+       ry="1.5252007"
+       transform="rotate(-40.249907)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-72-5);fill-opacity:1;stroke:none;stroke-width:0.78533477;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-7-5"
+       cx="160.38092"
+       cy="230.842"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896317"
+       ry="1.5252007"
+       transform="rotate(22.32021)" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-72-5-3);fill-opacity:1;stroke:none;stroke-width:0.78533477;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-7-5-4"
+       cx="158.39731"
+       cy="233.53093"
+       inkscape:export-filename="D:\Nextcloud\dev\Grafiken\Spacegame\background1_1\missile1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.4896317"
+       ry="1.5252007"
+       transform="rotate(22.320211)" />
   </g>
 </svg>

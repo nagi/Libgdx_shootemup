@@ -20,6 +20,8 @@ public class Resources extends AssetManager {
     public String missile3 = "missile3.png";
     public String missile4 = "missile4.png";
     public String missile5 = "missile5.png";
+    public String missile6 = "missile6.png";
+    public String missile7 = "missile7.png";
     public String lifebarInner = "lifebar_inner.png";
     public String lifebarBorder = "lifebar_border.png";
     public String shadow = "shadow.png";
@@ -50,6 +52,8 @@ public class Resources extends AssetManager {
         load(missile3, Texture.class);
         load(missile4, Texture.class);
         load(missile5, Texture.class);
+        load(missile6, Texture.class);
+        load(missile7, Texture.class);
         load(tilesetExplosion, Texture.class);
         load(lifebarBorder, Texture.class);
         load(lifebarInner, Texture.class);

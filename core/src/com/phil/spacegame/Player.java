@@ -22,7 +22,7 @@ public class Player extends ShootingObject {
     private float shadowPosY;
     //gun
     private int gunLevel;
-    private int gunLevelMax = 7;
+    private int gunLevelMax = 11;
     //shield
     private boolean shieldActive;
     private float shieldTimer;
@@ -189,8 +189,10 @@ public class Player extends ShootingObject {
     private void setGunsByLevel(int gunLevel) {
         float intervalGreenGun = 0.4f;
         float intervalPurpleGun = 0.25f;
+        float intervalYellowGun = 0.14f;
         float speedGreenGun = 800.0f;
         float speedPurpleGun = 1100.0f;
+        float speedYellowGun = 1200.0f;
 
         resetGuns();
 
@@ -242,8 +244,8 @@ public class Player extends ShootingObject {
             setGunType(1); //green
             addGun(1.5f, speedGreenGun, 150, 30);
             addGun(-1.5f, speedGreenGun, 150, 30);
-            addGun(3, speedGreenGun, 150, 30);
-            addGun(-3, speedGreenGun, 150, 30);
+            addGun(4, speedGreenGun, 150, 40);
+            addGun(-4, speedGreenGun, 150, 20);
         }
         else if (gunLevel == 7) {
             setGunPower(100.0f);
@@ -251,8 +253,38 @@ public class Player extends ShootingObject {
             setGunType(2); //purple
             addGun(1.5f, speedPurpleGun, 150, 30);
             addGun(-1.5f, speedPurpleGun, 150, 30);
-            addGun(3, speedPurpleGun, 150, 30);
-            addGun(-3, speedPurpleGun, 150, 30);
+            addGun(4, speedPurpleGun, 150, 40);
+            addGun(-4, speedPurpleGun, 150, 20);
+        }
+        else if (gunLevel == 8) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalYellowGun);
+            setGunType(6); //yellow
+            addGun(0.0f, speedYellowGun, 150, 30);
+        }
+        else if (gunLevel == 9) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalYellowGun);
+            setGunType(6); //yellow
+            addGun(20.0f, speedYellowGun, 150, 30);
+            addGun(-20.0f, speedYellowGun, 150, 30);
+        }
+        else if (gunLevel == 10) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalYellowGun);
+            setGunType(6); //yellow
+            addGun(0.0f, speedYellowGun, 150, 30);
+            addGun(30.0f, speedYellowGun, 150, 30);
+            addGun(-30.0f, speedYellowGun, 150, 30);
+        }
+        else if (gunLevel == 11) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalYellowGun);
+            setGunType(6); //yellow
+            addGun(20.0f, speedYellowGun, 130, 50);
+            addGun(20.0f, speedYellowGun, 150, 30);
+            addGun(-20.0f, speedYellowGun, 150, 30);
+            addGun(-20.0f, speedYellowGun, 130, 10);
         }
 
         //Don't forget to set gunLevelMax after adding more gun levels !!

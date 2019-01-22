@@ -36,7 +36,7 @@ public class Missile extends AnimatedSprite implements SpawnObject {
         }
         else if (type == 2) { //purple
             setRegion(Spacegame.resources.get(Spacegame.resources.missile3, Texture.class));
-            setBounds(position.x, position.y, 17, 17);
+            setBounds(position.x, position.y, 15, 15);
         }
         else if (type == 3) { //blue
             setRegion(Spacegame.resources.get(Spacegame.resources.missile4, Texture.class));
@@ -45,6 +45,14 @@ public class Missile extends AnimatedSprite implements SpawnObject {
         else if (type == 4) { //red
             setRegion(Spacegame.resources.get(Spacegame.resources.missile5, Texture.class));
             setBounds(position.x, position.y, 24, 9);
+        }
+        else if (type == 5) { //grey
+            setRegion(Spacegame.resources.get(Spacegame.resources.missile6, Texture.class));
+            setBounds(position.x, position.y, 15, 15);
+        }
+        else if (type == 6) { //yellow
+            setRegion(Spacegame.resources.get(Spacegame.resources.missile7, Texture.class));
+            setBounds(position.x, position.y, 26, 12);
         }
         else {
             System.err.println("GUN TYPE NOT FOUND! " + type);

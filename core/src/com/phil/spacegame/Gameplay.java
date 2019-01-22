@@ -84,7 +84,7 @@ public class Gameplay {
         spawnIntervalDecreaseStep = 0.2f;
         spawnIntervalMinimum = 0.5f;
         spawnIntervalObstacles = 1.2f;
-        spawnIntervalItems = 20.0f;
+        spawnIntervalItems = 14.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
@@ -314,9 +314,9 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.3f) //repair tool
+        if (rand < 0.25f) //repair tool
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand < 0.5f) //shield
+        else if (rand < 0.45f) //shield
             i.init(2, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         else if (rand <= 0.8f && player.getGunLevel() < player.getGunLevelMax()) //gun upgrade
             i.init(10 + player.getGunLevel() + 1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
@@ -330,11 +330,15 @@ public class Gameplay {
             player.heal(0.25f);
             player.showSparkles();
         }
-        else if (item.getType() >= 10 && item.getType() <= 17) { //gun upgrades
+        else if (item.getType() >= 10 && item.getType() <= 10 + player.getGunLevelMax()) { //gun upgrades
             player.setGunLevel(item.getType() - 10);
         }
         else if (item.getType() == 1) { //random gun
-            int rand = random.nextInt(player.getGunLevel() + 3);
+            int rand = player.getGunLevel();
+            while( rand == player.getGunLevel()) {
+                rand = random.nextInt(player.getGunLevel() + 4);
+            }
+            System.out.println("Got random gun level: " + rand);
             player.setGunLevel(rand);
         }
         else if (item.getType() == 2) { //shield
@@ -378,6 +382,11 @@ public class Gameplay {
                 Missile m = (Missile) me;
                 if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getCollisionRectangle())) {
                     //enemy missile hit player
+                    Explosion expl = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+                    expl.init(m.getX(), m.getY());
+                    expl.setScale(0.6f);
+                    expl.setOriginCenter();
+                    expl.setOriginBasedPosition(m.getX(), m.getY());
                     m.kill(spawnPool);
                     player.hit(m.power);
                 }

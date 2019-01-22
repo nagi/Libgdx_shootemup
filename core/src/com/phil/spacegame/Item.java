@@ -36,17 +36,17 @@ public class Item extends GameObject implements SpawnObject {
             animName = "ANIM2";
             if (!containsAnimation(animName))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
-                        4, 4, 8, 1, 1.00f, animName, true);
+                        4, 4, 12, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 2) { //Shield
             animName = "ANIM3";
             if (!containsAnimation(animName))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
-                        4, 4, 9, 1, 1.00f, animName, true);
+                        4, 4, 13, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
 
         //GUNS
@@ -56,7 +56,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 0, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 11) { //Gun purple 1
             animName = "ANIM11";
@@ -64,7 +64,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 4, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 12) { //Gun green 2
             animName = "ANIM12";
@@ -72,7 +72,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 1, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 13) { //Gun purple 2
             animName = "ANIM13";
@@ -80,7 +80,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 5, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 14) { //Gun green 3
             animName = "ANIM14";
@@ -88,7 +88,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 2, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 15) { //Gun purple 3
             animName = "ANIM15";
@@ -96,7 +96,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 6, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 16) { //Gun green 4
             animName = "ANIM16";
@@ -104,7 +104,7 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 3, 1, 1.00f, animName, true);
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
         }
         else if (type == 17) { //Gun purple 4
             animName = "ANIM17";
@@ -112,7 +112,39 @@ public class Item extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
                         4, 4, 7, 1, 1.00f, animName, true );
             setAnimation(animName);
-            setSize(45, 45);
+            setSize(64, 64);
+        }
+        else if (type == 18) { //Gun yellow 1
+            animName = "ANIM18";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 8, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
+        }
+        else if (type == 19) { //Gun yellow 2
+            animName = "ANIM19";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 9, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
+        }
+        else if (type == 20) { //Gun yellow 3
+            animName = "ANIM20";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 10, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
+        }
+        else if (type == 21) { //Gun yellow 4
+            animName = "ANIM21";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 11, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
         }
         else {
             System.out.println("Item.init(): Item of type "+  type + "not found.");
