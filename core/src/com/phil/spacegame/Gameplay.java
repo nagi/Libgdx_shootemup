@@ -51,6 +51,7 @@ public class Gameplay {
     private float levelDurationEnemies; //seconds
     private float levelDurationObstacles; //seconds
     private float levelDurationObstaclesIncreaseStep; //seconds
+    private boolean obstaclePreviousPosUp;
     private float levelDuration; //seconds
     private float gameoverTimerMax = 1.5f; //seconds
     //timer
@@ -293,11 +294,15 @@ public class Gameplay {
 
     private void spawnObstacles(int type) {
         //Spawn obstacle sequence
-        int pos = random.nextInt(2);
-        if (pos == 0)
+        float pos = random.nextFloat();
+        //reduce propability that obstacle spawns at same pos as the previous one
+        float threshold = obstaclePreviousPosUp ? 0.2f : 0.8f;
+        if (pos <= threshold)
             spawnObstacle(type, Spacegame.screenWidth + 300, 450);
         else
             spawnObstacle(type, Spacegame.screenWidth + 300, 180);
+
+        obstaclePreviousPosUp = pos <= threshold;
     }
 
     private void spawnObstacle(int type, float posX, float posY) {

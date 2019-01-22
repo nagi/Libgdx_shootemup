@@ -23,21 +23,36 @@ public class Missile extends AnimatedSprite implements SpawnObject {
         //init movement
         position.set(xStart, yStart);
         direction.set((float)Math.cos(Math.toRadians(angle)), (float)Math.sin(Math.toRadians(angle))).nor();
+        setRotation(angle);
+
         //set animation/image
         if (type == 0) { //orange
             setRegion(Spacegame.resources.get(Spacegame.resources.missile1, Texture.class));
+            setBounds(position.x, position.y, 17, 17);
         }
         else if (type == 1) { //green
             setRegion(Spacegame.resources.get(Spacegame.resources.missile2, Texture.class));
+            setBounds(position.x, position.y, 17, 17);
         }
         else if (type == 2) { //purple
             setRegion(Spacegame.resources.get(Spacegame.resources.missile3, Texture.class));
-        } else {
+            setBounds(position.x, position.y, 17, 17);
+        }
+        else if (type == 3) { //blue
+            setRegion(Spacegame.resources.get(Spacegame.resources.missile4, Texture.class));
+            setOriginCenter();
+            setBounds(position.x, position.y, 24, 9);
+        }
+        else if (type == 4) { //red
+            setRegion(Spacegame.resources.get(Spacegame.resources.missile5, Texture.class));
+            setOriginCenter();
+            setBounds(position.x, position.y, 24, 9);
+        }
+        else {
             System.out.println("GUN TYPE NOT FOUND! " + type);
             setRegion(Spacegame.resources.get(Spacegame.resources.missile1, Texture.class));
         }
 
-        setBounds(position.x, position.y, 17, 17);
     }
 
     //Interface methods
