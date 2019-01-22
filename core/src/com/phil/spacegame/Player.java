@@ -20,6 +20,9 @@ public class Player extends ShootingObject {
     //ground shadow
     private Sprite shadow;
     private float shadowPosY;
+    //gun
+    private int gunLevel;
+    private int gunLevelMax = 7;
 
     public Player() {
         addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
@@ -43,6 +46,21 @@ public class Player extends ShootingObject {
     //return health in percent
     public float getHealth() {
         return life / lifeMax;
+    }
+
+    public int getGunLevel() {
+        return gunLevel;
+    }
+
+    public int getGunLevelMax() {
+        return gunLevelMax;
+    }
+
+    public void setGunLevel(int level) {
+        if (level > gunLevelMax)
+            level = gunLevelMax;
+        this.gunLevel = level;
+        setGunsByLevel(level);
     }
 
     public void hit(float power) {
@@ -118,5 +136,77 @@ public class Player extends ShootingObject {
         if (moveStepY > -650) {
             moveStepY -= accelerationDown * delta;
         }
+    }
+
+    private void setGunsByLevel(int gunLevel) {
+        float intervalGreenGun = 0.4f;
+        float intervalPurpleGun = 0.25f;
+        float speedGreenGun = 800.0f;
+        float speedPurpleGun = 1100.0f;
+
+        resetGuns();
+
+        if (gunLevel == 0) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalGreenGun);
+            setGunType(1); //green
+            addGun(0, speedGreenGun, 150, 30);
+        }
+        else if (gunLevel == 1) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalPurpleGun);
+            setGunType(2); //purple
+            addGun(0, speedPurpleGun, 150, 30);
+        }
+        else if (gunLevel == 2) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalGreenGun);
+            setGunType(1); //green
+            addGun(0, speedGreenGun, 150, 30);
+            addGun(0, speedGreenGun, 150, 50);
+        }
+        else if (gunLevel == 3) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalPurpleGun);
+            setGunType(2); //purple
+            addGun(0, speedPurpleGun, 150, 30);
+            addGun(0, speedPurpleGun, 150, 50);
+        }
+        else if (gunLevel == 4) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalGreenGun);
+            setGunType(1); //green
+            addGun(0, speedGreenGun, 150, 30);
+            addGun(4, speedGreenGun, 150, 30);
+            addGun(-4, speedGreenGun, 150, 30);
+        }
+        else if (gunLevel == 5) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalPurpleGun);
+            setGunType(2); //purple
+            addGun(0, speedPurpleGun, 150, 30);
+            addGun(4, speedPurpleGun, 150, 30);
+            addGun(-4, speedPurpleGun, 150, 30);
+        }
+        else if (gunLevel == 6) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalGreenGun);
+            setGunType(1); //green
+            addGun(1.5f, speedGreenGun, 150, 30);
+            addGun(-1.5f, speedGreenGun, 150, 30);
+            addGun(3, speedGreenGun, 150, 30);
+            addGun(-3, speedGreenGun, 150, 30);
+        }
+        else if (gunLevel == 7) {
+            setGunPower(100.0f);
+            setShootingInterval(intervalPurpleGun);
+            setGunType(2); //purple
+            addGun(1.5f, speedPurpleGun, 150, 30);
+            addGun(-1.5f, speedPurpleGun, 150, 30);
+            addGun(3, speedPurpleGun, 150, 30);
+            addGun(-3, speedPurpleGun, 150, 30);
+        }
+
+        //Don't forget to set gunLevelMax after adding more gun levels !!
     }
 }

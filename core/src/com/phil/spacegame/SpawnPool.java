@@ -22,7 +22,8 @@ public class SpawnPool {
         ArrayList<SpawnObject> pool = pools.get(type);
         if (pool == null) {
             System.err.println("Pool of type " + type.name() +
-                    " doesn't exist. Maybe forgot to create an ArrayList instance for that pool?");
+                    " doesn't exist. Maybe forgot to create an" +
+                    " ArrayList instance for that pool?");
             return null;
         }
         //try to get a free object to spawn
@@ -40,12 +41,16 @@ public class SpawnPool {
             return found;
         }
 
-        //No free spawn found, so create a new instance of that spawntype
-        //System.out.println("Pool of " + type.name() + " contains no unspawned object. Creating new Instance...");
+        //No free spawn found, so create a new instance of
+        //that spawntype
+        //System.out.println("Pool of " + type.name() +
+        //        " contains no unspawned object. " +
+        //        "Creating new Instance...");
         SpawnObject spawn = createSpawnObject(type);
 
         if (spawn == null) {
-            System.err.println("Instance of Spawn of type " + type.name() + " could not be created");
+            System.err.println("Instance of Spawn of type "
+                    + type.name() + " could not be created");
             return null;
         }
 
@@ -67,30 +72,32 @@ public class SpawnPool {
         //printPoolSize();
     }
 
-    private SpawnObject createSpawnObject(SpawnType type) {
+private SpawnObject createSpawnObject(SpawnType type) {
 
-        //System.out.println(" - creating instance from type.name(): " + type.name());
+    //System.out.println(" - creating instance of " +
+    //        "type.name(): " + type.name());
 
-        //Prepare classname
-        String className = nameOfPackage + type.name();
-        try {
-            Class<?> c = Class.forName(className);
-            //debug
-            //System.out.println(" - Class: " + c.getName());
+    //Prepare classname
+    String className = nameOfPackage + type.name();
+    try {
+        Class<?> c = Class.forName(className);
+        //debug
+        //System.out.println(" - Class: " + c.getName());
 
-            Constructor<?> ctor = c.getConstructor(String.class);
-            //create new instance (there has to be at least one arg, otherwise it doesn't work...)
-            Object object = ctor.newInstance(""); // constructor arguments
-            SpawnObject created = (SpawnObject) object;
-            return created;
+        Constructor<?> ctor = c.getConstructor(String.class);
+        //create new instance (there has to be at least
+        //one arg, otherwise it doesn't work...)
+        Object object = ctor.newInstance("");
+        SpawnObject created = (SpawnObject) object;
+        return created;
 
-        } catch(Exception e) {
-            System.err.println(e);
-            System.err.println("Type name: " + type.name());
-            System.err.println("Class name: " + className);
-        }
-        return null;
+    } catch(Exception e) {
+        System.err.println(e);
+        System.err.println("Type name: " + type.name());
+        System.err.println("Class name: " + className);
     }
+    return null;
+}
 
     private void printPoolSize() {
         //Debug pool size

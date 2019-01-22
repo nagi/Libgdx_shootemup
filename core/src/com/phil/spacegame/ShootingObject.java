@@ -36,11 +36,15 @@ public class ShootingObject extends GameObject {
     public void init(SpawnType missilesPool) {
         this.missilesPool = missilesPool;
         //resetting guns
+        resetGuns();
+        //reset timer
+        timer = 0.0f;
+    }
+
+    public void resetGuns() {
         for(Gun g: guns)
             g.active = false;
         gunsCount = 0;
-        //reset timer
-        timer = 0.0f;
     }
 
     public void setGunPower(float power) {

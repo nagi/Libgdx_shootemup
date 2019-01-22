@@ -17,12 +17,14 @@ public class Resources extends AssetManager {
     public String tilesetExplosion = "explosion1.png";
     public String missile1 = "missile1.png";
     public String missile2 = "missile2.png";
+    public String missile3 = "missile3.png";
     public String lifebarInner = "lifebar_inner.png";
     public String lifebarBorder = "lifebar_border.png";
     public String shadow = "shadow.png";
     public String animCloud = "cloud.png";
     public String animItemRepair = "item_repair.png";
     public String itemBubble = "item_border.png";
+    public String tilesetGunUpgrades = "item_gun_upgrade.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -41,6 +43,7 @@ public class Resources extends AssetManager {
         load(tilesetSpaceships, Texture.class);
         load(missile1, Texture.class);
         load(missile2, Texture.class);
+        load(missile3, Texture.class);
         load(tilesetExplosion, Texture.class);
         load(lifebarBorder, Texture.class);
         load(lifebarInner, Texture.class);
@@ -48,6 +51,7 @@ public class Resources extends AssetManager {
         load(animCloud, Texture.class);
         load(animItemRepair, Texture.class);
         load(itemBubble, Texture.class);
+        load(tilesetGunUpgrades, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }

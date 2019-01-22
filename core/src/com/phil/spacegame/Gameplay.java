@@ -25,7 +25,7 @@ public class Gameplay {
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
-    private float bgSpeed = -300.0f;
+    private float bgSpeed = -400.0f;
     //Lists for different types of spawn objects (for spawnpool and collisions)
     private ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
@@ -79,11 +79,11 @@ public class Gameplay {
         spawnTimer = 0;
         spawnTimerItems = 0;
         levelTimer = 0;
-        spawnInterval = 1.5f;
-        spawnIntervalDecreaseStep = 0.3f;
-        spawnIntervalMinimum = 0.9f;
-        spawnIntervalObstacles = 1.7f;
-        spawnIntervalItems = 30.0f;
+        spawnInterval = 1.3f;
+        spawnIntervalDecreaseStep = 0.2f;
+        spawnIntervalMinimum = 0.5f;
+        spawnIntervalObstacles = 1.2f;
+        spawnIntervalItems = 20.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
@@ -95,8 +95,8 @@ public class Gameplay {
     private void initBackground() {
         //create three layers with own scrolling speeds
         ParallaxLayer layers[] = new ParallaxLayer[3];
-        layers[0] = new ParallaxLayer(0.1f, 0.0f); //background
-        layers[1] = new ParallaxLayer(0.3f, 0.0f); //mountains
+        layers[0] = new ParallaxLayer(0.15f, 0.0f); //background
+        layers[1] = new ParallaxLayer(0.5f, 0.0f); //mountains
         layers[2] = new ParallaxLayer(1.0f, 0.0f); //ground
         //fill layers with textures
         layers[0].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerBack, Texture.class)));
@@ -111,25 +111,10 @@ public class Gameplay {
         player.setSize(180, 90);
         player.setPosition(70, 500);
         player.setCollisionArea(20, 20, 140, 50);
-        //set shooting parameters
-        player.setGunPower(100.0f);
-        player.setShootingInterval(0.3f);
-        player.setGunType(1);
-        //add some guns
-        player.addGun(0, 900.0f, 150, 30);
+        //set guns
+        player.setGunLevel(0);
+        //set health
         player.setMaxHealth(1000);
-
-//        //killer weapon for testing:
-//        player.addGun(3, 900.0f,150, 30);
-//        player.addGun(6, 900.0f,150, 30);
-//        player.addGun(9, 900.0f, 150, 30);
-//        player.addGun(12, 900.0f, 150, 30);
-//        player.addGun(15, 900.0f, 150, 30);
-//        player.addGun(-3, 900.0f,150, 30);
-//        player.addGun(-6, 900.0f,150, 30);
-//        player.addGun(-9, 900.0f,150, 30);
-//        player.addGun(-12, 900.0f,150, 30);
-//        player.addGun(-15, 900.0f,150, 30);
     }
 
     private void initSpawnPool() {
@@ -323,12 +308,20 @@ public class Gameplay {
 
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
-        i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        float rand = random.nextFloat();
+        if (rand < 0.7f)
+            i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        else if (rand <= 1.0f && player.getGunLevel() < player.getGunLevelMax())
+            i.init(10 + player.getGunLevel() + 1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+
     }
 
     private void collisionItem(Item item) {
         if (item.getType() == 0) {
             player.heal(0.25f);
+        }
+        else if (item.getType() >= 10 && item.getType() <= 17) {
+            player.setGunLevel(item.getType() - 10);
         }
         item.kill(spawnPool);
     }
