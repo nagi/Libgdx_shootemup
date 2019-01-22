@@ -23,6 +23,10 @@ public class Player extends ShootingObject {
     //gun
     private int gunLevel;
     private int gunLevelMax = 7;
+    //shield
+    private boolean shieldActive;
+    private float shieldTimer;
+    private Sprite shield;
     //animation sparkles
     private AnimatedSprite sparkles;
     private boolean showSparkles;
@@ -34,6 +38,9 @@ public class Player extends ShootingObject {
         //init shadow
         shadow = new Sprite(Spacegame.resources.get(Spacegame.resources.shadow, Texture.class));
         shadow.setBounds(80, collisionMarginBottom + 20, 179, 25);
+        //init shield sprite
+        shield = new Sprite(Spacegame.resources.get(Spacegame.resources.shield, Texture.class));
+        shield.setBounds(0, 0, 222, 92);
         //sparkles
         sparkles = new AnimatedSprite();
         sparkles.addAnimation(Spacegame.resources.get(Spacegame.resources.animItemCollect, Texture.class),
@@ -74,23 +81,30 @@ public class Player extends ShootingObject {
     }
 
     public void hit(float power) {
-        life -= power;
-        if (life < 0.0f) {
-            life = 0.0f;
-            dead = true;
-            //spawn explosions
-            Explosion expl = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-            expl.init(getX(), getY());
-            Explosion expl2 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-            expl2.init(getX() + 60, getY());
-            Explosion expl3 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-            expl3.init(getX() + 20, getY() + 30);
+        if (!shieldActive) {
+            life -= power;
+            if (life < 0.0f) {
+                life = 0.0f;
+                dead = true;
+                //spawn explosions
+                Explosion expl = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+                expl.init(getX(), getY());
+                Explosion expl2 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+                expl2.init(getX() + 60, getY());
+                Explosion expl3 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+                expl3.init(getX() + 20, getY() + 30);
+            }
         }
     }
 
     public void showSparkles(){
         this.sparkles.restartActiveAnimation();
         this.showSparkles = true;
+    }
+
+    public void setShield(float time) {
+        shieldTimer = time;
+        shieldActive = true;
     }
 
     public void heal(float percent) {
@@ -105,6 +119,13 @@ public class Player extends ShootingObject {
             super.update(delta);
             //move player up and down
             move(delta);
+            //update shield
+            if (shieldActive) {
+                shieldTimer -= delta;
+                if (shieldTimer <= 0.0f)
+                    shieldActive = false;
+                shield.setPosition(getX() -10 , getY() + 9);
+            }
             //shadow
             shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );
             //sparkles
@@ -144,6 +165,8 @@ public class Player extends ShootingObject {
             shadow.draw(sb);
             if (showSparkles)
                 sparkles.draw(sb);
+            if (shieldActive)
+                shield.draw(sb);
         }
     }
 

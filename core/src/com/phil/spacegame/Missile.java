@@ -40,19 +40,17 @@ public class Missile extends AnimatedSprite implements SpawnObject {
         }
         else if (type == 3) { //blue
             setRegion(Spacegame.resources.get(Spacegame.resources.missile4, Texture.class));
-            setOriginCenter();
             setBounds(position.x, position.y, 24, 9);
         }
         else if (type == 4) { //red
             setRegion(Spacegame.resources.get(Spacegame.resources.missile5, Texture.class));
-            setOriginCenter();
             setBounds(position.x, position.y, 24, 9);
         }
         else {
-            System.out.println("GUN TYPE NOT FOUND! " + type);
+            System.err.println("GUN TYPE NOT FOUND! " + type);
             setRegion(Spacegame.resources.get(Spacegame.resources.missile1, Texture.class));
         }
-
+        setOriginCenter();
     }
 
     //Interface methods

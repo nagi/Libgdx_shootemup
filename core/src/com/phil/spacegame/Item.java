@@ -40,6 +40,15 @@ public class Item extends GameObject implements SpawnObject {
             setAnimation(animName);
             setSize(45, 45);
         }
+        else if (type == 2) { //Shield
+            animName = "ANIM3";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 9, 1, 1.00f, animName, true);
+            setAnimation(animName);
+            setSize(45, 45);
+        }
+
         //GUNS
         else if (type == 10) { //Gun Green 1
             animName = "ANIM10";
