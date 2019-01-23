@@ -194,7 +194,7 @@ public class Gameplay {
                 if (!gameoverSequence)
                     spawnObjects(speedUpFactor * delta);
                 //update spawn objects
-                updateSpawns(speedUpFactor * delta);
+                updateSpawns(delta, speedUpFactor);
                 //do collisions
                 calcCollisions();
                 //boost effect
@@ -445,16 +445,16 @@ public class Gameplay {
         }
     }
 
-    public void updateSpawns(float delta) {
+    public void updateSpawns(float delta, float speedUpFactor) {
         // could also be done in SpawnPool class but it
         // would be less performant to iterate through a HashMap
         for (SpawnObject e: enemies) {
             if (e.isSpawned())
-                e.update(delta);
+                e.update(delta * speedUpFactor);
         }
         for (SpawnObject m: missilesEnemies) {
             if (m.isSpawned())
-                m.update(delta);
+                m.update(delta * speedUpFactor);
         }
         for (SpawnObject mp: missilesPlayer) {
             if (mp.isSpawned())
@@ -466,11 +466,11 @@ public class Gameplay {
         }
         for (SpawnObject i: items) {
             if (i.isSpawned())
-                i.update(delta);
+                i.update(delta * speedUpFactor);
         }
         for (SpawnObject o: obstacles) {
             if (o.isSpawned())
-                o.update(delta);
+                o.update(delta * speedUpFactor);
         }
     }
 
