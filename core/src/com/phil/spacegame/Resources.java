@@ -31,6 +31,7 @@ public class Resources extends AssetManager {
     public String tilesetGunUpgrades = "item_gun_upgrade.png";
     public String animItemCollect = "anim_item_collect.png";
     public String shield = "shield.png";
+    public String shieldBoost = "shield_boost.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -64,6 +65,7 @@ public class Resources extends AssetManager {
         load(tilesetGunUpgrades, Texture.class);
         load(animItemCollect, Texture.class);
         load(shield, Texture.class);
+        load(shieldBoost, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }

@@ -27,6 +27,8 @@ public class Player extends ShootingObject {
     private boolean shieldActive;
     private float shieldTimer;
     private Sprite shield;
+    private Sprite shieldBoost;
+    private Sprite activeShield;
     //animation sparkles
     private AnimatedSprite sparkles;
     private boolean showSparkles;
@@ -38,10 +40,13 @@ public class Player extends ShootingObject {
         //init shadow
         shadow = new Sprite(Spacegame.resources.get(Spacegame.resources.shadow, Texture.class));
         shadow.setBounds(80, collisionMarginBottom + 20, 179, 25);
-        //init shield sprite
+        //init shield sprites
+        //normal shield from shield-item
         shield = new Sprite(Spacegame.resources.get(Spacegame.resources.shield, Texture.class));
-        shield.setBounds(0, 0, 222, 92);
-        //sparkles
+        shield.setBounds(-300, 0, 222, 92);
+        //shield showing at boost
+        shieldBoost = new Sprite(Spacegame.resources.get(Spacegame.resources.shieldBoost, Texture.class));
+        shieldBoost.setBounds(-300, 0, 222, 92);//sparkles
         sparkles = new AnimatedSprite();
         sparkles.addAnimation(Spacegame.resources.get(Spacegame.resources.animItemCollect, Texture.class),
                 2, 4, 0, 6, 0.08f, "SPARKLES", false);
@@ -102,7 +107,11 @@ public class Player extends ShootingObject {
         this.showSparkles = true;
     }
 
-    public void setShield(float time) {
+    public void setShield(float time, int type) {
+        if (type == 0)
+            activeShield = shield;
+        else if (type == 1)
+            activeShield = shieldBoost;
         shieldTimer = time;
         shieldActive = true;
     }
@@ -122,9 +131,11 @@ public class Player extends ShootingObject {
             //update shield
             if (shieldActive) {
                 shieldTimer -= delta;
-                if (shieldTimer <= 0.0f)
+                if (shieldTimer <= 0.0f) {
                     shieldActive = false;
-                shield.setPosition(getX() -10 , getY() + 9);
+                    activeShield.setPosition(-activeShield.getWidth(), 0);
+                }
+                activeShield.setPosition(getX() -10 , getY() + 9);
             }
             //shadow
             shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );
@@ -166,7 +177,7 @@ public class Player extends ShootingObject {
             if (showSparkles)
                 sparkles.draw(sb);
             if (shieldActive)
-                shield.draw(sb);
+                activeShield.draw(sb);
         }
     }
 

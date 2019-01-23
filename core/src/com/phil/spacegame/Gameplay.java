@@ -59,7 +59,11 @@ public class Gameplay {
     private float spawnTimerItems;
     private float levelTimer;
     private float gameoverTimer;
-
+    //boost
+    private boolean boostActive;
+    private float boostTimer;
+    private float boostTime;
+    private float speedUpFactor;
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -84,13 +88,17 @@ public class Gameplay {
         spawnIntervalDecreaseStep = 0.2f;
         spawnIntervalMinimum = 0.5f;
         spawnIntervalObstacles = 1.2f;
-        spawnIntervalItems = 14.0f;
+        spawnIntervalItems = 12.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
         justDied = true;
         spawnObstacles = false;
         levelDuration = levelDurationEnemies;
+        speedUpFactor = 1.0f;
+        boostTimer = 0.0f;
+        boostTime = 0.0f;
+        boostActive = false;
     }
 
     private void initBackground() {
@@ -174,21 +182,23 @@ public class Gameplay {
 
     public void update(float delta){
         if (!paused) {
-            parallaxBackground.move(delta, bgSpeed, 0.0f);
+            parallaxBackground.move(delta, speedUpFactor * bgSpeed, 0.0f);
             if (started) {
                 player.update(delta);
                 if (player.isDead()) {
                     processGameover(delta);
                 }
                 //calculate spawn level
-                calcLevel(delta);
+                calcLevel(speedUpFactor * delta);
                 //spawn new enemies
                 if (!gameoverSequence)
-                    spawnObjects(delta);
+                    spawnObjects(speedUpFactor * delta);
                 //update spawn objects
-                updateSpawns(delta);
+                updateSpawns(speedUpFactor * delta);
                 //do collisions
                 calcCollisions();
+                //boost effect
+                calcBoostEffect(delta);
             }
         }
     }
@@ -205,6 +215,7 @@ public class Gameplay {
     private void processGameover(float delta) {
 
         if (justDied) {
+            boostActive = false;
             parallaxBackground.shake();
             justDied = false;
         }
@@ -314,15 +325,34 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.25f) //repair tool
+        if (rand < 0.2f) //repair tool
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand < 0.45f) //shield
+        else if (rand < 0.4f) //shield
             i.init(2, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        else if (rand < 0.6f) //boost
+            i.init(3, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         else if (rand <= 0.8f && player.getGunLevel() < player.getGunLevelMax()) //gun upgrade
             i.init(10 + player.getGunLevel() + 1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         else { //random gun upgrade/downgrade
             i.init(1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         }
+    }
+
+    private void calcBoostEffect(float delta) {
+        if (boostActive) {
+            boostTimer += delta;
+            if (boostTimer >= boostTime) {
+                boostActive = false;
+                boostTimer = 0.0f;
+                speedUpFactor = 1.0f;
+            }
+        }
+    }
+
+    private void setBoost(float factor, float time) {
+        speedUpFactor = factor;
+        boostTime = time;
+        boostActive = true;
     }
 
     private void collisionItem(Item item) {
@@ -342,7 +372,12 @@ public class Gameplay {
             player.setGunLevel(rand);
         }
         else if (item.getType() == 2) { //shield
-            player.setShield(10);
+            player.setShield(10, 0);
+        }
+        else if (item.getType() == 3) { //boost
+            float boost = 5.0f;
+            setBoost(4.0f, boost);
+            player.setShield(boost, 1);
         }
 
         item.kill(spawnPool);
