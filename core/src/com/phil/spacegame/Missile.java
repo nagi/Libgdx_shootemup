@@ -63,10 +63,10 @@ public class Missile extends AnimatedSprite implements SpawnObject {
 
     //Interface methods
 
-    public void update(float delta) {
+    public void update(float delta, float boostFactor) {
         super.animate(delta);
         if (isSpawned()) {
-            movement.set(direction).scl(speed * delta);
+            movement.set(direction).scl(speed * delta * boostFactor);
             position.add(movement);
             setPosition(position.x, position.y);
             if (position.x > Spacegame.screenWidth || position.x < 0

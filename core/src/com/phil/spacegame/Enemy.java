@@ -105,9 +105,9 @@ public class Enemy extends ShootingObject implements SpawnObject {
 
     //Interface methods
 
-    public void update(float delta) {
+    public void update(float delta, float boostFactor) {
         //update shooting, animation and position
-        super.update(delta);
+        super.update(delta, boostFactor);
         //remove from gameplay when out of screen
         if (getX() < -getWidth()) {
             kill(Gameplay.spawnPool);

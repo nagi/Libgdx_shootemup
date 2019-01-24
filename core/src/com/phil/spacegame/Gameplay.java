@@ -345,6 +345,7 @@ public class Gameplay {
                 boostActive = false;
                 boostTimer = 0.0f;
                 speedUpFactor = 1.0f;
+                player.setShootingActive(true);
             }
         }
     }
@@ -378,6 +379,7 @@ public class Gameplay {
             float boost = 5.0f;
             setBoost(4.0f, boost);
             player.setShield(boost, 1);
+            player.setShootingActive(false);
         }
 
         item.kill(spawnPool);
@@ -406,6 +408,7 @@ public class Gameplay {
                         if (player.getCollisionRectangle().overlaps(enemy.getCollisionRectangle())) {
                             enemy.kill(spawnPool);
                             player.hit(100000);
+                            parallaxBackground.shake();
                         }
                     }
                 }
@@ -450,27 +453,27 @@ public class Gameplay {
         // would be less performant to iterate through a HashMap
         for (SpawnObject e: enemies) {
             if (e.isSpawned())
-                e.update(delta * speedUpFactor);
+                e.update(delta, speedUpFactor);
         }
         for (SpawnObject m: missilesEnemies) {
             if (m.isSpawned())
-                m.update(delta * speedUpFactor);
+                m.update(delta, speedUpFactor);
         }
         for (SpawnObject mp: missilesPlayer) {
             if (mp.isSpawned())
-                mp.update(delta);
+                mp.update(delta, 1.0f);
         }
         for (SpawnObject ex: explosions) {
             if (ex.isSpawned())
-                ex.update(delta);
+                ex.update(delta, 1.0f);
         }
         for (SpawnObject i: items) {
             if (i.isSpawned())
-                i.update(delta * speedUpFactor);
+                i.update(delta, speedUpFactor);
         }
         for (SpawnObject o: obstacles) {
             if (o.isSpawned())
-                o.update(delta * speedUpFactor);
+                o.update(delta, speedUpFactor);
         }
     }
 

@@ -38,7 +38,7 @@ public class Explosion extends AnimatedSprite implements SpawnObject {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, float boostFactor) {
         super.animate(delta);
         //destroy after one animation loop
         if(super.activeAnimFinished)

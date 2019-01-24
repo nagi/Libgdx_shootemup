@@ -14,6 +14,8 @@ public class ShootingObject extends GameObject {
         }
     }
 
+    private boolean shootingActive;
+
     //gun attributes
     private SpawnType missilesPool;
     private float gunPower = 1.0f;
@@ -39,12 +41,18 @@ public class ShootingObject extends GameObject {
         resetGuns();
         //reset timer
         timer = 0.0f;
+        //activate shooting
+        shootingActive = true;
     }
 
     public void resetGuns() {
         for(Gun g: guns)
             g.active = false;
         gunsCount = 0;
+    }
+
+    public void setShootingActive(boolean active) {
+        this.shootingActive = active;
     }
 
     public void setGunPower(float power) {
@@ -71,12 +79,14 @@ public class ShootingObject extends GameObject {
         }
     }
 
-    public void update(float delta) {
-        super.update(delta);
-        timer += delta;
-        if (timer >= shootingInterval) {
-            shoot();
-            timer = 0;
+    public void update(float delta, float boostFactor) {
+        super.update(delta, boostFactor);
+        if (shootingActive) {
+            timer += delta;
+            if (timer >= shootingInterval) {
+                shoot();
+                timer = 0;
+            }
         }
     }
 

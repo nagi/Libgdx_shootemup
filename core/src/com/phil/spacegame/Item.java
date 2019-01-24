@@ -181,8 +181,8 @@ public class Item extends GameObject implements SpawnObject {
     }
 
     @Override
-    public void update(float delta) {
-        super.update(delta);
+    public void update(float delta, float boostFactor) {
+        super.update(delta, boostFactor);
         //calculate pulse of bubble
         angle += 7 * delta;
         float size = (float)Math.sin(angle);

@@ -55,9 +55,9 @@ public class Obstacle extends GameObject implements SpawnObject {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, float boostFactor) {
         //update position and animation
-        super.update(delta);
+        super.update(delta, boostFactor);
         //remove from gameplay when out of screen
         if (getX() < -getWidth()) {
             kill(Gameplay.spawnPool);

@@ -125,7 +125,7 @@ public class Player extends ShootingObject {
     public void update(float delta) {
         if (!dead) {
             //handle updates of super class ShootingObject
-            super.update(delta);
+            super.update(delta, 1.0f);
             //move player up and down
             move(delta);
             //update shield

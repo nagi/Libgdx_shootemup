@@ -10,7 +10,7 @@ public interface SpawnObject {
 
     void kill(SpawnPool pool);
 
-    void update(float delta);
+    void update(float delta, float boostFactor);
 
     void draw(SpriteBatch sb);
 }

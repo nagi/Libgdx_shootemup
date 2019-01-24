@@ -28,9 +28,9 @@ public class GameObject extends AnimatedSprite {
         this.speedY = y;
     }
 
-    public void update(float delta) {
+    public void update(float delta, float boostFactor) {
         super.animate(delta);
-        setX(getX() + (speedX * delta));
-        setY(getY() + (speedY * delta));
+        setX(getX() + (speedX * delta * boostFactor));
+        setY(getY() + (speedY * delta * boostFactor));
     }
 }
