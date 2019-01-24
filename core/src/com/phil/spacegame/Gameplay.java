@@ -64,6 +64,8 @@ public class Gameplay {
     private float boostTimer;
     private float boostTime;
     private float speedUpFactor;
+    private float boostSpeedMax;
+    private float boostTimeMax;
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -88,7 +90,7 @@ public class Gameplay {
         spawnIntervalDecreaseStep = 0.2f;
         spawnIntervalMinimum = 0.5f;
         spawnIntervalObstacles = 1.2f;
-        spawnIntervalItems = 12.0f;
+        spawnIntervalItems = 2.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
@@ -98,6 +100,8 @@ public class Gameplay {
         speedUpFactor = 1.0f;
         boostTimer = 0.0f;
         boostTime = 0.0f;
+        boostTimeMax = 5.0f;
+        boostSpeedMax = 5.0f;
         boostActive = false;
     }
 
@@ -352,6 +356,7 @@ public class Gameplay {
 
     private void setBoost(float factor, float time) {
         speedUpFactor = factor;
+        boostTimer = 0.0f;
         boostTime = time;
         boostActive = true;
     }
@@ -376,9 +381,10 @@ public class Gameplay {
             player.setShield(10, 0);
         }
         else if (item.getType() == 3) { //boost
-            float boost = 5.0f;
-            setBoost(4.0f, boost);
-            player.setShield(boost, 1);
+            float boostTime = boostTimeMax;
+            float boostSpeed = boostSpeedMax;
+            setBoost(boostSpeed, boostTime);
+            player.setShield(boostTime, 1);
             player.setShootingActive(false);
         }
 

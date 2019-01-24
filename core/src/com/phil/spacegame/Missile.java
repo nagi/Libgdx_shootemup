@@ -76,10 +76,6 @@ public class Missile extends AnimatedSprite implements SpawnObject {
         }
     }
 
-    public void draw(SpriteBatch sb) {
-        super.draw(sb);
-    }
-
     public void setSpawned(boolean spawned) {
         this.spawned = spawned;
     }

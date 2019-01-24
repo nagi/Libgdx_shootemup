@@ -26,6 +26,10 @@ public class Player extends ShootingObject {
     //shield
     private boolean shieldActive;
     private float shieldTimer;
+    private float shieldBlinkingTimer;
+    private float shieldBlinkingTimerStart = 2.0f;
+    private float shieldBlinkingInterval = 0.1f;
+    private boolean hideShield;
     private Sprite shield;
     private Sprite shieldBoost;
     private Sprite activeShield;
@@ -114,6 +118,7 @@ public class Player extends ShootingObject {
             activeShield = shieldBoost;
         shieldTimer = time;
         shieldActive = true;
+        hideShield = false;
     }
 
     public void heal(float percent) {
@@ -131,6 +136,14 @@ public class Player extends ShootingObject {
             //update shield
             if (shieldActive) {
                 shieldTimer -= delta;
+                //set shield blinking
+                if (shieldTimer <= shieldBlinkingTimerStart) {
+                    shieldBlinkingTimer += delta;
+                    if (shieldBlinkingTimer >= shieldBlinkingInterval) {
+                        hideShield = !hideShield;
+                        shieldBlinkingTimer = 0.0f;
+                    }
+                }
                 if (shieldTimer <= 0.0f) {
                     shieldActive = false;
                     activeShield.setPosition(-activeShield.getWidth(), 0);
@@ -176,8 +189,11 @@ public class Player extends ShootingObject {
             shadow.draw(sb);
             if (showSparkles)
                 sparkles.draw(sb);
-            if (shieldActive)
-                activeShield.draw(sb);
+            if (shieldActive) {
+                if (!hideShield) {
+                    activeShield.draw(sb);
+                }
+            }
         }
     }
 
