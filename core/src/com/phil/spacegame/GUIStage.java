@@ -34,6 +34,9 @@ public class GUIStage {
     private Image imgLifeBarBorder;
     private Image imgLifeBarInner;
     private float lifeBarInnerWidthMax = 378;
+    private Image imgSuperShotBarBorder;
+    private Image imgSuperShotBarInner;
+    private float superShotBarInnerWidthMax = 378;
     //reference to the font instance
     private BitmapFont fntCenter = Spacegame.resources.font1;
 
@@ -106,6 +109,25 @@ public class GUIStage {
         grpIngameUI.addActor(imgLifeBarInner);
         grpIngameUI.addActor(imgLifeBarBorder);
 
+        //supershot bar border
+        TextureRegion txSuperShotBorder = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
+        imgSuperShotBarBorder = new Image(txSuperShotBorder);
+        imgSuperShotBarBorder.setPosition(Spacegame.screenWidth / 2, 30, Align.center);
+        imgSuperShotBarBorder.setVisible(false);
+
+        //supershot bar inner
+        TextureRegion txSuperShotInner = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 13);
+        imgSuperShotBarInner = new Image(txSuperShotInner);
+        imgSuperShotBarInner.setPosition(
+                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, 24);
+        imgSuperShotBarInner.setVisible(false);
+
+        // add "inner" before "border" to render it behind
+        grpIngameUI.addActor(imgSuperShotBarInner);
+        grpIngameUI.addActor(imgSuperShotBarBorder);
+
         //label for "Pause"
         lblPause = new Label(txtPause, labelStyle);
         lblPause.setPosition(
@@ -149,6 +171,8 @@ public class GUIStage {
         imgLifeBarInner.setWidth(lifeBarInnerWidthMax * health);
     }
 
+    public void updateSuperShot(float percent) {imgSuperShotBarInner.setWidth(superShotBarInnerWidthMax * percent);}
+
     public void showMenuGUI(boolean show) {
         lblStart.setVisible(show);
     }
@@ -160,6 +184,8 @@ public class GUIStage {
         lblScore.setVisible(show);
         imgLifeBarInner.setVisible(show);
         imgLifeBarBorder.setVisible(show);
+        imgSuperShotBarInner.setVisible(show);
+        imgSuperShotBarBorder.setVisible(show);
     }
 
     public void showPause(boolean show) {

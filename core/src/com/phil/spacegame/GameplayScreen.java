@@ -86,6 +86,7 @@ public class GameplayScreen implements Screen {
 			gamePlay.update(delta);
 			guiStage.updateScore(gamePlay.score);
 			guiStage.updateHealth(gamePlay.player.getHealth());
+			guiStage.updateSuperShot(gamePlay.getSuperShotPoints());
 		}
 
 		//render gamePlay

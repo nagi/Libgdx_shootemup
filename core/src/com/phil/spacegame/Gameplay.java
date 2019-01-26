@@ -66,6 +66,47 @@ public class Gameplay {
     private float speedUpFactor;
     private float boostSpeedMax;
     private float boostTimeMax;
+    //supershot
+    private float superShotPoints;
+    private float superShotPointsMax;
+    private int superShotLevel;
+    private boolean superShotActive;
+    private float superShotTimer;
+    private float superShotTime;
+
+    private void setSuperShot(boolean active) {
+        superShotActive = active;
+        if (active) {
+            superShotTimer = 0.0f;
+            superShotLevel++;
+            superShotPointsMax += 6000;
+            System.out.println("SUPER SHOT !!!!!!!!!!!!!!!!!!!!!");
+        } else {
+            superShotPoints = 0.0f;
+        }
+    }
+
+    private void increaseSuperShotPoints(float amount) {
+        superShotPoints += amount;
+        if (superShotPoints >= superShotPointsMax) {
+            superShotPoints = superShotPointsMax;
+            setSuperShot(true);
+        }
+    }
+
+    public float getSuperShotPoints() {
+        return superShotPoints / superShotPointsMax;
+    }
+
+    private void updateSuperShot(float delta) {
+        if (superShotActive) {
+            superShotTimer += delta;
+            superShotPoints = (1.0f - superShotTimer / superShotTime) * superShotPointsMax;
+            if (superShotTimer >= superShotTime) {
+                setSuperShot(false);
+            }
+        }
+    }
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -103,6 +144,11 @@ public class Gameplay {
         boostTimeMax = 5.0f;
         boostSpeedMax = 5.0f;
         boostActive = false;
+        superShotTime = 10.0f;
+        superShotPoints = 0.0f;
+        superShotPointsMax = 3000;
+        superShotLevel = 0;
+        superShotActive = false;
     }
 
     private void initBackground() {
@@ -203,6 +249,8 @@ public class Gameplay {
                 calcCollisions();
                 //boost effect
                 calcBoostEffect(delta);
+                //supershot
+                updateSuperShot(delta);
             }
         }
     }
@@ -405,6 +453,7 @@ public class Gameplay {
                                 //collision between player missile and enemy
                                 m.kill(spawnPool);
                                 score += enemy.getScore();
+                                increaseSuperShotPoints(enemy.getScore());
                                 enemy.hit(m.power);
                             }
                         }
@@ -412,6 +461,8 @@ public class Gameplay {
                     //collide player with enemy
                     if (!player.isDead()) {
                         if (player.getCollisionRectangle().overlaps(enemy.getCollisionRectangle())) {
+                            score += enemy.getScore();
+                            increaseSuperShotPoints(enemy.getScore());
                             enemy.kill(spawnPool);
                             player.hit(100000);
                             parallaxBackground.shake();
