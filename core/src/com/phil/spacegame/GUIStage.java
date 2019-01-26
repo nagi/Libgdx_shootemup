@@ -33,7 +33,7 @@ public class GUIStage {
     private Label lblHighscore;
     private Image imgLifeBarBorder;
     private Image imgLifeBarInner;
-    private float lifeBarInnerWidthMax = 378;
+    private float lifeBarInnerWidthMax = 374;
     private Image imgSuperShotBarBorder;
     private Image imgSuperShotBarInner;
     private float superShotBarInnerWidthMax = 378;
@@ -94,15 +94,15 @@ public class GUIStage {
         TextureRegion txBorder = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
         imgLifeBarBorder = new Image(txBorder);
-        imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 30, Align.center);
+        imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 20, Align.center);
         imgLifeBarBorder.setVisible(false);
 
         //life bar inner
         TextureRegion txInner = new TextureRegion(
-                Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 13);
+                Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 12);
         imgLifeBarInner = new Image(txInner);
         imgLifeBarInner.setPosition(
-                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 36);
+                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 26);
         imgLifeBarInner.setVisible(false);
 
         // add "inner" before "border" to render it behind
@@ -111,17 +111,17 @@ public class GUIStage {
 
         //supershot bar border
         TextureRegion txSuperShotBorder = new TextureRegion(
-                Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
+                Spacegame.resources.get(Spacegame.resources.supershotBorder, Texture.class), 0, 0, 384, 21);
         imgSuperShotBarBorder = new Image(txSuperShotBorder);
-        imgSuperShotBarBorder.setPosition(Spacegame.screenWidth / 2, 30, Align.center);
+        imgSuperShotBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 45, Align.center);
         imgSuperShotBarBorder.setVisible(false);
 
         //supershot bar inner
         TextureRegion txSuperShotInner = new TextureRegion(
-                Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 13);
+                Spacegame.resources.get(Spacegame.resources.supershotInner, Texture.class), 0, 0, 378, 12);
         imgSuperShotBarInner = new Image(txSuperShotInner);
         imgSuperShotBarInner.setPosition(
-                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, 24);
+                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 51);
         imgSuperShotBarInner.setVisible(false);
 
         // add "inner" before "border" to render it behind
@@ -197,5 +197,7 @@ public class GUIStage {
         lblHighscore.setText(txtHighscore + Integer.toString(highscore));
         lblHighscore.setAlignment(Align.center);
         lblHighscore.setVisible(true);
+        imgSuperShotBarInner.setVisible(false);
+        imgSuperShotBarBorder.setVisible(false);
     }
 }

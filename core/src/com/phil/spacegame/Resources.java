@@ -24,6 +24,8 @@ public class Resources extends AssetManager {
     public String missile7 = "missile7.png";
     public String lifebarInner = "lifebar_inner.png";
     public String lifebarBorder = "lifebar_border.png";
+    public String supershotInner = "supershot_inner.png";
+    public String supershotBorder = "supershot_border.png";
     public String shadow = "shadow.png";
     public String animCloud = "cloud.png";
     public String animItemRepair = "item_repair.png";
@@ -58,6 +60,8 @@ public class Resources extends AssetManager {
         load(tilesetExplosion, Texture.class);
         load(lifebarBorder, Texture.class);
         load(lifebarInner, Texture.class);
+        load(supershotBorder, Texture.class);
+        load(supershotInner, Texture.class);
         load(shadow, Texture.class);
         load(animCloud, Texture.class);
         load(animItemRepair, Texture.class);

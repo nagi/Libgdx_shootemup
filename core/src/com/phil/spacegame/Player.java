@@ -36,6 +36,8 @@ public class Player extends ShootingObject {
     //animation sparkles
     private AnimatedSprite sparkles;
     private boolean showSparkles;
+    //supergun
+    private int lastGunLevel;
 
     public Player() {
         addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
@@ -210,6 +212,43 @@ public class Player extends ShootingObject {
     private void fall(float delta) {
         if (moveStepY > -650) {
             moveStepY -= accelerationDown * delta;
+        }
+    }
+
+    public void setSuperGun(int type) {
+        if (type != -1) {
+            lastGunLevel = gunLevel;
+            resetGuns();
+            if (type == 0) {
+                setGunPower(100.0f);
+                setShootingInterval(0.12f);
+                setGunType(2);
+                addGun(0.0f, 1100.0f, 150, 30);
+                addGun(5.0f, 1100.0f, 150, 30);
+                addGun(-5.0f, 1100.0f, 150, 30);
+                addGun(10.0f, 1100.0f, 150, 30);
+                addGun(-10.0f, 1100.0f, 150, 30);
+                addGun(15.0f, 1100.0f, 150, 30);
+                addGun(-15.0f, 1100.0f, 150, 30);
+            }
+
+            if (type == 1) {
+                setGunPower(100.0f);
+                setShootingInterval(0.1f);
+                setGunType(5);
+                addGun(0.0f, 1400.0f, 150, 30);
+                addGun(5.0f, 1400.0f, 150, 30);
+                addGun(-5.0f, 1400.0f, 150, 30);
+                addGun(10.0f, 1400.0f, 150, 30);
+                addGun(-10.0f, 1400.0f, 150, 30);
+                addGun(15.0f, 1400.0f, 150, 30);
+                addGun(-15.0f, 1400.0f, 150, 30);
+                addGun(20.0f, 1400.0f, 150, 30);
+                addGun(-20.0f, 1400.0f, 150, 30);
+            }
+        }
+        else {
+            setGunLevel(lastGunLevel);
         }
     }
 

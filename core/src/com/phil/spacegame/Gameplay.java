@@ -73,15 +73,16 @@ public class Gameplay {
     private boolean superShotActive;
     private float superShotTimer;
     private float superShotTime;
+    private float supetShotPointsMaxIncreaseInterval;
 
     private void setSuperShot(boolean active) {
         superShotActive = active;
         if (active) {
+            player.setSuperGun(0);
             superShotTimer = 0.0f;
-            superShotLevel++;
-            superShotPointsMax += 6000;
             System.out.println("SUPER SHOT !!!!!!!!!!!!!!!!!!!!!");
         } else {
+            player.setSuperGun(-1);
             superShotPoints = 0.0f;
         }
     }
@@ -104,6 +105,10 @@ public class Gameplay {
             superShotPoints = (1.0f - superShotTimer / superShotTime) * superShotPointsMax;
             if (superShotTimer >= superShotTime) {
                 setSuperShot(false);
+                superShotLevel++;
+                superShotPoints = 0.0f;
+                superShotPointsMax += supetShotPointsMaxIncreaseInterval;
+                superShotTimer = 0.0f;
             }
         }
     }
@@ -146,7 +151,8 @@ public class Gameplay {
         boostActive = false;
         superShotTime = 10.0f;
         superShotPoints = 0.0f;
-        superShotPointsMax = 3000;
+        superShotPointsMax = 5000;
+        supetShotPointsMaxIncreaseInterval = 5000;
         superShotLevel = 0;
         superShotActive = false;
     }
@@ -414,10 +420,11 @@ public class Gameplay {
             player.heal(0.25f);
             player.showSparkles();
         }
-        else if (item.getType() >= 10 && item.getType() <= 10 + player.getGunLevelMax()) { //gun upgrades
+        else if (item.getType() >= 10 && item.getType() <= 10 + player.getGunLevelMax()
+            && !superShotActive) { //gun upgrades
             player.setGunLevel(item.getType() - 10);
         }
-        else if (item.getType() == 1) { //random gun
+        else if (item.getType() == 1 && !superShotActive) { //random gun
             int rand = player.getGunLevel();
             while( rand == player.getGunLevel()) {
                 rand = random.nextInt(player.getGunLevel() + 4);
@@ -451,10 +458,11 @@ public class Gameplay {
                             Missile m = (Missile) mp;
                             if (enemy.getCollisionRectangle().overlaps(m.getBoundingRectangle())) {
                                 //collision between player missile and enemy
-                                m.kill(spawnPool);
                                 score += enemy.getScore();
-                                increaseSuperShotPoints(enemy.getScore());
+                                if (!superShotActive)
+                                    increaseSuperShotPoints(enemy.getScore());
                                 enemy.hit(m.power);
+                                m.kill(spawnPool);
                             }
                         }
                     }
@@ -462,7 +470,8 @@ public class Gameplay {
                     if (!player.isDead()) {
                         if (player.getCollisionRectangle().overlaps(enemy.getCollisionRectangle())) {
                             score += enemy.getScore();
-                            increaseSuperShotPoints(enemy.getScore());
+                            if (!superShotActive)
+                                increaseSuperShotPoints(enemy.getScore());
                             enemy.kill(spawnPool);
                             player.hit(100000);
                             parallaxBackground.shake();
