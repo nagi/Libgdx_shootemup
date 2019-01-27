@@ -80,7 +80,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             addGun(180, 450, 0, 50);
             addGun(190, 450, 0, 50);
             addGun(170, 450, 0, 50);
-            setSpeed(-210.0f, 0.0f);
+            setSpeed(-250.0f, 0.0f);
             setScore(200);
         }
 

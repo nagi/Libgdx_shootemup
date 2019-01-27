@@ -200,7 +200,9 @@ public class Player extends ShootingObject {
     }
 
     public void setAccelerateUp(boolean acc) {
-        this.accelerateUp = acc;
+        accelerateUp = acc;
+        if (acc)
+            moveStepY = 0.0f;
     }
 
     private  void accelerateUp(float delta) {
@@ -221,8 +223,8 @@ public class Player extends ShootingObject {
             resetGuns();
             if (type == 0) {
                 setGunPower(100.0f);
-                setShootingInterval(0.12f);
-                setGunType(2);
+                setShootingInterval(0.16f);
+                setGunType(3);
                 addGun(0.0f, 1100.0f, 150, 30);
                 addGun(5.0f, 1100.0f, 150, 30);
                 addGun(-5.0f, 1100.0f, 150, 30);
@@ -231,8 +233,7 @@ public class Player extends ShootingObject {
                 addGun(15.0f, 1100.0f, 150, 30);
                 addGun(-15.0f, 1100.0f, 150, 30);
             }
-
-            if (type == 1) {
+            else if (type == 1) {
                 setGunPower(100.0f);
                 setShootingInterval(0.1f);
                 setGunType(5);

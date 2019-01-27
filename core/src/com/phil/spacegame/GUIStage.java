@@ -44,12 +44,15 @@ public class GUIStage {
     private float offsetSuperShotBar = 42;
     private float offsetLifeBar = 20;
     private Image superShotCaption;
-    //reference to the font instance
-    private BitmapFont fntCenter = Spacegame.resources.font1;
     //super shot pulse cooldown
     private boolean justPulsedSuperShot;
     private float pulseCooldown;
     private float pulseCooldownTime = 1.0f;
+    //life bar blinking
+    private float playerHealth;
+    private float lifeBarBlinkTimer;
+    private float lifeBarBlinkTime = 0.5f;
+    private float lifeBarBlinkThreshold = 0.2f;
 
 
     public GUIStage(Stage stage) {
@@ -187,6 +190,14 @@ public class GUIStage {
                 superShotCaption.setVisible(false);
             }
         }
+
+        if (playerHealth <= lifeBarBlinkThreshold) {
+            lifeBarBlinkTimer += delta;
+            if (lifeBarBlinkTimer >= lifeBarBlinkTime) {
+                imgLifeBarInner.setVisible(!imgLifeBarInner.isVisible());
+                lifeBarBlinkTimer = 0.0f;
+            }
+        }
     }
 
     //update score label
@@ -198,9 +209,12 @@ public class GUIStage {
     //update health bar.
     //health between 0.0-1.0
     public void updateHealth(float health) {
+        this.playerHealth = health;
         float oldWidth = imgLifeBarInner.getWidth();
         imgLifeBarInner.setWidth(lifeBarInnerWidthMax * health);
         if (oldWidth < imgLifeBarInner.getWidth()) {
+            imgLifeBarInner.setVisible(true);
+            imgLifeBarBorder.setVisible(true);
             pulseActor(imgLifeBarBorder, 1.3f);
             pulseActor(imgLifeBarInner, 1.32f);
 
@@ -209,13 +223,12 @@ public class GUIStage {
 
     public void updateSuperShot(float percent) {
         imgSuperShotBarInner.setWidth(superShotBarInnerWidthMax * percent);
+
         if (percent >= 0.99f && !justPulsedSuperShot) {
             justPulsedSuperShot = true;
             pulseActor(imgSuperShotBarBorder, 1.3f);
             pulseActor(imgSuperShotBarInner, 1.32f);
 
-            //superShotCaption.setVisible(true);
-            //pulseActor(superShotCaption, 1.5f);
             blinkAndhideActor(superShotCaption, 6);
         }
     }
