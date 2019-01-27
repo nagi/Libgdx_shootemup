@@ -25,7 +25,7 @@ public class Gameplay {
     //instance of the parallax background
     private ParallaxBackground parallaxBackground;
     //scrolling speed of the background
-    private float bgSpeed = -400.0f;
+    private float bgSpeed = -500.0f;
     //Lists for different types of spawn objects (for spawnpool and collisions)
     private ArrayList<SpawnObject> enemies = new ArrayList<SpawnObject>();
     private ArrayList<SpawnObject> missilesEnemies = new ArrayList<SpawnObject>();
@@ -63,6 +63,7 @@ public class Gameplay {
     private boolean boostActive;
     private float boostTimer;
     private float boostTime;
+    private float boostStoppingTime;
     private float speedUpFactor;
     private float boostSpeedMax;
     private float boostTimeMax;
@@ -74,44 +75,6 @@ public class Gameplay {
     private float superShotTimer;
     private float superShotTime;
     private float supetShotPointsMaxIncreaseInterval;
-
-    private void setSuperShot(boolean active) {
-        superShotActive = active;
-        if (active) {
-            player.setSuperGun(0);
-            superShotTimer = 0.0f;
-            System.out.println("SUPER SHOT !!!!!!!!!!!!!!!!!!!!!");
-        } else {
-            player.setSuperGun(-1);
-            superShotPoints = 0.0f;
-        }
-    }
-
-    private void increaseSuperShotPoints(float amount) {
-        superShotPoints += amount;
-        if (superShotPoints >= superShotPointsMax) {
-            superShotPoints = superShotPointsMax;
-            setSuperShot(true);
-        }
-    }
-
-    public float getSuperShotPoints() {
-        return superShotPoints / superShotPointsMax;
-    }
-
-    private void updateSuperShot(float delta) {
-        if (superShotActive) {
-            superShotTimer += delta;
-            superShotPoints = (1.0f - superShotTimer / superShotTime) * superShotPointsMax;
-            if (superShotTimer >= superShotTime) {
-                setSuperShot(false);
-                superShotLevel++;
-                superShotPoints = 0.0f;
-                superShotPointsMax += supetShotPointsMaxIncreaseInterval;
-                superShotTimer = 0.0f;
-            }
-        }
-    }
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -135,8 +98,8 @@ public class Gameplay {
         spawnInterval = 1.3f;
         spawnIntervalDecreaseStep = 0.2f;
         spawnIntervalMinimum = 0.5f;
-        spawnIntervalObstacles = 1.2f;
-        spawnIntervalItems = 2.0f;
+        spawnIntervalObstacles = 1.0f;
+        spawnIntervalItems = 12.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 3.0f;
@@ -146,10 +109,11 @@ public class Gameplay {
         speedUpFactor = 1.0f;
         boostTimer = 0.0f;
         boostTime = 0.0f;
+        boostStoppingTime = 2.0f;
         boostTimeMax = 5.0f;
         boostSpeedMax = 5.0f;
         boostActive = false;
-        superShotTime = 10.0f;
+        superShotTime = 8.0f;
         superShotPoints = 0.0f;
         superShotPointsMax = 5000;
         supetShotPointsMaxIncreaseInterval = 5000;
@@ -367,9 +331,9 @@ public class Gameplay {
         //reduce propability that obstacle spawns at same pos as the previous one
         float threshold = obstaclePreviousPosUp ? 0.2f : 0.8f;
         if (pos <= threshold)
-            spawnObstacle(type, Spacegame.screenWidth + 300, 450);
+            spawnObstacle(type, Spacegame.screenWidth + 500, 450);
         else
-            spawnObstacle(type, Spacegame.screenWidth + 300, 180);
+            spawnObstacle(type, Spacegame.screenWidth + 500, 180);
 
         obstaclePreviousPosUp = pos <= threshold;
     }
@@ -399,11 +363,14 @@ public class Gameplay {
     private void calcBoostEffect(float delta) {
         if (boostActive) {
             boostTimer += delta;
+            if (boostTimer >= boostTime - boostStoppingTime) {
+                speedUpFactor = 1.0f;
+                player.setShootingActive(true);
+            }
             if (boostTimer >= boostTime) {
                 boostActive = false;
                 boostTimer = 0.0f;
                 speedUpFactor = 1.0f;
-                player.setShootingActive(true);
             }
         }
     }
@@ -411,8 +378,46 @@ public class Gameplay {
     private void setBoost(float factor, float time) {
         speedUpFactor = factor;
         boostTimer = 0.0f;
-        boostTime = time;
+        boostTime = time + boostStoppingTime;
         boostActive = true;
+    }
+
+    private void setSuperShot(boolean active) {
+        superShotActive = active;
+        if (active) {
+            player.setSuperGun(0);
+            superShotTimer = 0.0f;
+            System.out.println("SUPER SHOT !!!!!!!!!!!!!!!!!!!!!");
+        } else {
+            player.setSuperGun(-1);
+            superShotPoints = 0.0f;
+        }
+    }
+
+    private void increaseSuperShotPoints(float amount) {
+        superShotPoints += amount;
+        if (superShotPoints >= superShotPointsMax) {
+            superShotPoints = superShotPointsMax;
+            setSuperShot(true);
+        }
+    }
+
+    public float getSuperShotPoints() {
+        return superShotPoints / superShotPointsMax;
+    }
+
+    private void updateSuperShot(float delta) {
+        if (superShotActive) {
+            superShotTimer += delta;
+            superShotPoints = (1.0f - superShotTimer / superShotTime) * superShotPointsMax;
+            if (superShotTimer >= superShotTime) {
+                setSuperShot(false);
+                superShotLevel++;
+                superShotPoints = 0.0f;
+                superShotPointsMax += supetShotPointsMaxIncreaseInterval;
+                superShotTimer = 0.0f;
+            }
+        }
     }
 
     private void collisionItem(Item item) {
@@ -439,7 +444,7 @@ public class Gameplay {
             float boostTime = boostTimeMax;
             float boostSpeed = boostSpeedMax;
             setBoost(boostSpeed, boostTime);
-            player.setShield(boostTime, 1);
+            player.setShield(boostTime + boostStoppingTime, 1);
             player.setShootingActive(false);
         }
 

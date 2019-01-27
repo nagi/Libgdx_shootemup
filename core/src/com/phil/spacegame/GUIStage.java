@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -37,8 +40,15 @@ public class GUIStage {
     private Image imgSuperShotBarBorder;
     private Image imgSuperShotBarInner;
     private float superShotBarInnerWidthMax = 378;
+    private float offsetSuperShotBar = 42;
+    private float offsetLifeBar = 20;
     //reference to the font instance
     private BitmapFont fntCenter = Spacegame.resources.font1;
+    //super shot pulse cooldown
+    private boolean justPulsedSuperShot;
+    private float pulseCooldown;
+    private float pulseCooldownTime = 1.0f;
+
 
     public GUIStage(Stage stage) {
         this.stage = stage;
@@ -94,7 +104,7 @@ public class GUIStage {
         TextureRegion txBorder = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.lifebarBorder, Texture.class), 0, 0, 384, 21);
         imgLifeBarBorder = new Image(txBorder);
-        imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 20, Align.center);
+        imgLifeBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - offsetLifeBar, Align.center);
         imgLifeBarBorder.setVisible(false);
 
         //life bar inner
@@ -102,7 +112,7 @@ public class GUIStage {
                 Spacegame.resources.get(Spacegame.resources.lifebarInner, Texture.class), 0, 0, 378, 12);
         imgLifeBarInner = new Image(txInner);
         imgLifeBarInner.setPosition(
-                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 26);
+                Spacegame.screenWidth / 2 + 2, Spacegame.screenHeight - offsetLifeBar, Align.center);
         imgLifeBarInner.setVisible(false);
 
         // add "inner" before "border" to render it behind
@@ -113,7 +123,7 @@ public class GUIStage {
         TextureRegion txSuperShotBorder = new TextureRegion(
                 Spacegame.resources.get(Spacegame.resources.supershotBorder, Texture.class), 0, 0, 384, 21);
         imgSuperShotBarBorder = new Image(txSuperShotBorder);
-        imgSuperShotBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - 45, Align.center);
+        imgSuperShotBarBorder.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight - offsetSuperShotBar, Align.center);
         imgSuperShotBarBorder.setVisible(false);
 
         //supershot bar inner
@@ -121,7 +131,7 @@ public class GUIStage {
                 Spacegame.resources.get(Spacegame.resources.supershotInner, Texture.class), 0, 0, 378, 12);
         imgSuperShotBarInner = new Image(txSuperShotInner);
         imgSuperShotBarInner.setPosition(
-                Spacegame.screenWidth / 2 - imgLifeBarBorder.getWidth() / 2 + 5, Spacegame.screenHeight - 51);
+                Spacegame.screenWidth / 2 + 2, Spacegame.screenHeight - offsetSuperShotBar, Align.center);
         imgSuperShotBarInner.setVisible(false);
 
         // add "inner" before "border" to render it behind
@@ -157,6 +167,13 @@ public class GUIStage {
             stage.act(delta);
             stage.draw();
         }
+        if (justPulsedSuperShot) {
+            pulseCooldown += delta;
+            if (pulseCooldown >= pulseCooldownTime) {
+                pulseCooldown = 0.0f;
+                justPulsedSuperShot = false;
+            }
+        }
     }
 
     //update score label
@@ -168,10 +185,23 @@ public class GUIStage {
     //update health bar.
     //health between 0.0-1.0
     public void updateHealth(float health) {
+        float oldWidth = imgLifeBarInner.getWidth();
         imgLifeBarInner.setWidth(lifeBarInnerWidthMax * health);
+        if (oldWidth < imgLifeBarInner.getWidth()) {
+            pulseActor(imgLifeBarBorder, 1.3f);
+            pulseActor(imgLifeBarInner, 1.32f);
+
+        }
     }
 
-    public void updateSuperShot(float percent) {imgSuperShotBarInner.setWidth(superShotBarInnerWidthMax * percent);}
+    public void updateSuperShot(float percent) {
+        imgSuperShotBarInner.setWidth(superShotBarInnerWidthMax * percent);
+        if (percent >= 0.99f && !justPulsedSuperShot) {
+            justPulsedSuperShot = true;
+            pulseActor(imgSuperShotBarBorder, 1.3f);
+            pulseActor(imgSuperShotBarInner, 1.32f);
+        }
+    }
 
     public void showMenuGUI(boolean show) {
         lblStart.setVisible(show);
@@ -199,5 +229,26 @@ public class GUIStage {
         lblHighscore.setVisible(true);
         imgSuperShotBarInner.setVisible(false);
         imgSuperShotBarBorder.setVisible(false);
+    }
+
+    public void pulseActor(Actor actor, float scale) {
+        actor.setOrigin(Align.center);
+        actor.setScale(1.0f);
+
+        DelayAction delayAction = new DelayAction(0.1f);
+
+        ScaleToAction scaleUpAction = new ScaleToAction();
+        scaleUpAction.setScale(scale);
+        scaleUpAction.setDuration(0.2f);
+
+        ScaleToAction scaleDownAction = new ScaleToAction();
+        scaleDownAction.setScale(1.0f);
+        scaleDownAction.setDuration(0.2f);
+
+        SequenceAction sequence = new SequenceAction();
+        sequence.addAction(delayAction);
+        sequence.addAction(scaleUpAction);
+        sequence.addAction(scaleDownAction);
+        actor.addAction(sequence);
     }
 }

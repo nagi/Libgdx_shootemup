@@ -137,6 +137,7 @@ public class Player extends ShootingObject {
             move(delta);
             //update shield
             if (shieldActive) {
+                activeShield.setPosition(getX() -10 , getY() + 9);
                 shieldTimer -= delta;
                 //set shield blinking
                 if (shieldTimer <= shieldBlinkingTimerStart) {
@@ -150,7 +151,6 @@ public class Player extends ShootingObject {
                     shieldActive = false;
                     activeShield.setPosition(-activeShield.getWidth(), 0);
                 }
-                activeShield.setPosition(getX() -10 , getY() + 9);
             }
             //shadow
             shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );

@@ -29,7 +29,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM1");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
-            setGunPower(20.0f);
+            setGunPower(40.0f);
             setShootingInterval(1.3f);
             setGunType(0);
             addGun(180, 600, 0, 50);
@@ -43,7 +43,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM2");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
-            setGunPower(20.0f);
+            setGunPower(40.0f);
             setShootingInterval(1.2f);
             setGunType(0);
             addGun(187, 600, 0, 50);
@@ -58,7 +58,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM3");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
-            setGunPower(20.0f);
+            setGunPower(40.0f);
             setShootingInterval(1.4f);
             setGunType(3);
             addGun(180, 500.0f, 0, 10);
@@ -74,7 +74,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setAnimation("ANIM4");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
-            setGunPower(20.0f);
+            setGunPower(40.0f);
             setShootingInterval(1.8f);
             setGunType(4);
             addGun(180, 450, 0, 50);
