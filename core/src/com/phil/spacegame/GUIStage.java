@@ -215,8 +215,8 @@ public class GUIStage {
         if (oldWidth < imgLifeBarInner.getWidth()) {
             imgLifeBarInner.setVisible(true);
             imgLifeBarBorder.setVisible(true);
-            pulseActor(imgLifeBarBorder, 1.3f);
-            pulseActor(imgLifeBarInner, 1.32f);
+            pulseActor(imgLifeBarBorder, 1.2f);
+            pulseActor(imgLifeBarInner, 1.22f);
 
         }
     }
@@ -255,7 +255,7 @@ public class GUIStage {
 
     public void showGameOver(int highscore) {
         lblGameOver.setVisible(true);
-        lblHighscore.setText(txtHighscore + Integer.toString(highscore));
+        lblHighscore.setText(txtHighscore + "\n" + Integer.toString(highscore));
         lblHighscore.setAlignment(Align.center);
         lblHighscore.setVisible(true);
         imgSuperShotBarInner.setVisible(false);

@@ -159,7 +159,7 @@ public class Item extends GameObject implements SpawnObject {
         }
 
         setCollisionArea(-12, -12, 70, 70);
-        setSpeed(-250.0f, 0.0f);
+        setSpeed(-350.0f, 0.0f);
 
         if (bubble == null) {
             bubble = new Sprite(Spacegame.resources.get(Spacegame.resources.itemBubble, Texture.class));

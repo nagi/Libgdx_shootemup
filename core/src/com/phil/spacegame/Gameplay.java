@@ -98,8 +98,8 @@ public class Gameplay {
         spawnInterval = 1.3f;
         spawnIntervalDecreaseStep = 0.25f;
         spawnIntervalMinimum = 0.5f;
-        spawnIntervalObstacles = 1.0f;
-        spawnIntervalItems = 12.0f;
+        spawnIntervalObstacles = 0.9f;
+        spawnIntervalItems = 10.0f;
         levelDurationEnemies = 22.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 2.0f;
@@ -111,7 +111,7 @@ public class Gameplay {
         boostTime = 0.0f;
         boostStoppingTime = 2.0f;
         boostTimeMax = 5.0f;
-        boostSpeedMax = 5.0f;
+        boostSpeedMax = 4.0f;
         boostActive = false;
         superShotTime = 7.0f;
         superShotPoints = 0.0f;
@@ -332,9 +332,9 @@ public class Gameplay {
         //reduce propability that obstacle spawns at same pos as the previous one
         float threshold = obstaclePreviousPosUp ? 0.2f : 0.8f;
         if (pos <= threshold)
-            spawnObstacle(type, Spacegame.screenWidth + 500, 430 - posY);
+            spawnObstacle(type, Spacegame.screenWidth + 500, 470 - posY);
         else
-            spawnObstacle(type, Spacegame.screenWidth + 500, 180 - posY);
+            spawnObstacle(type, Spacegame.screenWidth + 500, 200 - posY);
 
         obstaclePreviousPosUp = pos <= threshold;
     }
@@ -541,7 +541,7 @@ public class Gameplay {
         }
         for (SpawnObject i: items) {
             if (i.isSpawned())
-                i.update(delta, speedUpFactor);
+                i.update(delta, 1.0f);
         }
         for (SpawnObject o: obstacles) {
             if (o.isSpawned())
