@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
+import java.security.Key;
+
 // handles gameplay-input (Keyboard, Touchscreen, Controller)
 public class GameInput implements InputProcessor {
 
@@ -21,7 +23,9 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		if (gamePlay.isStarted()) {
-			if (keycode == Keys.SPACE) {
+			if (keycode == Keys.SPACE
+					|| keycode == Keys.W
+					|| keycode == Keys.UP) {
 				gamePlay.playerMoveUp();
 			}
 		}
@@ -31,7 +35,9 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyUp(int keycode) {
 		if (gamePlay.isStarted()) {
-			if (keycode == Keys.SPACE) {
+			if (keycode == Keys.SPACE 
+				|| keycode == Keys.W
+				|| keycode == Keys.UP) {
 				if (gamePlay.isPaused()){
 					gamePlayScreen.resumeGame();
 				}
