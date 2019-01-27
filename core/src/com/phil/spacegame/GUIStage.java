@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.actions.VisibleAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -42,6 +43,7 @@ public class GUIStage {
     private float superShotBarInnerWidthMax = 378;
     private float offsetSuperShotBar = 42;
     private float offsetLifeBar = 20;
+    private Image superShotCaption;
     //reference to the font instance
     private BitmapFont fntCenter = Spacegame.resources.font1;
     //super shot pulse cooldown
@@ -138,6 +140,16 @@ public class GUIStage {
         grpIngameUI.addActor(imgSuperShotBarInner);
         grpIngameUI.addActor(imgSuperShotBarBorder);
 
+        //super shot caption
+        TextureRegion txSuperShotCaption = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.superShot, Texture.class), 0, 0, 464, 200);
+        superShotCaption = new Image(txSuperShotCaption);
+        superShotCaption.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 + 50, Align.center);
+        superShotCaption.setVisible(false);
+
+        grpIngameUI.addActor(superShotCaption);
+
         //label for "Pause"
         lblPause = new Label(txtPause, labelStyle);
         lblPause.setPosition(
@@ -172,6 +184,7 @@ public class GUIStage {
             if (pulseCooldown >= pulseCooldownTime) {
                 pulseCooldown = 0.0f;
                 justPulsedSuperShot = false;
+                superShotCaption.setVisible(false);
             }
         }
     }
@@ -200,6 +213,10 @@ public class GUIStage {
             justPulsedSuperShot = true;
             pulseActor(imgSuperShotBarBorder, 1.3f);
             pulseActor(imgSuperShotBarInner, 1.32f);
+
+            //superShotCaption.setVisible(true);
+            //pulseActor(superShotCaption, 1.5f);
+            blinkAndhideActor(superShotCaption, 6);
         }
     }
 
@@ -211,6 +228,7 @@ public class GUIStage {
         lblPause.setVisible(false);
         lblGameOver.setVisible(false);
         lblHighscore.setVisible(false);
+        superShotCaption.setVisible(false);
         lblScore.setVisible(show);
         imgLifeBarInner.setVisible(show);
         imgLifeBarBorder.setVisible(show);
@@ -251,4 +269,25 @@ public class GUIStage {
         sequence.addAction(scaleDownAction);
         actor.addAction(sequence);
     }
+
+    public void blinkAndhideActor(Actor actor, float blinkAmount) {
+        SequenceAction sequence = new SequenceAction();
+        for (int i=0; i<blinkAmount; ++i) {
+            DelayAction delayAction1 = new DelayAction(0.2f);
+            DelayAction delayAction2 = new DelayAction(0.2f);
+
+            VisibleAction unvisible = new VisibleAction();
+            unvisible.setVisible(false);
+
+            VisibleAction visible = new VisibleAction();
+            visible.setVisible(true);
+
+            sequence.addAction(visible);
+            sequence.addAction(delayAction1);
+            sequence.addAction(unvisible);
+            sequence.addAction(delayAction2);
+        }
+        actor.addAction(sequence);
+    }
+
 }

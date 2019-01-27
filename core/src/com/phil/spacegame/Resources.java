@@ -34,6 +34,7 @@ public class Resources extends AssetManager {
     public String animItemCollect = "anim_item_collect.png";
     public String shield = "shield.png";
     public String shieldBoost = "shield_boost.png";
+    public String superShot = "superShot.png";
 
     //font instance for global usage
     public BitmapFont font1;
@@ -70,6 +71,7 @@ public class Resources extends AssetManager {
         load(animItemCollect, Texture.class);
         load(shield, Texture.class);
         load(shieldBoost, Texture.class);
+        load(superShot, Texture.class);
 
         System.out.println("FINISHED LOADING ASSETS!");
     }
