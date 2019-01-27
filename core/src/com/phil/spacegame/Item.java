@@ -20,7 +20,7 @@ public class Item extends GameObject implements SpawnObject {
         this.type = type;
 
         //debug
-        System.out.println("Spawn ITEM type: " + type);
+//        System.out.println("Spawn ITEM type: " + type);
 
         String animName;
 

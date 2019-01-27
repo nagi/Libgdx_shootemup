@@ -388,7 +388,6 @@ public class Gameplay {
         if (active) {
             player.setSuperGun(0);
             superShotTimer = 0.0f;
-            System.out.println("SUPER SHOT !!!!!!!!!!!!!!!!!!!!!");
         } else {
             player.setSuperGun(-1);
             superShotPoints = 0.0f;
