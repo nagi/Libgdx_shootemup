@@ -35,7 +35,7 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyUp(int keycode) {
 		if (gamePlay.isStarted()) {
-			if (keycode == Keys.SPACE 
+			if (keycode == Keys.SPACE
 				|| keycode == Keys.W
 				|| keycode == Keys.UP) {
 				if (gamePlay.isPaused()){

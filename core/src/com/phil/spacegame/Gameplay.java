@@ -95,12 +95,12 @@ public class Gameplay {
         spawnTimer = 0;
         spawnTimerItems = 0;
         levelTimer = 0;
-        spawnInterval = 1.3f;
-        spawnIntervalDecreaseStep = 0.25f;
-        spawnIntervalMinimum = 0.5f;
+        spawnInterval = 1.2f;
+        spawnIntervalDecreaseStep = 0.3f;
+        spawnIntervalMinimum = 0.3f;
         spawnIntervalObstacles = 0.9f;
         spawnIntervalItems = 10.0f;
-        levelDurationEnemies = 22.0f;
+        levelDurationEnemies = 25.0f;
         levelDurationObstacles = 10.0f;
         levelDurationObstaclesIncreaseStep = 2.0f;
         justDied = true;
