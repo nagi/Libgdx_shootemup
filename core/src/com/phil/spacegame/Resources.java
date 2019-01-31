@@ -12,8 +12,10 @@ public class Resources extends AssetManager {
     private String fntBangers = "fonts/Bangers_bitmap.fnt";
     public String bgLayerFront = "background/ground.png";
     public String bgLayerMid = "background/mountains.png";
+    public String bgLayerMid2 = "background/mountains2.png";
     public String bgLayerBack = "background/background.png";
     public String tilesetSpaceships = "anim/spaceship_tileset.png";
+    public String tilesetSpaceships2 = "anim/spaceship_tileset2.png";
     public String tilesetExplosion = "anim/explosion1.png";
     public String missile1 = "img/missile1.png";
     public String missile2 = "img/missile2.png";
@@ -49,8 +51,10 @@ public class Resources extends AssetManager {
         //load images
         load(bgLayerFront, Texture.class);
         load(bgLayerMid, Texture.class);
+        load(bgLayerMid2, Texture.class);
         load(bgLayerBack, Texture.class);
         load(tilesetSpaceships, Texture.class);
+        load(tilesetSpaceships2, Texture.class);
         load(missile1, Texture.class);
         load(missile2, Texture.class);
         load(missile3, Texture.class);

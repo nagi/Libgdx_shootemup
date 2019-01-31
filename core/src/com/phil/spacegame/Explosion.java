@@ -14,10 +14,10 @@ public class Explosion extends AnimatedSprite implements SpawnObject {
         setAnimation("ANIM");
     }
 
-    public void init(float x, float y) {
+    public void init(float x, float y, float size) {
         //initialize with new position
-        setSize(150, 150);
-        setPosition(x - 40,y - 20);
+        setSize(size, size);
+        setPosition(x - getWidth() / 2,y - getHeight() / 2);
         //restart animation (because loop is set to false)
         restartActiveAnimation();
     }

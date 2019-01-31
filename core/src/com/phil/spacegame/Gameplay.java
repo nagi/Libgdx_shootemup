@@ -42,7 +42,7 @@ public class Gameplay {
     private boolean spawnObstacles;
     //spawn parameters
     private int spawnLevel = 0;
-    private int spawnLevelMax = 7;
+    private int spawnLevelMax = 9;
     private float spawnInterval; //seconds
     private float spawnIntervalDecreaseStep; //seconds
     private float spawnIntervalMinimum; //seconds
@@ -110,7 +110,7 @@ public class Gameplay {
         boostTimer = 0.0f;
         boostTime = 0.0f;
         boostStoppingTime = 2.0f;
-        boostTimeMax = 5.0f;
+        boostTimeMax = 4.0f;
         boostSpeedMax = 4.0f;
         boostActive = false;
         superShotTime = 7.0f;
@@ -123,23 +123,25 @@ public class Gameplay {
 
     private void initBackground() {
         //create three layers with own scrolling speeds
-        ParallaxLayer layers[] = new ParallaxLayer[3];
+        ParallaxLayer layers[] = new ParallaxLayer[4];
         layers[0] = new ParallaxLayer(0.15f, 0.0f); //background
-        layers[1] = new ParallaxLayer(0.5f, 0.0f); //mountains
-        layers[2] = new ParallaxLayer(1.0f, 0.0f); //ground
+        layers[1] = new ParallaxLayer(0.4f, 0.0f); //mountains
+        layers[2] = new ParallaxLayer(0.55f, 0.0f); //mountains2
+        layers[3] = new ParallaxLayer(1.0f, 0.0f); //ground
         //fill layers with textures
         layers[0].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerBack, Texture.class)));
-        layers[1].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerMid, Texture.class)));
-        layers[2].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerFront, Texture.class)));
+        layers[1].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerMid2, Texture.class)));
+        layers[2].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerMid, Texture.class)));
+        layers[3].addPart(new TextureRegion(Spacegame.resources.get(Spacegame.resources.bgLayerFront, Texture.class)));
         //create a ParallaxBackground instance with these layers
         parallaxBackground = new ParallaxBackground(layers);
     }
 
     private void initPlayer() {
         player = new Player();
-        player.setSize(180, 90);
+        player.setSize(256, 64);
         player.setPosition(70, 500);
-        player.setCollisionArea(20, 20, 140, 50);
+        player.setCollisionArea(40, 20, 120, 35);
         //set guns
         player.setGunLevel(0);
         //set health
@@ -309,7 +311,7 @@ public class Gameplay {
             //spawn one enemy with random y-position
             spawnEnemy(spawnLevel,
                     Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (spawnLevel <= 7) {
+        else if (spawnLevel <= 9) {
             //spawn two enemies of two different levels at random y-position
             spawnEnemy(spawnLevel - 4,
                     Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
@@ -422,7 +424,7 @@ public class Gameplay {
 
     private void collisionItem(Item item) {
         if (item.getType() == 0) { //Repair tool
-            player.heal(0.25f);
+            player.heal(0.5f);
             player.showSparkles();
         }
         else if (item.getType() >= 10 && item.getType() <= 10 + player.getGunLevelMax()
@@ -438,7 +440,7 @@ public class Gameplay {
             player.setGunLevel(rand);
         }
         else if (item.getType() == 2) { //shield
-            player.setShield(10, 0);
+            player.setShield(8, 0);
         }
         else if (item.getType() == 3) { //boost
             float boostTime = boostTimeMax;
@@ -492,8 +494,7 @@ public class Gameplay {
                 if (m.isSpawned() && m.getBoundingRectangle().overlaps(player.getCollisionRectangle())) {
                     //enemy missile hit player
                     Explosion expl = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-                    expl.init(m.getX(), m.getY());
-                    expl.setScale(0.6f);
+                    expl.init(m.getX(), m.getY(), 85);
                     expl.setOriginCenter();
                     expl.setOriginBasedPosition(m.getX(), m.getY());
                     m.kill(spawnPool);

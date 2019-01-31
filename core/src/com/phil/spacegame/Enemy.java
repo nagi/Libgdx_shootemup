@@ -18,44 +18,75 @@ public class Enemy extends ShootingObject implements SpawnObject {
         //reset guns
         super.init(SpawnType.MissileEnemy);
 
-        if (type > 3)
-            type = 3;
+        if (type > 5)
+            type = 5;
 
         //spawn type
         if (type == 0) {
             if (!containsAnimation("ANIM1"))
-                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships2, Texture.class),
                     4, 8, 0, 4, 0.05f, "ANIM1", true);
             setAnimation("ANIM1");
-            setSize(180, 90);
-            setCollisionArea(20, 20, 90, 60);
+            setSize(128, 64);
+            setCollisionArea(20, 5, 80, 50);
             setGunPower(40.0f);
             setShootingInterval(1.3f);
             setGunType(0);
-            addGun(180, 600, 0, 50);
+            addGun(180, 600, 0, 20);
             setSpeed(-280.0f, 0.0f);
             setScore(100);
         }
         else if (type == 1) {
             if (!containsAnimation("ANIM2"))
-                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships2, Texture.class),
                         4, 8, 4, 4, 0.05f, "ANIM2", true);
             setAnimation("ANIM2");
-            setSize(180, 90);
-            setCollisionArea(20, 20, 90, 60);
+            setSize(128, 64);
+            setCollisionArea(20, 5    , 80, 50);
             setGunPower(40.0f);
             setShootingInterval(1.2f);
             setGunType(0);
-            addGun(187, 600, 0, 50);
-            addGun(173, 600, 0, 50);
+            addGun(187, 600, 0, 20);
+            addGun(173, 600, 0, 20);
             setSpeed(-300.0f, 0.0f);
             setScore(120);
         }
-        else if (type == 2) {
+        if (type == 2) {
             if (!containsAnimation("ANIM3"))
-                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 8, 4, 0.05f, "ANIM3", true);
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships2, Texture.class),
+                        4, 4, 4, 4, 0.03f, "ANIM3", true);
             setAnimation("ANIM3");
+            setSize(128, 128);
+            setCollisionArea(20, 60, 80, 55);
+            setGunPower(40.0f);
+            setShootingInterval(1.2f);
+            setGunType(6);
+            addGun(180, 600, 0, 60);
+            addGun(180, 600, 50, 60);
+            setSpeed(-310.0f, 0.0f);
+            setScore(100);
+        }
+        else if (type == 3) {
+            if (!containsAnimation("ANIM4"))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships2, Texture.class),
+                        4, 4, 8, 4, 0.03f, "ANIM4", true);
+            setAnimation("ANIM4");
+            setSize(128, 128);
+            setCollisionArea(20, 60, 80, 55);
+            setGunPower(40.0f);
+            setShootingInterval(1.3f);
+            setGunType(5);
+            addGun(187, 600, 0, 60);
+            addGun(173, 600, 0, 60);
+            addGun(180, 600, 0, 60);
+            setSpeed(-310.0f, 0.0f);
+            setScore(120);
+        }
+        else if (type == 4) {
+            if (!containsAnimation("ANIM5"))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
+                        4, 8, 8, 4, 0.05f, "ANIM5", true);
+            setAnimation("ANIM5");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
             setGunPower(40.0f);
@@ -67,23 +98,23 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setSpeed(-290.0f, 0.0f);
             setScore(150);
         }
-        else if (type == 3) {
-            if (!containsAnimation("ANIM4"))
+        else if (type == 5) {
+            if (!containsAnimation("ANIM6"))
                 addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetSpaceships, Texture.class),
-                    4, 8, 12, 4, 0.05f, "ANIM4", true);
-            setAnimation("ANIM4");
+                        4, 8, 12, 4, 0.05f, "ANIM6", true);
+            setAnimation("ANIM6");
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
             setGunPower(40.0f);
             setShootingInterval(1.8f);
             setGunType(4);
-            addGun(180, 450, 0, 50);
+            addGun(190, 450, 0, 60);
             addGun(190, 450, 0, 50);
-            addGun(170, 450, 0, 50);
+            addGun(170, 450, 0, 40);
+            addGun(170, 450, 0, 30);
             setSpeed(-260.0f, 0.0f);
             setScore(200);
         }
-
         //set initial position (random y-position)
         setPosition(posX, posY);
     }
@@ -97,8 +128,8 @@ public class Enemy extends ShootingObject implements SpawnObject {
     }
 
     public void hit(float power) {
-        Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-        expl.init(getX(), getY());
+        //Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+        //expl.init(getX() + 30, getY() + getHeight() / 2, 90);
         kill(Gameplay.spawnPool);
         //TODO reduce power instead of killing directly
     }
@@ -125,7 +156,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
     public void kill(SpawnPool pool) {
         //spawn explosion
         Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-        expl.init(getX(), getY());
+        expl.init(getX() + 20, getY() + getHeight() / 2, 150);
         //despawn
         pool.returnToPool(this);
         setPosition(Spacegame.screenWidth, 0);
