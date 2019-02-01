@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
-import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.scenes.scene2d.actions.VisibleAction;
+import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class GUIStage {
     //groups for better management of GUI objects
@@ -22,19 +21,23 @@ public class GUIStage {
     private Stage stage;
     //menu gui objects
     private Label lblStart;
-    private String txtStart = "Press to start";
+    private String txtStart = "Press \" W \" to start!";
+    private Image imgLogo;
+    private Image imgTwitter;
     //ingame gui objects
     private String txtPause = "Pause";
     private String txtScore = "0";
     private String txtGameOver = "Gameover!";
     private String txtHighscore = "Highscore: ";
     private String txtHighscorePoints = "0";
+    private String txtPressForSuperShot = "Super shot!  (Press \" L \")";
     private int offsetGameover = 100;
     private int offsetHighscore = 100;
     private Label lblPause;
     private Label lblScore;
     private Label lblGameOver;
     private Label lblHighscore;
+    private Label lblSuperShot;
     private Image imgLifeBarBorder;
     private Image imgLifeBarInner;
     private float lifeBarInnerWidthMax = 374;
@@ -48,6 +51,10 @@ public class GUIStage {
     private boolean justPulsedSuperShot;
     private float pulseCooldown;
     private float pulseCooldownTime = 1.0f;
+    //super shot loaded
+    private boolean superShotLoadedAction;
+    private float superShotLoadedBlinkTimer;
+    private float superShotLoadedBlinkInterval = 0.6f;
     //life bar blinking
     private float playerHealth;
     private float lifeBarBlinkTimer;
@@ -72,10 +79,27 @@ public class GUIStage {
         grpMenuUI = new Group();
 
         //init menu gui elements
+        //logo
+        TextureRegion txLogo = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.imgLogo, Texture.class));
+        imgLogo = new Image(txLogo);
+        imgLogo.setPosition(Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 + 550, Align.center);
+        imgLogo.setVisible(false);
+        grpMenuUI.addActor(imgLogo);
+
+        //twitter handle
+        TextureRegion txTwitter = new TextureRegion(
+                Spacegame.resources.get(Spacegame.resources.imgTwitter, Texture.class));
+        imgTwitter = new Image(txTwitter);
+        imgTwitter.setPosition(30, 20);
+        imgTwitter.setVisible(false);
+        grpMenuUI.addActor(imgTwitter);
+
+        //label "Start"
         lblStart = new Label(txtStart,
                 new Label.LabelStyle(Spacegame.resources.font1, Color.WHITE));
         lblStart.setPosition(
-                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2, Align.center);
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 - 150, Align.center);
         lblStart.setVisible(false);
         grpMenuUI.addActor(lblStart);
 
@@ -153,6 +177,16 @@ public class GUIStage {
 
         grpIngameUI.addActor(superShotCaption);
 
+        //label for "Press Key for Super Shot"
+        lblSuperShot = new Label(txtPressForSuperShot, labelStyle);
+        lblSuperShot.setScale(0.7f);
+        lblSuperShot.setFontScale(0.7f);
+        lblSuperShot.setAlignment(Align.center);
+        lblSuperShot.setPosition(
+                Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 + 290, Align.center);
+        lblSuperShot.setVisible(false);
+        grpIngameUI.addActor(lblSuperShot);
+
         //label for "Pause"
         lblPause = new Label(txtPause, labelStyle);
         lblPause.setPosition(
@@ -191,6 +225,15 @@ public class GUIStage {
             }
         }
 
+        if (superShotLoadedAction) {
+            superShotLoadedBlinkTimer += delta;
+            if (superShotLoadedBlinkTimer >= superShotLoadedBlinkInterval) {
+                superShotLoadedBlinkTimer = 0.0f;
+                lblSuperShot.setVisible(!lblSuperShot.isVisible());
+                imgSuperShotBarInner.setVisible(!imgSuperShotBarInner.isVisible());
+            }
+        }
+
         if (playerHealth <= lifeBarBlinkThreshold) {
             lifeBarBlinkTimer += delta;
             if (lifeBarBlinkTimer >= lifeBarBlinkTime) {
@@ -221,27 +264,49 @@ public class GUIStage {
         }
     }
 
-    public void updateSuperShot(float percent) {
+    public void updateSuperShot(float percent, boolean isLoaded) {
         imgSuperShotBarInner.setWidth(superShotBarInnerWidthMax * percent);
 
-        if (percent >= 0.99f && !justPulsedSuperShot) {
-            justPulsedSuperShot = true;
-            pulseActor(imgSuperShotBarBorder, 1.3f);
-            pulseActor(imgSuperShotBarInner, 1.32f);
+//        if (percent >= 0.99f && !justPulsedSuperShot) {
+//            justPulsedSuperShot = true;
+//            pulseActor(imgSuperShotBarBorder, 1.3f);
+//            pulseActor(imgSuperShotBarInner, 1.32f);
+//
+//            blinkAndhideActor(superShotCaption, 6);
+//        }
 
-            blinkAndhideActor(superShotCaption, 6);
+        if (isLoaded && !superShotLoadedAction) {
+            superShotLoadedAction = true;
+            imgSuperShotBarInner.setVisible(false);
         }
     }
 
+    public void setSuperShotActive() {
+        superShotLoadedAction = false;
+        lblSuperShot.setVisible(false);
+        imgSuperShotBarInner.setVisible(true);
+    }
+
     public void showMenuGUI(boolean show) {
-        lblStart.setVisible(show);
+        imgLogo.setVisible(show);
+        if (show == true) {
+            imgLogo.addAction(Actions.moveToAligned(Spacegame.screenWidth / 2, Spacegame.screenHeight / 2 + 150, Align.center, 0.4f));
+            lblStart.addAction(sequence(hide(), delay(0.7f), show()));
+        }
+        else {
+            imgLogo.setVisible(false);
+            lblStart.setVisible(false);
+        }
+        imgTwitter.setVisible(show);
     }
 
     public void showGameGUI(boolean show) {
+        lblStart.clearActions();
         lblPause.setVisible(false);
         lblGameOver.setVisible(false);
         lblHighscore.setVisible(false);
         superShotCaption.setVisible(false);
+        lblSuperShot.setVisible(false);
         lblScore.setVisible(show);
         imgLifeBarInner.setVisible(show);
         imgLifeBarBorder.setVisible(show);

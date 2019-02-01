@@ -78,6 +78,13 @@ public class GameplayScreen implements Screen {
 		gamePlay.resume();
 	}
 
+	public void actionSuperShot() {
+		if (gamePlay.isSuperShotLoaded()) {
+			gamePlay.setSuperShot(true);
+			guiStage.setSuperShotActive();
+		}
+	}
+
 	@Override
 	//Rendering und Update
 	public void render(float delta) {
@@ -86,7 +93,7 @@ public class GameplayScreen implements Screen {
 			gamePlay.update(delta);
 			guiStage.updateScore(gamePlay.score);
 			guiStage.updateHealth(gamePlay.player.getHealth());
-			guiStage.updateSuperShot(gamePlay.getSuperShotPoints());
+			guiStage.updateSuperShot(gamePlay.getSuperShotPoints(), gamePlay.isSuperShotLoaded());
 		}
 
 		//render gamePlay

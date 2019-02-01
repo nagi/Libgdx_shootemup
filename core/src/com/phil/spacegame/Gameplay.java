@@ -75,6 +75,7 @@ public class Gameplay {
     private float superShotTimer;
     private float superShotTime;
     private float supetShotPointsMaxIncreaseInterval;
+    private boolean superShotLoaded;
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -95,8 +96,8 @@ public class Gameplay {
         spawnTimer = 0;
         spawnTimerItems = 0;
         levelTimer = 0;
-        spawnInterval = 1.2f;
-        spawnIntervalDecreaseStep = 0.3f;
+        spawnInterval = 1.1f;
+        spawnIntervalDecreaseStep = 0.35f;
         spawnIntervalMinimum = 0.3f;
         spawnIntervalObstacles = 0.9f;
         spawnIntervalItems = 10.0f;
@@ -113,12 +114,13 @@ public class Gameplay {
         boostTimeMax = 4.0f;
         boostSpeedMax = 4.0f;
         boostActive = false;
-        superShotTime = 7.0f;
+        superShotTime = 7.5f;
         superShotPoints = 0.0f;
-        superShotPointsMax = 5000;
-        supetShotPointsMaxIncreaseInterval = 6000;
+        superShotPointsMax = 4000;
+        supetShotPointsMaxIncreaseInterval = 4000;
         superShotLevel = 0;
         superShotActive = false;
+        superShotLoaded = false;
     }
 
     private void initBackground() {
@@ -214,7 +216,7 @@ public class Gameplay {
                 calcLevel(speedUpFactor * delta);
                 //spawn new enemies
                 if (!gameoverSequence)
-                    spawnObjects(speedUpFactor * delta);
+                    spawnObjects(delta, speedUpFactor);
                 //update spawn objects
                 updateSpawns(delta, speedUpFactor);
                 //do collisions
@@ -282,8 +284,8 @@ public class Gameplay {
         }
     }
 
-    private void spawnObjects(float delta) {
-        spawnTimer += delta;
+    private void spawnObjects(float delta, float speedUpFactor) {
+        spawnTimer += delta * speedUpFactor;
         if (!spawnObstacles) {
             //spawn enemies
             if (spawnTimer >= spawnInterval) {
@@ -291,6 +293,7 @@ public class Gameplay {
                 spawnTimer = 0.0f;
             }
             //spawn items
+            //dont speed up item-spawning with speedUpFactor!
             spawnTimerItems += delta;
             if (spawnTimerItems >= spawnIntervalItems) {
                 spawnItems();
@@ -385,7 +388,7 @@ public class Gameplay {
         boostActive = true;
     }
 
-    private void setSuperShot(boolean active) {
+    public void setSuperShot(boolean active) {
         superShotActive = active;
         if (active) {
             player.setSuperGun(0);
@@ -394,18 +397,23 @@ public class Gameplay {
             player.setSuperGun(-1);
             superShotPoints = 0.0f;
         }
+        superShotLoaded = false;
     }
 
     private void increaseSuperShotPoints(float amount) {
         superShotPoints += amount;
         if (superShotPoints >= superShotPointsMax) {
             superShotPoints = superShotPointsMax;
-            setSuperShot(true);
+            superShotLoaded = true;
         }
     }
 
     public float getSuperShotPoints() {
         return superShotPoints / superShotPointsMax;
+    }
+
+    public boolean isSuperShotLoaded() {
+        return superShotLoaded;
     }
 
     private void updateSuperShot(float delta) {
@@ -434,7 +442,7 @@ public class Gameplay {
         else if (item.getType() == 1 && !superShotActive) { //random gun
             int rand = player.getGunLevel();
             while( rand == player.getGunLevel()) {
-                rand = random.nextInt(player.getGunLevel() + 4);
+                rand = player.getGunLevel() - 2 + random.nextInt(4);
             }
             System.out.println("Got random gun level: " + rand);
             player.setGunLevel(rand);

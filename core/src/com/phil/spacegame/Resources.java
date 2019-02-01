@@ -10,6 +10,8 @@ public class Resources extends AssetManager {
 
     //Paths to assets (Core/Assets/)
     private String fntBangers = "fonts/Bangers_bitmap.fnt";
+    public String imgLogo = "img/logo.png";
+    public String imgTwitter = "img/twitter_handle.png";
     public String bgLayerFront = "background/ground.png";
     public String bgLayerMid = "background/mountains.png";
     public String bgLayerMid2 = "background/mountains2.png";
@@ -49,6 +51,8 @@ public class Resources extends AssetManager {
         //load font
         load(fntBangers, BitmapFont.class, fontParam);
         //load images
+        load(imgLogo, Texture.class);
+        load(imgTwitter, Texture.class);
         load(bgLayerFront, Texture.class);
         load(bgLayerMid, Texture.class);
         load(bgLayerMid2, Texture.class);

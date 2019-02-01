@@ -28,6 +28,9 @@ public class GameInput implements InputProcessor {
 					|| keycode == Keys.UP) {
 				gamePlay.playerMoveUp();
 			}
+			if (keycode == Keys.L) {
+				gamePlayScreen.actionSuperShot();
+			}
 		}
 		return true;
 	}
@@ -45,7 +48,8 @@ public class GameInput implements InputProcessor {
 					gamePlay.playerMoveDown();
 				}
 			}
-			else if (keycode == Keys.ESCAPE) {
+			else if (keycode == Keys.ESCAPE
+					|| keycode == Keys.P) {
 				if (gamePlay.isPaused()){
 					gamePlayScreen.resumeGame();
 				}
@@ -55,7 +59,9 @@ public class GameInput implements InputProcessor {
 			}
 		}
 		else { //not started
-			if (keycode == Keys.SPACE) {
+			if (keycode == Keys.SPACE
+				|| keycode == Keys.W
+				|| keycode == Keys.UP) {
 				gamePlayScreen.startGame(gamePlay.isGameover());
 			}
 			else if (keycode == Keys.ESCAPE) {

@@ -59,7 +59,7 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setSize(128, 128);
             setCollisionArea(20, 60, 80, 55);
             setGunPower(40.0f);
-            setShootingInterval(1.2f);
+            setShootingInterval(1.4f);
             setGunType(6);
             addGun(180, 600, 0, 60);
             addGun(180, 600, 50, 60);

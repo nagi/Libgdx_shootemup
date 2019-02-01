@@ -87,6 +87,8 @@ public class Player extends ShootingObject {
     public void setGunLevel(int level) {
         if (level > gunLevelMax)
             level = gunLevelMax;
+        else if (level < 0)
+            level = 0;
         this.gunLevel = level;
         setGunsByLevel(level);
     }
@@ -258,8 +260,8 @@ public class Player extends ShootingObject {
     private void setGunsByLevel(int gunLevel) {
         float offsetY = 0;
 
-        float intervalGreenGun = 0.4f;
-        float intervalPurpleGun = 0.25f;
+        float intervalGreenGun = 0.35f;
+        float intervalPurpleGun = 0.22f;
         float intervalYellowGun = 0.14f;
         float speedGreenGun = 800.0f;
         float speedPurpleGun = 1100.0f;
@@ -298,16 +300,16 @@ public class Player extends ShootingObject {
             setShootingInterval(intervalGreenGun);
             setGunType(1); //green
             addGun(0, speedGreenGun, 150, offsetY);
-            addGun(4, speedGreenGun, 150, offsetY);
-            addGun(-4, speedGreenGun, 150, offsetY);
+            addGun(3, speedGreenGun, 150, offsetY);
+            addGun(-3, speedGreenGun, 150, offsetY);
         }
         else if (gunLevel == 5) {
             setGunPower(100.0f);
             setShootingInterval(intervalPurpleGun);
             setGunType(2); //purple
             addGun(0, speedPurpleGun, 150, offsetY);
-            addGun(4, speedPurpleGun, 150, offsetY);
-            addGun(-4, speedPurpleGun, 150, offsetY);
+            addGun(3, speedPurpleGun, 150, offsetY);
+            addGun(-3, speedPurpleGun, 150, offsetY);
         }
         else if (gunLevel == 6) {
             setGunPower(100.0f);
@@ -315,8 +317,8 @@ public class Player extends ShootingObject {
             setGunType(1); //green
             addGun(1.5f, speedGreenGun, 150, offsetY);
             addGun(-1.5f, speedGreenGun, 150, offsetY);
-            addGun(4, speedGreenGun, 150, offsetY + 10);
-            addGun(-4, speedGreenGun, 150, offsetY -10);
+            addGun(3.5f, speedGreenGun, 150, offsetY + 10);
+            addGun(-3.5f, speedGreenGun, 150, offsetY -10);
         }
         else if (gunLevel == 7) {
             setGunPower(100.0f);
@@ -324,8 +326,8 @@ public class Player extends ShootingObject {
             setGunType(2); //purple
             addGun(1.5f, speedPurpleGun, 150, offsetY);
             addGun(-1.5f, speedPurpleGun, 150, offsetY);
-            addGun(4, speedPurpleGun, 150, offsetY + 10);
-            addGun(-4, speedPurpleGun, 150, offsetY - 10);
+            addGun(3.5f, speedPurpleGun, 150, offsetY + 10);
+            addGun(-3.5f, speedPurpleGun, 150, offsetY - 10);
         }
         else if (gunLevel == 8) {
             setGunPower(100.0f);
