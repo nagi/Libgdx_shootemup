@@ -94,9 +94,9 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setGunPower(40.0f);
             setShootingInterval(1.4f);
             setGunType(3);
-            addGun(180, 500.0f, 0, 10);
+            addGun(180, 500.0f, 0, 0);
             addGun(180, 500.0f, 0, 30);
-            addGun(180, 500.0f, 0, 50);
+            addGun(180, 500.0f, 0, 60);
             setSpeed(-290.0f, 0.0f);
             setScore(150);
         }
@@ -108,13 +108,14 @@ public class Enemy extends ShootingObject implements SpawnObject {
             setSize(180, 90);
             setCollisionArea(20, 20, 90, 60);
             setGunPower(40.0f);
-            setShootingInterval(1.8f);
+            setShootingInterval(1.5f);
             setGunType(4);
             addGun(190, 450, 0, 60);
             addGun(190, 450, 0, 50);
+            addGun(180, 450, 0, 50);
             addGun(170, 450, 0, 40);
             addGun(170, 450, 0, 30);
-            setSpeed(-260.0f, 0.0f);
+            setSpeed(-320.0f, 0.0f);
             setScore(200);
         }
         //set initial position (random y-position)

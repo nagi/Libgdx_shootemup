@@ -25,7 +25,7 @@ public class GameplayScreen implements Screen {
 	private InputMultiplexer ingameUI;
 	//Instance of background music
 	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/back_music.ogg"));
-	private float volumeMusic = 0.3f;
+	private float volumeMusic = 0.25f;
 
 	public GameplayScreen(Spacegame game){
 		//keeping a reference to the main game class
@@ -84,6 +84,7 @@ public class GameplayScreen implements Screen {
 		guiStage.showPause(false);
 		Gdx.input.setInputProcessor(ingameUI);
 		gamePlay.resume();
+		music.play();
 	}
 
 	public void actionSuperShot() {
@@ -146,11 +147,13 @@ public class GameplayScreen implements Screen {
 			guiStage.showPause(true);
 			gamePlay.pause();
 		}
+		music.pause();
 	}
 
 	@Override
 	public void resume() {
 		//when game window becomes focused again
+		music.play();
 	}
 
 	@Override

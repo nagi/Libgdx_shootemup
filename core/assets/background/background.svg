@@ -515,6 +515,43 @@
        fy="70.114578"
        r="8.4666662"
        gradientUnits="userSpaceOnUse" />
+    <pattern
+       y="0"
+       x="0"
+       height="6"
+       width="6"
+       patternUnits="userSpaceOnUse"
+       id="EMFhbasepattern" />
+    <pattern
+       y="0"
+       x="0"
+       height="6"
+       width="6"
+       patternUnits="userSpaceOnUse"
+       id="EMFhbasepattern-9" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4876"
+       id="radialGradient933-9-4-3-5-6"
+       cx="122.65327"
+       cy="93.171127"
+       fx="122.65327"
+       fy="93.171127"
+       r="2.8348215"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.277518,-0.01774041,0.05279856,0.53467273,4.6095565,54.656713)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4876">
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0"
+         id="stop4872" />
+      <stop
+         style="stop-color:#e00006;stop-opacity:0.99215686"
+         offset="1"
+         id="stop4874" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -524,7 +561,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0040916"
-     inkscape:cx="636.53969"
+     inkscape:cx="418.93006"
      inkscape:cy="357.36865"
      inkscape:document-units="mm"
      inkscape:current-layer="layer6"
@@ -1225,6 +1262,16 @@
        inkscape:export-filename="D:\dev\Projekte\LibGDX\Libgdx_shootemup\core\assets\supershot_inner.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+    <ellipse
+       style="fill:url(#radialGradient933-9-4-3-5-6);fill-opacity:1;stroke:none;stroke-width:0.66185206;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path925-5-9-8-4-3"
+       cx="166.22064"
+       cy="102.29684"
+       inkscape:export-filename="D:\dev\Projekte\LibGDX\Libgdx_shootemup\core\assets\img\missile5.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       rx="3.175"
+       ry="1.190625" />
   </g>
   <g
      inkscape:groupmode="layer"

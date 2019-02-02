@@ -24,11 +24,12 @@ public class GameInput implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		if (gamePlay.isStarted()) {
 			if (keycode == Keys.SPACE
-					|| keycode == Keys.W
+					|| keycode == Keys.A
 					|| keycode == Keys.UP) {
 				gamePlay.playerMoveUp();
 			}
-			if (keycode == Keys.L) {
+			if (keycode == Keys.S
+					|| keycode == Keys.RIGHT) {
 				gamePlayScreen.actionSuperShot();
 			}
 		}
@@ -39,7 +40,7 @@ public class GameInput implements InputProcessor {
 	public boolean keyUp(int keycode) {
 		if (gamePlay.isStarted()) {
 			if (keycode == Keys.SPACE
-				|| keycode == Keys.W
+				|| keycode == Keys.A
 				|| keycode == Keys.UP) {
 				if (gamePlay.isPaused()){
 					gamePlayScreen.resumeGame();
@@ -60,7 +61,7 @@ public class GameInput implements InputProcessor {
 		}
 		else { //not started
 			if (keycode == Keys.SPACE
-				|| keycode == Keys.W
+				|| keycode == Keys.A
 				|| keycode == Keys.UP) {
 				gamePlayScreen.startGame(gamePlay.isGameover());
 			}

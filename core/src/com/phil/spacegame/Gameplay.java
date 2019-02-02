@@ -43,8 +43,9 @@ public class Gameplay {
     private boolean justDied;
     private boolean spawnObstacles;
     //spawn parameters
+    private int run;
     private int spawnLevel = 0;
-    private int spawnLevelMax = 9;
+    private int spawnLevelMax = 11;
     private float spawnInterval; //seconds
     private float spawnIntervalDecreaseStep; //seconds
     private float spawnIntervalMinimum; //seconds
@@ -114,7 +115,7 @@ public class Gameplay {
         spawnIntervalItemsDecreaseStep = 2.0f;
         spawnIntervalItemsMinimum = 4.0f;
         levelDurationEnemies = 21.0f;
-        levelDurationObstacles = 8.0f;
+        levelDurationObstacles = 6.0f;
         levelDurationObstaclesIncreaseStep = 1.5f;
         justDied = true;
         spawnObstacles = false;
@@ -134,6 +135,7 @@ public class Gameplay {
         superShotActive = false;
         superShotLoaded = false;
         superShotSoundPlayed = false;
+        run = 0;
     }
 
     private void initBackground() {
@@ -272,6 +274,8 @@ public class Gameplay {
             if (!spawnObstacles) {
                 spawnLevel++;
                 if (spawnLevel > spawnLevelMax) {
+                    run++;
+                    System.out.println("RUN: " + run);
                     spawnLevel = 0;
                     spawnInterval -= spawnIntervalDecreaseStep;
                     if (spawnInterval <= spawnIntervalMinimum) {
@@ -327,15 +331,15 @@ public class Gameplay {
     }
 
     private void spawnEnemies() {
-        if (spawnLevel <= 3)
+        if (spawnLevel <= 5)
             //spawn one enemy with random y-position
             spawnEnemy(spawnLevel,
                     Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (spawnLevel <= 9) {
+        else if (spawnLevel <= 11) {
             //spawn two enemies of two different levels at random y-position
-            spawnEnemy(spawnLevel - 4,
+            spawnEnemy(spawnLevel - 6,
                     Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-            spawnEnemy(spawnLevel - 3,
+            spawnEnemy(spawnLevel - 5,
                     Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         }
     }
@@ -380,12 +384,16 @@ public class Gameplay {
 
             int newGunType = player.getGunLevel();
             while (newGunType == player.getGunLevel()) {
-                if (spawnLevel < 2)
-                    newGunType = random.nextInt(3);
-                else if (spawnLevel < 6)
-                    newGunType = random.nextInt(5);
-                else
-                    newGunType = random.nextInt(11);
+                if (run == 0) {
+                    if (spawnLevel < 2)
+                        newGunType = random.nextInt(3);
+                    else if (spawnLevel < 6)
+                        newGunType = random.nextInt(5);
+                    else
+                        newGunType = random.nextInt(11);
+                } else {
+                    newGunType = 4 + random.nextInt(13);
+                }
             }
 
             i.init(10 + newGunType, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));

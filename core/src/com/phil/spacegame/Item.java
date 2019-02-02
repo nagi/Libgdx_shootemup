@@ -154,6 +154,22 @@ public class Item extends GameObject implements SpawnObject {
             setAnimation(animName);
             setSize(64, 64);
         }
+        else if (type == 22) { //Gun yellow 4
+            animName = "ANIM22";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 12, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
+        }
+        else if (type == 23) { //Gun yellow 4
+            animName = "ANIM23";
+            if (!containsAnimation(animName))
+                addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetGunUpgrades, Texture.class),
+                        4, 4, 15, 1, 1.00f, animName, true );
+            setAnimation(animName);
+            setSize(64, 64);
+        }
         else {
             System.out.println("Item.init(): Item of type "+  type + "not found.");
         }

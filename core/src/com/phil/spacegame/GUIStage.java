@@ -21,7 +21,7 @@ public class GUIStage {
     private Stage stage;
     //menu gui objects
     private Label lblStart;
-    private String txtStart = "Press \" W \" to start!";
+    private String txtStart = "Press \" A \" to start!";
     private Image imgLogo;
     private Image imgTwitter;
     //ingame gui objects
@@ -30,7 +30,7 @@ public class GUIStage {
     private String txtGameOver = "Gameover!";
     private String txtHighscore = "Highscore: ";
     private String txtHighscorePoints = "0";
-    private String txtPressForSuperShot = "Super shot!  (Press \" L \")";
+    private String txtPressForSuperShot = "Super shot!  (Press \" S \")";
     private int offsetGameover = 100;
     private int offsetHighscore = 100;
     private Label lblPause;

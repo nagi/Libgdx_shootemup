@@ -32,7 +32,7 @@ public class ShootingObject extends GameObject {
     private Sound sfxShot;
     private float sfxShotVolume;
     private Sound sfxExplosion = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion1.ogg"));
-    private float volumeExplosion = 1.0f;
+    private float volumeExplosion = 0.8f;
 
     public ShootingObject() {
         //creating guns
