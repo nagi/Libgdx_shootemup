@@ -3,6 +3,7 @@ package com.phil.spacegame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,6 +23,9 @@ public class GameplayScreen implements Screen {
 	private GameInput gameInput;
 	//putting GUIStage-input and GameInput together
 	private InputMultiplexer ingameUI;
+	//Instance of background music
+	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/back_music.ogg"));
+	private float volumeMusic = 0.3f;
 
 	public GameplayScreen(Spacegame game){
 		//keeping a reference to the main game class
@@ -54,6 +58,10 @@ public class GameplayScreen implements Screen {
 		Gdx.input.setInputProcessor(ingameUI);
 		//show "Press to start"
 		guiStage.showMenuGUI(true);
+		//play music
+		music.setVolume(volumeMusic);
+		music.setLooping(true);
+		music.play();
 	}
 
 	public void startGame(boolean restart) {
@@ -148,5 +156,6 @@ public class GameplayScreen implements Screen {
 	@Override
 	public void dispose() {
 		spriteBatch.dispose();
+		music.dispose();
 	}
 }

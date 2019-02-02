@@ -1,5 +1,8 @@
 package com.phil.spacegame;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 public class ShootingObject extends GameObject {
 
     public class Gun {
@@ -25,6 +28,11 @@ public class ShootingObject extends GameObject {
     private Gun guns[] = new Gun[10];
     private int maxGuns = 10;
     private int gunsCount = 0;
+    //sound
+    private Sound sfxShot;
+    private float sfxShotVolume;
+    private Sound sfxExplosion = Gdx.audio.newSound(Gdx.files.internal("sounds/explosion1.ogg"));
+    private float volumeExplosion = 1.0f;
 
     public ShootingObject() {
         //creating guns
@@ -43,6 +51,15 @@ public class ShootingObject extends GameObject {
         timer = 0.0f;
         //activate shooting
         shootingActive = true;
+    }
+
+    public void playExplosionSound() {
+        sfxExplosion.play(volumeExplosion);
+    }
+
+    public void setShotSound(String path, float volume) {
+        sfxShot = Gdx.audio.newSound(Gdx.files.internal(path));
+        sfxShotVolume = volume;
     }
 
     public void resetGuns() {
@@ -91,6 +108,9 @@ public class ShootingObject extends GameObject {
     }
 
     public void shoot() {
+        if (sfxShot != null)
+            sfxShot.play(sfxShotVolume);
+
         for (Gun g: guns) {
             if (g.active) {
                 Missile m = (Missile) Gameplay.spawnPool.getFromPool(missilesPool);

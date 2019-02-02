@@ -1,5 +1,7 @@
 package com.phil.spacegame;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -130,6 +132,12 @@ public class Enemy extends ShootingObject implements SpawnObject {
     public void hit(float power) {
         //Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
         //expl.init(getX() + 30, getY() + getHeight() / 2, 90);
+        //spawn explosion
+        Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
+        expl.init(getX() + 20, getY() + getHeight() / 2, 150);
+        //sound
+        super.playExplosionSound();
+
         kill(Gameplay.spawnPool);
         //TODO reduce power instead of killing directly
     }
@@ -154,9 +162,6 @@ public class Enemy extends ShootingObject implements SpawnObject {
     }
 
     public void kill(SpawnPool pool) {
-        //spawn explosion
-        Explosion expl = (Explosion)Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
-        expl.init(getX() + 20, getY() + getHeight() / 2, 150);
         //despawn
         pool.returnToPool(this);
         setPosition(Spacegame.screenWidth, 0);

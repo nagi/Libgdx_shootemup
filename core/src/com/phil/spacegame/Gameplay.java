@@ -1,5 +1,7 @@
 package com.phil.spacegame;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -48,6 +50,8 @@ public class Gameplay {
     private float spawnIntervalMinimum; //seconds
     private float spawnIntervalObstacles; //seconds
     private float spawnIntervalItems; //seconds
+    private float spawnIntervalItemsDecreaseStep; //seconds
+    private float spawnIntervalItemsMinimum;
     private float levelDurationEnemies; //seconds
     private float levelDurationObstacles; //seconds
     private float levelDurationObstaclesIncreaseStep; //seconds
@@ -76,6 +80,12 @@ public class Gameplay {
     private float superShotTime;
     private float supetShotPointsMaxIncreaseInterval;
     private boolean superShotLoaded;
+    //sounds
+    private Sound sfxCollectItem = Gdx.audio.newSound(Gdx.files.internal("sounds/collect_item.mp3"));
+    private float volumeCollectItem = 0.6f;
+    private Sound sfxSuperShotLoaded = Gdx.audio.newSound(Gdx.files.internal("sounds/supershot_loaded.ogg"));
+    private float volumeSuperShotLoaded = 1.1f;
+    private boolean superShotSoundPlayed;
 
     public Gameplay(GameplayScreen gs) {
         this.gameplayScreen = gs;
@@ -97,13 +107,15 @@ public class Gameplay {
         spawnTimerItems = 0;
         levelTimer = 0;
         spawnInterval = 1.1f;
-        spawnIntervalDecreaseStep = 0.35f;
+        spawnIntervalDecreaseStep = 0.3f;
         spawnIntervalMinimum = 0.3f;
         spawnIntervalObstacles = 0.9f;
         spawnIntervalItems = 10.0f;
-        levelDurationEnemies = 25.0f;
-        levelDurationObstacles = 10.0f;
-        levelDurationObstaclesIncreaseStep = 2.0f;
+        spawnIntervalItemsDecreaseStep = 2.0f;
+        spawnIntervalItemsMinimum = 4.0f;
+        levelDurationEnemies = 21.0f;
+        levelDurationObstacles = 8.0f;
+        levelDurationObstaclesIncreaseStep = 1.5f;
         justDied = true;
         spawnObstacles = false;
         levelDuration = levelDurationEnemies;
@@ -117,10 +129,11 @@ public class Gameplay {
         superShotTime = 7.5f;
         superShotPoints = 0.0f;
         superShotPointsMax = 4000;
-        supetShotPointsMaxIncreaseInterval = 4000;
+        supetShotPointsMaxIncreaseInterval = 3500;
         superShotLevel = 0;
         superShotActive = false;
         superShotLoaded = false;
+        superShotSoundPlayed = false;
     }
 
     private void initBackground() {
@@ -264,6 +277,10 @@ public class Gameplay {
                     if (spawnInterval <= spawnIntervalMinimum) {
                         spawnInterval = spawnIntervalMinimum;
                     }
+                    spawnIntervalItems -= spawnIntervalItemsDecreaseStep;
+                    if (spawnIntervalItems <= spawnIntervalItemsMinimum) {
+                        spawnIntervalItems = spawnIntervalItemsMinimum;
+                    }
                 }
                 //after every 2 levels spawn an obstacle level
                 if (spawnLevel % 2 == 0) {
@@ -353,17 +370,29 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.2f) //repair tool
+        if (rand < 0.15f) //repair tool
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand < 0.4f) //shield
+        else if (rand < 0.3f) //shield
             i.init(2, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand < 0.6f) //boost
+        else if (rand < 0.45f) //boost
             i.init(3, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand <= 0.8f && player.getGunLevel() < player.getGunLevelMax()) //gun upgrade
-            i.init(10 + player.getGunLevel() + 1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else { //random gun upgrade/downgrade
-            i.init(1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+        else {//gun upgrade
+
+            int newGunType = player.getGunLevel();
+            while (newGunType == player.getGunLevel()) {
+                if (spawnLevel < 2)
+                    newGunType = random.nextInt(3);
+                else if (spawnLevel < 6)
+                    newGunType = random.nextInt(5);
+                else
+                    newGunType = random.nextInt(11);
+            }
+
+            i.init(10 + newGunType, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         }
+//        else { //random gun upgrade/downgrade
+//            i.init(1, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
+//        }
     }
 
     private void calcBoostEffect(float delta) {
@@ -398,6 +427,7 @@ public class Gameplay {
             superShotPoints = 0.0f;
         }
         superShotLoaded = false;
+        superShotSoundPlayed = false;
     }
 
     private void increaseSuperShotPoints(float amount) {
@@ -405,6 +435,10 @@ public class Gameplay {
         if (superShotPoints >= superShotPointsMax) {
             superShotPoints = superShotPointsMax;
             superShotLoaded = true;
+            if (!superShotSoundPlayed) {
+                sfxSuperShotLoaded.play(volumeSuperShotLoaded);
+                superShotSoundPlayed = true;
+            }
         }
     }
 
@@ -458,6 +492,9 @@ public class Gameplay {
             player.setShootingActive(false);
         }
 
+        //sound
+        sfxCollectItem.play(volumeCollectItem);
+
         item.kill(spawnPool);
     }
 
@@ -487,7 +524,7 @@ public class Gameplay {
                             score += enemy.getScore();
                             if (!superShotActive)
                                 increaseSuperShotPoints(enemy.getScore());
-                            enemy.kill(spawnPool);
+                            enemy.hit(100000);
                             player.hit(100000);
                             parallaxBackground.shake();
                         }

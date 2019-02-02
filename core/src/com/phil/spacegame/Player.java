@@ -59,6 +59,8 @@ public class Player extends ShootingObject {
         sparkles.setAnimation("SPARKLES");
         sparkles.setSize(210, 105);
         sparkles.setAlpha(0.8f);
+        //sound
+        setShotSound("sounds/shot1.ogg", 0.4f);
         //initialize and define pool with missiles
         init(SpawnType.MissilePlayer);
     }
@@ -106,6 +108,8 @@ public class Player extends ShootingObject {
                 expl2.init(getX() + 110, getY(), 150);
                 Explosion expl3 = (Explosion) Gameplay.spawnPool.getFromPool(SpawnType.Explosion);
                 expl3.init(getX() + 70, getY() + 30, 150);
+
+                super.playExplosionSound();
             }
         }
     }
@@ -158,7 +162,7 @@ public class Player extends ShootingObject {
             shadow.setAlpha((Spacegame.screenHeight - getY()) / Spacegame.screenHeight );
             //sparkles
             if (showSparkles) {
-                sparkles.setPosition(getX() - 20, getY());
+                sparkles.setPosition(getX() - 20, getY() - 20);
                 sparkles.animate(delta);
                 if (sparkles.activeAnimFinished) {
                     showSparkles = false;
