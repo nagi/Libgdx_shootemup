@@ -38,7 +38,7 @@ public class Resources extends AssetManager {
     public String animItemCollect = "anim/anim_item_collect.png";
     public String shield = "img/shield.png";
     public String shieldBoost = "img/shield_boost.png";
-    public String superShot = "img/superShot.png";
+    public String superShot = "img/supershot.png";
 
     //font instance for global usage
     public BitmapFont font1;
