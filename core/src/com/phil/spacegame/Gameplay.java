@@ -116,7 +116,7 @@ public class Gameplay {
         spawnIntervalItemsMinimum = 4.0f;
         levelDurationEnemies = 21.0f;
         levelDurationObstacles = 6.0f;
-        levelDurationObstaclesIncreaseStep = 1.5f;
+        levelDurationObstaclesIncreaseStep = 1.0f;
         justDied = true;
         spawnObstacles = false;
         levelDuration = levelDurationEnemies;
@@ -392,7 +392,7 @@ public class Gameplay {
                     else
                         newGunType = random.nextInt(11);
                 } else {
-                    newGunType = 4 + random.nextInt(13);
+                    newGunType = 4 + random.nextInt(9);
                 }
             }
 
