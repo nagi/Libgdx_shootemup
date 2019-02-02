@@ -83,7 +83,7 @@ public class Gameplay {
     private boolean superShotLoaded;
     //sounds
     private Sound sfxCollectItem = Gdx.audio.newSound(Gdx.files.internal("sounds/collect_item.mp3"));
-    private float volumeCollectItem = 0.6f;
+    private float volumeCollectItem = 0.4f;
     private Sound sfxSuperShotLoaded = Gdx.audio.newSound(Gdx.files.internal("sounds/supershot_loaded.ogg"));
     private float volumeSuperShotLoaded = 1.1f;
     private boolean superShotSoundPlayed;

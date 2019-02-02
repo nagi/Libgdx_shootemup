@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.1 r15371"
    sodipodi:docname="upgrades.svg"
-   inkscape:export-filename="D:\dev\Projekte\LibGDX\Libgdx_shootemup\core\assets\item_gun_upgrade.png"
+   inkscape:export-filename="D:\dev\Projekte\LibGDX\Libgdx_shootemup\core\assets\img\item_gun_upgrade.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -540,7 +540,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.6681164"
+     inkscape:zoom="1.8340582"
      inkscape:cx="70.843593"
      inkscape:cy="79.588036"
      inkscape:document-units="mm"
@@ -1043,27 +1043,6 @@
            sodipodi:nodetypes="ccccc" />
       </g>
     </g>
-    <image
-       y="300.35358"
-       x="6.8511519"
-       id="image4605"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAJCAYAAAAo/ezGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHySURB
-VCiRbVNLapRBEP66Ht0JSSbjAQzeIBsRUfACxp1kE7NwGRd6Fd3pSog7xY3kBiIi2Yg3UC8wMzE6
-/ahqF/+fl1hQVC+Kj+9RHfBPvQVW42Ryj1K6KcTbzLxFRFuBwkpA2ASAjj5378vu9t3NftTm36yV
-4zqff9wF/lzGC2ePdxsbd1JKT1V1RzWuqQpEFMwMYgYRIYRhvfcOd4ebobU2dK2otZ7WVo+WOb/Y
-PTn5DADhEFibTK+90hT3UkyIKUJjQlSFxggRhYiAmEBEAAB3h5nBWkMdgFFLQSkFpWSUXFBKfnMy
-mx3I+nT6UqLuxRgRU0JK6cqMMUJjhIqCmAEAZjYyLii5IJcMZkYgwigSvff9tcmkS0C4T0QgGmwg
-ZjAzmAUiAtWIlBJSWkFKCQCQc0bOy6tquA120thMIOIH4t6P3Hzf3eBuw7IZmjVwZQQqI2tHzvlC
-QRsUtNZg1mBmcLMhGx9md/sgp4vZAU2nIYTwaJAG9JFVqxVaFEuRkd1FBm4+Bjz6Xyvquf8FpdRD
-XSyenF/R+8nkdhR5JjHtqOq66BAuXwL/3xVdqGmotfxquR7lVp4/XCy+XDnTs3oNrEw3N++SyC0R
-2Wbm60R8gyisBoTJ+A8W3ftvd/9uZj+t1a+ttePZfP7pMbC8jPcX4dE2IhvGX+UAAAAASUVORK5C
-YII=
-"
-       style="image-rendering:optimizeSpeed"
-       preserveAspectRatio="none"
-       height="2.3812499"
-       width="6.3499999" />
     <g
        transform="translate(-18.282417,15.606711)"
        id="g4614">
