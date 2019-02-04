@@ -80,15 +80,40 @@ private SpawnObject createSpawnObject(SpawnType type) {
     //Prepare classname
     String className = nameOfPackage + type.name();
     try {
-        Class<?> c = Class.forName(className);
-        //debug
-        //System.out.println(" - Class: " + c.getName());
+        //Dynamic creation of an instance of a class
 
-        Constructor<?> ctor = c.getConstructor(String.class);
-        //create new instance (there has to be at least
-        //one arg, otherwise it doesn't work...)
-        Object object = ctor.newInstance("");
-        SpawnObject created = (SpawnObject) object;
+        // not working with GWT (for html5 deploy)!
+        // Java Reflection api not working with GWT
+        // -> Class.getConstructor(), Class.forName(), ...
+
+//        Class c = Class.forName(className);
+//        //debug
+//        //System.out.println(" - Class: " + c.getName());
+//
+//        Constructor ctor = c.getConstructor(String.class);
+//        //create new instance (there has to be at least
+//        //one arg, otherwise it doesn't work...)
+//        Object object = ctor.newInstance("");
+//        SpawnObject created = (SpawnObject) object;
+
+        //Workaround to compile with GWT for Html5 deploy
+        SpawnObject created = null;
+        if (type.name() == "MissilePlayer")
+            created = new MissilePlayer("");
+        else if (type.name() == "MissileEnemy")
+            created = new MissileEnemy("");
+        else if (type.name() == "Enemy")
+            created = new Enemy("");
+        else if (type.name() == "Item")
+            created = new Item("");
+        else if (type.name() == "Obstacle")
+            created = new Obstacle("");
+        else if (type.name() == "Explosion")
+            created = new Explosion("");
+        else
+            System.err.println("SpawnPool: " + type.name()
+                    + " not able to spawn. Maybe forgot to add in createSpawnObject()?");
+
         return created;
 
     } catch(Exception e) {
