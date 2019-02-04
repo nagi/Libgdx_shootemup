@@ -87,15 +87,17 @@ public class GameInput implements InputProcessor {
 		//touch actions...
 //		System.out.println("Touched game ui.  Ratio: " + Spacegame.ratioX + " sx: " + sX + " , sy: " + sY); //debug
 
-		if (button == Input.Buttons.LEFT) {
-			if (gamePlay.isStarted())
-				gamePlay.touchDown(sX, sY);
-			else
-				gamePlayScreen.startGame(gamePlay.isGameover());
-		}
-		else if(button == Input.Buttons.RIGHT) {
-			gamePlayScreen.actionSuperShot();
-		}
+		//removed for html deploy
+
+//		if (button == Input.Buttons.LEFT) {
+//			if (gamePlay.isStarted())
+//				gamePlay.touchDown(sX, sY);
+//			else
+//				gamePlayScreen.startGame(gamePlay.isGameover());
+//		}
+//		else if(button == Input.Buttons.RIGHT) {
+//			gamePlayScreen.actionSuperShot();
+//		}
 		return true;
 	}
 
