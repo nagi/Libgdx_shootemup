@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import javafx.scene.input.MouseButton;
+// import javafx.scene.input.MouseButton;
 
 import java.security.Key;
 
@@ -25,10 +25,11 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		if (gamePlay.isStarted()) {
-			if (keycode == Keys.SPACE
-					|| keycode == Keys.A
-					|| keycode == Keys.UP) {
+			if (keycode == Keys.A || keycode == Keys.UP) {
 				gamePlay.playerMoveUp();
+			}
+			if (keycode == Keys.Z || keycode == Keys.DOWN) {
+				gamePlay.playerMoveDown();
 			}
 			if (keycode == Keys.S
 					|| keycode == Keys.RIGHT) {
@@ -41,14 +42,12 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyUp(int keycode) {
 		if (gamePlay.isStarted()) {
-			if (keycode == Keys.SPACE
-				|| keycode == Keys.A
-				|| keycode == Keys.UP) {
+			if (keycode == Keys.A || keycode == Keys.UP || keycode == Keys.Z || keycode == Keys.DOWN) {
 				if (gamePlay.isPaused()){
 					gamePlayScreen.resumeGame();
 				}
 				else {
-					gamePlay.playerMoveDown();
+					gamePlay.playerStayStill();
 				}
 			}
 			else if (keycode == Keys.ESCAPE

@@ -633,13 +633,17 @@ public class Gameplay {
 
     public void playerMoveUp() {
         //move player upwards
-        if (!player.isDead())
-            player.setAccelerateUp(true);
+        if (!player.isDead()) player.setAccelerateUp();
     }
 
     public void playerMoveDown() {
-        //stop the upward movement
-        player.setAccelerateUp(false);
+        //move player downwards
+        if (!player.isDead()) player.setAccelerateDown();
+    }
+
+    public void playerStayStill() {
+        //move player downwards
+        if (!player.isDead()) player.setAccelerateOff();
     }
 
     public void touchDown(float screenX, float screenY) {

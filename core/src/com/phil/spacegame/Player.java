@@ -14,9 +14,10 @@ public class Player extends ShootingObject {
     private int collisionMarginBottom = 30;
     //acceleration speeds
     private float accelerationUp = 2000;
-    private float accelerationDown = 1600;
+    private float accelerationDown = 2000;
     private float moveStepY;
     private boolean accelerateUp;
+    private boolean accelerateDown;
     //ground shadow
     private Sprite shadow;
     private float shadowPosY;
@@ -184,8 +185,9 @@ public class Player extends ShootingObject {
         //calculate movement up and down
         if (accelerateUp) {
             accelerateUp(delta);
-        } else {
-            fall(delta);
+        } 
+        if (accelerateDown) {
+            accelerateDown(delta);
         }
         //apply movement
         setY(getY() + moveStepY * delta);
@@ -205,10 +207,21 @@ public class Player extends ShootingObject {
         }
     }
 
-    public void setAccelerateUp(boolean acc) {
-        accelerateUp = acc;
-        if (acc)
-            moveStepY = 0.0f;
+    public void setAccelerateUp() {
+        accelerateUp = true;
+        accelerateDown = false;
+        moveStepY = 0.0f;
+    }
+    public void setAccelerateDown() {
+        accelerateDown = true;
+        accelerateUp = false;
+        moveStepY = 0.0f;
+    }
+
+    public void setAccelerateOff() {
+        accelerateDown = false;
+        accelerateUp = false;
+        moveStepY = 0.0f;
     }
 
     private  void accelerateUp(float delta) {
@@ -217,7 +230,7 @@ public class Player extends ShootingObject {
         }
     }
 
-    private void fall(float delta) {
+    private void accelerateDown(float delta) {
         if (moveStepY > -650) {
             moveStepY -= accelerationDown * delta;
         }
