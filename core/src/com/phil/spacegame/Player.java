@@ -10,7 +10,7 @@ public class Player extends ShootingObject {
     private float life = 1000.0f;
     private boolean dead;
     //collision margins
-    private int collisionMarginTop = 110;
+    private int collisionMarginTop = 50;
     private int collisionMarginBottom = 30;
     //acceleration speeds
     private float accelerationUp = 2000;
