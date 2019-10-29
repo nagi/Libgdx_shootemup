@@ -46,7 +46,7 @@ public class Player extends ShootingObject {
         setAnimation("ANIM");
         //init shadow
         shadow = new Sprite(Spacegame.resources.get(Spacegame.resources.shadow, Texture.class));
-        shadow.setBounds(80, collisionMarginBottom -10, 179, 25);
+        shadow.setBounds(100, collisionMarginBottom -10, 150, 20);
         //init shield sprites
         //normal shield from shield-item
         shield = new Sprite(Spacegame.resources.get(Spacegame.resources.shield, Texture.class));
