@@ -110,8 +110,8 @@ public class Gameplay {
         spawnInterval = 1.1f;
         spawnIntervalDecreaseStep = 0.3f;
         spawnIntervalMinimum = 0.3f;
-        spawnIntervalObstacles = 0.9f;
-        spawnIntervalItems = 10.0f;
+        spawnIntervalObstacles = 0.5f;
+        spawnIntervalItems = 7.0f;
         spawnIntervalItemsDecreaseStep = 2.0f;
         spawnIntervalItemsMinimum = 4.0f;
         levelDurationEnemies = 21.0f;
@@ -533,7 +533,7 @@ public class Gameplay {
                             if (!superShotActive)
                                 increaseSuperShotPoints(enemy.getScore());
                             enemy.hit(100000);
-                            player.hit(100000);
+                            player.hit(350);
                             parallaxBackground.shake();
                         }
                     }
