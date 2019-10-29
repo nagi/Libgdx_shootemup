@@ -50,7 +50,7 @@ public class GameplayScreen implements Screen {
 		guiStage.init();
 		ShaderLoader.BasePath = "shaders/";
 		postProcessor = new PostProcessor( false, false, false);
-		Bloom bloom = new Bloom( (int)(Gdx.graphics.getWidth() * 0.05f), (int)(Gdx.graphics.getHeight() * 0.05f) );
+		Bloom bloom = new Bloom( (int)(Gdx.graphics.getWidth() * 0.04d), (int)(Gdx.graphics.getHeight() * 0.03d) );
 		int effects = Effect.PhosphorVibrance.v | Effect.Tint.v;
 		CrtMonitor crtMonitor = new CrtMonitor(Spacegame.screenWidth, Spacegame.screenHeight, false, false, RgbMode.RgbShift, effects);
 		postProcessor.addEffect( bloom );
