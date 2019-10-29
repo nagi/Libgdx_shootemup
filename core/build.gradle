@@ -3,5 +3,5 @@ sourceCompatibility = 1.7
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 sourceSets.main.java.srcDirs = ["src/"]
 dependencies {
-    implementation files('/Users/pwalker/GAME/Libgdx_shootemup/apps/libs/gdx-postprocessing-1.0.jar')
+    implementation files('../apps/libs/gdx-postprocessing-1.0.jar')
 }
