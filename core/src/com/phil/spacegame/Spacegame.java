@@ -2,6 +2,9 @@ package com.phil.spacegame;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.bitfire.postprocessing.effects.Bloom;
+import com.bitfire.utils.ShaderLoader;
+import com.bitfire.postprocessing.PostProcessor;
 
 public class Spacegame extends Game {
 	//Screen settings

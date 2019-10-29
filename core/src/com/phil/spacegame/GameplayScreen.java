@@ -8,6 +8,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.bitfire.postprocessing.PostProcessor;
+import com.bitfire.postprocessing.effects.Bloom;
+import com.bitfire.postprocessing.effects.CrtMonitor;
+import com.bitfire.utils.ShaderLoader;
+import com.bitfire.postprocessing.filters.CrtScreen.RgbMode;
+import com.bitfire.postprocessing.filters.CrtScreen.Effect;
 
 public class GameplayScreen implements Screen {
 
@@ -26,6 +32,7 @@ public class GameplayScreen implements Screen {
 	//Instance of background music
 	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/back_music.ogg"));
 	private float volumeMusic = 0.28f;
+	private PostProcessor postProcessor;
 
 	public GameplayScreen(Spacegame game){
 		//keeping a reference to the main game class
@@ -41,7 +48,13 @@ public class GameplayScreen implements Screen {
 		Stage uiStage = new Stage(viewport);
 		guiStage = new GUIStage(uiStage);
 		guiStage.init();
-
+		ShaderLoader.BasePath = "shaders/";
+		postProcessor = new PostProcessor( false, false, false);
+		Bloom bloom = new Bloom( (int)(Gdx.graphics.getWidth() * 0.05f), (int)(Gdx.graphics.getHeight() * 0.05f) );
+		int effects = Effect.PhosphorVibrance.v | Effect.Tint.v;
+		CrtMonitor crtMonitor = new CrtMonitor(Spacegame.screenWidth, Spacegame.screenHeight, false, false, RgbMode.RgbShift, effects);
+		postProcessor.addEffect( bloom );
+		postProcessor.addEffect( crtMonitor );
 		initGame(); //Todo: call initGame() from Menu
 	}
 
@@ -97,6 +110,7 @@ public class GameplayScreen implements Screen {
 	@Override
 	//Rendering und Update
 	public void render(float delta) {
+		postProcessor.capture();
 		//update gamePlay
 		if (gamePlay != null) {
 			gamePlay.update(delta);
@@ -117,6 +131,7 @@ public class GameplayScreen implements Screen {
 		//render GUI
 		if (guiStage != null)
 			guiStage.draw(delta);
+		postProcessor.render();
 	}
 
 	@Override
