@@ -107,24 +107,24 @@ public class Gameplay {
         spawnTimer = 0;
         spawnTimerItems = 0;
         levelTimer = 0;
-        spawnInterval = 1.1f;
+        spawnInterval = 0.9f;
         spawnIntervalDecreaseStep = 0.3f;
-        spawnIntervalMinimum = 0.3f;
+        spawnIntervalMinimum = 0.2f;
         spawnIntervalObstacles = 0.5f;
-        spawnIntervalItems = 7.1f;
+        spawnIntervalItems = 9.5f;
         spawnIntervalItemsDecreaseStep = 2.1f;
         spawnIntervalItemsMinimum = 4.0f;
         levelDurationEnemies = 21.0f;
         levelDurationObstacles = 6.5f;
-        levelDurationObstaclesIncreaseStep = 1.2f;
+        levelDurationObstaclesIncreaseStep = 1.0f;
         justDied = true;
         spawnObstacles = false;
         levelDuration = levelDurationEnemies;
         speedUpFactor = 1.0f;
         boostTimer = 0.0f;
         boostTime = 0.0f;
-        boostStoppingTime = 4.0f;
-        boostTimeMax = 5.0f;
+        boostStoppingTime = 3.0f;
+        boostTimeMax = 4.5f;
         boostSpeedMax = 3.8f;
         boostActive = false;
         superShotTime = 7.5f;
@@ -374,7 +374,7 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.15f) //repair tool
+        if (rand < 0.25f) //repair tool
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         else if (rand < 0.3f) //shield
             i.init(2, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
@@ -533,7 +533,7 @@ public class Gameplay {
                             if (!superShotActive)
                                 increaseSuperShotPoints(enemy.getScore());
                             enemy.hit(100000);
-                            player.hit(350);
+                            player.hit(400);
                             parallaxBackground.shake();
                         }
                     }
