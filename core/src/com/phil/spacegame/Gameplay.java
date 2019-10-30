@@ -354,7 +354,7 @@ public class Gameplay {
     private void spawnObstacles(int type) {
         //Spawn obstacle sequence
         float pos = random.nextFloat();
-        float posY = random.nextInt(110);
+        float posY = random.nextInt(200);
         //reduce propability that obstacle spawns at same pos as the previous one
         float threshold = obstaclePreviousPosUp ? 0.26f : 0.51f;
         if (pos <= threshold)
