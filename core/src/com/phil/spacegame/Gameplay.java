@@ -158,7 +158,7 @@ public class Gameplay {
         player = new Player();
         player.setSize(256, 64);
         player.setPosition(70, 500);
-        player.setCollisionArea(40, 20, 120, 35);
+        player.setCollisionArea(20, 10, 120, 40);
         //set guns
         player.setGunLevel(0);
         //set health
