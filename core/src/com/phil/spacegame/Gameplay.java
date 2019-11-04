@@ -374,9 +374,9 @@ public class Gameplay {
     private void spawnItems() {
         Item i = (Item) spawnPool.getFromPool(SpawnType.Item);
         float rand = random.nextFloat();
-        if (rand < 0.25f) //repair tool
+        if (rand < 0.24f) //repair tool
             i.init(0, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
-        else if (rand < 0.3f) //shield
+        else if (rand < 0.32f) //shield
             i.init(2, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
         else if (rand < 0.45f) //boost
             i.init(3, Spacegame.screenWidth + 150, 20 + Gameplay.random.nextInt(600));
