@@ -29,8 +29,8 @@ public class Obstacle extends GameObject implements SpawnObject {
                 addAnimation(Spacegame.resources.get(Spacegame.resources.animCloud, Texture.class),
                         8, 8, 0, 64, 0.1f, "ANIM1", false);
             setAnimation("ANIM1");
-            setSize(140, 140);
-            setCollisionArea(30, 50, 80, 75);
+            setSize(220, 220);
+            setCollisionArea(20, 30, 170, 165);
             setSpeed(-425.0f, 42.75f);
             restartAnimRandom = true;
         }
