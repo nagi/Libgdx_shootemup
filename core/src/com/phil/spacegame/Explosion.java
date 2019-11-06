@@ -10,7 +10,7 @@ public class Explosion extends AnimatedSprite implements SpawnObject {
     public Explosion(String arg) {
         //load and set animation. Looping is disabled
         addAnimation(Spacegame.resources.get(Spacegame.resources.tilesetExplosion, Texture.class),
-                8, 8, 19, 45, 0.02f, "ANIM", false);
+                8, 8, 17, 47, 0.02f, "ANIM", false);
         setAnimation("ANIM");
     }
 

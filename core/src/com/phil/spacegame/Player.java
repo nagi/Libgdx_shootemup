@@ -56,10 +56,10 @@ public class Player extends ShootingObject {
         shieldBoost.setBounds(-300, 0, 222, 92);//sparkles
         sparkles = new AnimatedSprite();
         sparkles.addAnimation(Spacegame.resources.get(Spacegame.resources.animItemCollect, Texture.class),
-                8, 2, 0, 16, 0.04f, "SPARKLES", false);
+                8, 2, 0, 16, 0.05f, "SPARKLES", false);
         sparkles.setAnimation("SPARKLES");
-        sparkles.setSize(210, 105);
-        sparkles.setAlpha(0.8f);
+        sparkles.setSize(190, 120);
+        sparkles.setAlpha(0.9f);
         //sound
         setShotSound("sounds/laser4.mp3", 0.97f);
         //initialize and define pool with missiles
