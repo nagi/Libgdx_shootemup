@@ -16,6 +16,9 @@ public class GameInput implements InputProcessor {
 	//Reference to gameplay
 	private Gameplay gamePlay;
 
+	int width = Gdx.app.getGraphics().getWidth();
+	int height = Gdx.app.getGraphics().getHeight();
+
 	public GameInput(GameplayScreen screen, Gameplay gamePlay) {
 		this.gamePlayScreen = screen;
 		this.gamePlay = gamePlay;
@@ -80,27 +83,36 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		if (gamePlay.isPaused()) {
+			gamePlayScreen.resumeGame();
+		} else
 		if (gamePlay.isStarted()) {
-			if (screenX > Spacegame.screenCenterX) {
-				System.out.println("Power shot!");
+			if (screenX < width / 2 && screenY < height / 2){
+				System.out.println("Supershot!");
+				gamePlayScreen.actionSuperShot();
+			} else
+			if (screenX < width / 2 && screenY > height / 2) {
+				System.out.println("Pause");
+				gamePlayScreen.pause();
 			}
-
 			if (topOfScreen(screenX, screenY)) {
 				gamePlay.playerMoveUp();
 			} else {
+				if (bottomOfScreen(screenX,screenY)) {
 				gamePlay.playerMoveDown();
+				}
 			}
-		} else {
-			gamePlayScreen.startGame(gamePlay.isGameover());		}
+		}
+		else {
+			gamePlayScreen.startGame(gamePlay.isGameover());
+		}
 
 		return true;
 	}
 
 	private boolean topOfScreen(int screenX, int screenY) {
-		float sX = screenX * Spacegame.ratioX;
-		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
-		System.out.println(sY);
-		if(sY > (Gdx.graphics.getHeight() / 2)) {
+		System.out.println("touched screen at top " + screenY);
+		if(screenY < (height / 2) -40) {
 			return true;
 		} else {
 			return false;
@@ -108,7 +120,8 @@ public class GameInput implements InputProcessor {
 	}
 
 	private boolean bottomOfScreen(int screenX, int screenY) {
-		if(screenY > Spacegame.screenCenterY + 100) {
+		System.out.println("touched screen at bottom " + screenY);
+		if(screenY > (height / 2) +40) {
 			return true;
 		} else {
 			return false;
