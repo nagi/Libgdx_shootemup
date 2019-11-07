@@ -61,7 +61,7 @@ public class Player extends ShootingObject {
         sparkles.setSize(190, 120);
         sparkles.setAlpha(0.9f);
         //sound
-        setShotSound("sounds/laser4.mp3", 0.97f);
+        setShotSound("sounds/laser4.mp3", 0.55f);
         //initialize and define pool with missiles
         init(SpawnType.MissilePlayer);
     }

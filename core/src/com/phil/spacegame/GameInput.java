@@ -80,32 +80,44 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		float sX = screenX * Spacegame.ratioX;
-		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
+		if (gamePlay.isStarted()) {
+			if (screenX > Spacegame.screenCenterX) {
+				System.out.println("Power shot!");
+			}
 
-		//touch actions...
-//		System.out.println("Touched game ui.  Ratio: " + Spacegame.ratioX + " sx: " + sX + " , sy: " + sY); //debug
+			if (topOfScreen(screenX, screenY)) {
+				gamePlay.playerMoveUp();
+			} else {
+				gamePlay.playerMoveDown();
+			}
+		} else {
+			gamePlayScreen.startGame(gamePlay.isGameover());		}
 
-		//removed for html deploy
-
-//		if (button == Input.Buttons.LEFT) {
-//			if (gamePlay.isStarted())
-//				gamePlay.touchDown(sX, sY);
-//			else
-//				gamePlayScreen.startGame(gamePlay.isGameover());
-//		}
-//		else if(button == Input.Buttons.RIGHT) {
-//			gamePlayScreen.actionSuperShot();
-//		}
 		return true;
+	}
+
+	private boolean topOfScreen(int screenX, int screenY) {
+		if(screenY < Spacegame.screenCenterY - 100) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean bottomOfScreen(int screenX, int screenY) {
+		if(screenY > Spacegame.screenCenterY + 100) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		float sX = screenX * Spacegame.ratioX;
-		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
+		if (gamePlay.isStarted()) {
+			gamePlay.playerStayStill();
+		}
 
-		gamePlay.touchUp(sX, sY);
 		return true;
 	}
 
