@@ -30,7 +30,7 @@ public class Obstacle extends GameObject implements SpawnObject {
                         8, 8, 0, 64, 0.1f, "ANIM1", false);
             setAnimation("ANIM1");
             setSize(200, 200);
-            setCollisionArea(20, 30, 130, 135);
+            setCollisionArea(20, 30, 125, 130);
             setSpeed(-425.0f, 42.75f);
             restartAnimRandom = true;
         }

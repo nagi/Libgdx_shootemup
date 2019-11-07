@@ -21,16 +21,16 @@ public class GUIStage {
     private Stage stage;
     //menu gui objects
     private Label lblStart;
-    private String txtStart = "Press \" A \" to start!";
+    private String txtStart = "Tap screen or \"A\" to start!";
     private Image imgLogo;
     private Image imgTwitter;
     //ingame gui objects
     private String txtPause = "Pause";
     private String txtScore = "0";
-    private String txtGameOver = "Gameover!";
-    private String txtHighscore = "Highscore: ";
+    private String txtGameOver = "Game Over!";
+    private String txtHighscore = "High Score: ";
     private String txtHighscorePoints = "0";
-    private String txtPressForSuperShot = "Super shot!  (Press \" S \")";
+    private String txtPressForSuperShot = "Supershot! Tap TOP-LEFT or \"S\"";
     private int offsetGameover = 100;
     private int offsetHighscore = 100;
     private Label lblPause;

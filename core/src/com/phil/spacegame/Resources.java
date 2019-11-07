@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Resources extends AssetManager {
 
     //Paths to assets (Core/Assets/)
-    private String fntBangers = "fonts/Bangers_bitmap.fnt";
+    private String fntBangers = "fonts/28days.fnt";
     public String imgLogo = "img/logo.png";
     public String imgTwitter = "img/twitter_handle.png";
     public String bgLayerFront = "background/ground.png";
