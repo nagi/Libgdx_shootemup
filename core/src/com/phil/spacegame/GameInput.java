@@ -97,7 +97,10 @@ public class GameInput implements InputProcessor {
 	}
 
 	private boolean topOfScreen(int screenX, int screenY) {
-		if(screenY < Spacegame.screenCenterY - 100) {
+		float sX = screenX * Spacegame.ratioX;
+		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
+		System.out.println(sY);
+		if(sY > (Gdx.graphics.getHeight() / 2)) {
 			return true;
 		} else {
 			return false;
