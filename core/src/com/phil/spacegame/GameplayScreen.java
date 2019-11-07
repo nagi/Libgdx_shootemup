@@ -31,7 +31,7 @@ public class GameplayScreen implements Screen {
 	private InputMultiplexer ingameUI;
 	//Instance of background music
 	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/back_music.ogg"));
-	private float volumeMusic = 0.30f;
+	private float volumeMusic = 0.32f;
 	private PostProcessor postProcessor;
 
 	public GameplayScreen(Spacegame game){
