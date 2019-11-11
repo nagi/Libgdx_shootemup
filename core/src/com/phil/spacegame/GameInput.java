@@ -83,6 +83,10 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		System.out.println("touched screen at " + screenY);
+		System.out.println("player at " + gamePlay.player.getY());
+		float sX = screenX * Spacegame.ratioX;
+		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
 		if (gamePlay.isPaused()) {
 			gamePlayScreen.resumeGame();
 		} else
@@ -90,17 +94,16 @@ public class GameInput implements InputProcessor {
 			if (screenX < width / 2 && screenY < height / 2){
 				System.out.println("Supershot!");
 				gamePlayScreen.actionSuperShot();
-			} else
+			}
 			if (screenX < width / 2 && screenY > height / 2) {
 				System.out.println("Pause");
 				gamePlayScreen.pause();
 			}
-			if (topOfScreen(screenX, screenY)) {
+			if (sY > gamePlay.player.getY() && screenX > width / 2) {
 				gamePlay.playerMoveUp();
-			} else {
-				if (bottomOfScreen(screenX,screenY)) {
+			}
+			if (sY < gamePlay.player.getY() && screenX > width / 2) {
 				gamePlay.playerMoveDown();
-				}
 			}
 		}
 		else {
@@ -108,24 +111,6 @@ public class GameInput implements InputProcessor {
 		}
 
 		return true;
-	}
-
-	private boolean topOfScreen(int screenX, int screenY) {
-		System.out.println("touched screen at top " + screenY);
-		if(screenY < (height / 2) -40) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean bottomOfScreen(int screenX, int screenY) {
-		System.out.println("touched screen at bottom " + screenY);
-		if(screenY > (height / 2) +40) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@Override
