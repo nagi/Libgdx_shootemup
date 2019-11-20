@@ -233,13 +233,11 @@ public class Player extends ShootingObject {
         upLimit = sY;
         accelerateUp = true;
         accelerateDown = false;
-        moveStepY = 0.0f;
     }
     public void setAccelerateDownTo(float sY) {
         downLimit = sY;
         accelerateDown = true;
         accelerateUp = false;
-        moveStepY = 0.0f;
     }
 
     public void setAccelerateOff() {

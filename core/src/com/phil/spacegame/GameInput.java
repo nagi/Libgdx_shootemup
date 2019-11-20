@@ -83,8 +83,6 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		System.out.println("touched screen at " + screenY);
-		System.out.println("player at " + gamePlay.player.getY());
 		float sX = screenX * Spacegame.ratioX;
 		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
 		if (gamePlay.isPaused()) {
@@ -126,6 +124,13 @@ public class GameInput implements InputProcessor {
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		float sX = screenX * Spacegame.ratioX;
 		float sY = (Gdx.graphics.getHeight() - screenY) * Spacegame.ratioY;
+
+		if (sY > gamePlay.player.getY() && screenX > width / 2) {
+			gamePlay.playerMoveUpTo(sY);
+		}
+		if (sY < gamePlay.player.getY() && screenX > width / 2) {
+			gamePlay.playerMoveDownTo(sY);
+		}
 
 		return true;
 	}
