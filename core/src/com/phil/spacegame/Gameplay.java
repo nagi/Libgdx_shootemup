@@ -641,6 +641,16 @@ public class Gameplay {
         if (!player.isDead()) player.setAccelerateDown();
     }
 
+    public void playerMoveUpTo(float sY) {
+        //move player upwards
+        if (!player.isDead()) player.setAccelerateUpTo(sY);
+    }
+
+    public void playerMoveDownTo(float sY) {
+        //move player downwards
+        if (!player.isDead()) player.setAccelerateDownTo(sY);
+    }
+
     public void playerStayStill() {
         //move player downwards
         if (!player.isDead()) player.setAccelerateOff();

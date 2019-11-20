@@ -100,10 +100,10 @@ public class GameInput implements InputProcessor {
 				gamePlayScreen.pause();
 			}
 			if (sY > gamePlay.player.getY() && screenX > width / 2) {
-				gamePlay.playerMoveUp();
+				gamePlay.playerMoveUpTo(sY);
 			}
 			if (sY < gamePlay.player.getY() && screenX > width / 2) {
-				gamePlay.playerMoveDown();
+				gamePlay.playerMoveDownTo(sY);
 			}
 		}
 		else {
